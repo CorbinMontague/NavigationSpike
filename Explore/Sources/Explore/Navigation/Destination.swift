@@ -8,7 +8,7 @@
 import Foundation
 import Navigation
 
-indirect enum Destination {
+public indirect enum Destination {
     
     case explore
     
@@ -16,15 +16,15 @@ indirect enum Destination {
 }
 
 extension Destination: Identifiable, Hashable {
-    var id: String {
+    public var id: String {
         return String(reflecting: self)
     }
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
     
-    static func == (lhs: Destination, rhs: Destination) -> Bool {
+    public static func == (lhs: Destination, rhs: Destination) -> Bool {
         lhs.id == rhs.id
     }
 }

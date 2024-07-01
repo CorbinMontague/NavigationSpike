@@ -9,7 +9,8 @@ import Foundation
 import Navigation
 import SwiftUI
 
-class ModuleViewBuilder {
+public class ModuleViewBuilder {
+    
     private var sharedViewBuilder: SharedViewBuilding
     
     init(sharedViewBuilder: SharedViewBuilding) {
@@ -20,8 +21,15 @@ class ModuleViewBuilder {
         switch destination {
         case .explore:
             ExploreView()
+            
         case .sharedDestination(let sharedDestination):
             sharedViewBuilder.view(for: sharedDestination)
         }
+    }
+}
+
+extension ModuleViewBuilder: ViewBuilding {
+    public func externalView(for destination: Destination) -> AnyView {
+        return AnyView(view(for: destination))
     }
 }

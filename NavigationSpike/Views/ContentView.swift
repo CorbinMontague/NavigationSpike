@@ -6,24 +6,27 @@
 //
 
 import Explore
+import Navigation
 import SwiftUI
 
 struct ContentView: View {
+    private var viewBuilder: SharedViewBuilding
+    
+    init(sharedViewBuilder: SharedViewBuilding) {
+        self.sharedViewBuilder = sharedViewBuilder
+    }
+    
     var body: some View {
         TabView {
-            ExploreView()
+            viewBuilder.view(for: .explore)
                 .tabItem {
                     Label("Explore", systemImage: "magnifyingglass")
                 }
             
-            Text("Hello Playlists")
+            viewBuilder.view(for: .playlists)
                 .tabItem {
                     Label("Playlists", systemImage: "music.note.list")
                 }
         }
     }
-}
-
-#Preview {
-    ContentView()
 }

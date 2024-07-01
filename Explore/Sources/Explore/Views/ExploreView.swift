@@ -8,13 +8,12 @@
 import Music
 import SwiftUI
 
-public struct ExploreView: View {
+struct ExploreView: View {
     
     @StateObject var viewModel = ExploreViewModel()
     @StateObject var coordinator = ExploreCoordinator()
     
-    public init() { }
-    public var body: some View {
+    var body: some View {
         NavigationStack(path: $coordinator.path) {
             List {
                 ForEach(viewModel.songs, id: \.name) { song in
@@ -24,7 +23,7 @@ public struct ExploreView: View {
             .navigationTitle("Explore")
             .navigationDestination(for: Destination.self) { destination in
                 Text("Foo")
-//                ModuleViewBuilder.view(for: destination)
+                //                ModuleViewBuilder.view(for: destination)
                     .environmentObject(coordinator)
             }
         }
