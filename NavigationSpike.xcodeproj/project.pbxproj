@@ -12,6 +12,10 @@
 		2926BA182C32FFF4000E2549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2926BA172C32FFF4000E2549 /* Assets.xcassets */; };
 		2926BA1C2C32FFF4000E2549 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2926BA1B2C32FFF4000E2549 /* Preview Assets.xcassets */; };
 		2926BA262C32FFF4000E2549 /* NavigationSpikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926BA252C32FFF4000E2549 /* NavigationSpikeTests.swift */; };
+		297C61B72C33066A003116D8 /* Explore in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B62C33066A003116D8 /* Explore */; };
+		297C61B92C33066A003116D8 /* Music in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B82C33066A003116D8 /* Music */; };
+		297C61BB2C33066A003116D8 /* Navigation in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61BA2C33066A003116D8 /* Navigation */; };
+		297C61BD2C33066A003116D8 /* Playlists in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61BC2C33066A003116D8 /* Playlists */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +37,10 @@
 		2926BA1B2C32FFF4000E2549 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2926BA212C32FFF4000E2549 /* NavigationSpikeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationSpikeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2926BA252C32FFF4000E2549 /* NavigationSpikeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSpikeTests.swift; sourceTree = "<group>"; };
+		297C61B12C330574003116D8 /* Explore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Explore; sourceTree = "<group>"; };
+		297C61B22C330588003116D8 /* Playlists */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Playlists; sourceTree = "<group>"; };
+		297C61B32C3305AA003116D8 /* Music */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Music; sourceTree = "<group>"; };
+		297C61B42C3305C3003116D8 /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +48,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				297C61BB2C33066A003116D8 /* Navigation in Frameworks */,
+				297C61B92C33066A003116D8 /* Music in Frameworks */,
+				297C61BD2C33066A003116D8 /* Playlists in Frameworks */,
+				297C61B72C33066A003116D8 /* Explore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,9 +68,14 @@
 		2926BA072C32FFF3000E2549 = {
 			isa = PBXGroup;
 			children = (
+				297C61B42C3305C3003116D8 /* Navigation */,
+				297C61B32C3305AA003116D8 /* Music */,
+				297C61B12C330574003116D8 /* Explore */,
+				297C61B22C330588003116D8 /* Playlists */,
 				2926BA122C32FFF3000E2549 /* NavigationSpike */,
 				2926BA242C32FFF4000E2549 /* NavigationSpikeTests */,
 				2926BA112C32FFF3000E2549 /* Products */,
+				297C61B52C33066A003116D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +116,13 @@
 			path = NavigationSpikeTests;
 			sourceTree = "<group>";
 		};
+		297C61B52C33066A003116D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -115,6 +139,12 @@
 			dependencies = (
 			);
 			name = NavigationSpike;
+			packageProductDependencies = (
+				297C61B62C33066A003116D8 /* Explore */,
+				297C61B82C33066A003116D8 /* Music */,
+				297C61BA2C33066A003116D8 /* Navigation */,
+				297C61BC2C33066A003116D8 /* Playlists */,
+			);
 			productName = NavigationSpike;
 			productReference = 2926BA102C32FFF3000E2549 /* NavigationSpike.app */;
 			productType = "com.apple.product-type.application";
@@ -356,8 +386,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -370,7 +400,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -393,8 +423,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -407,7 +437,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -429,7 +459,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NavigationSpike.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NavigationSpike";
 			};
 			name = Debug;
@@ -452,7 +482,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NavigationSpike.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NavigationSpike";
 			};
 			name = Release;
@@ -488,6 +518,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		297C61B62C33066A003116D8 /* Explore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Explore;
+		};
+		297C61B82C33066A003116D8 /* Music */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Music;
+		};
+		297C61BA2C33066A003116D8 /* Navigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Navigation;
+		};
+		297C61BC2C33066A003116D8 /* Playlists */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Playlists;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2926BA082C32FFF3000E2549 /* Project object */;
 }
