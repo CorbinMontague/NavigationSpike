@@ -21,5 +21,6 @@ struct ArtistView: View {
                 }
             }
         }
+        .navigationTitle("Artist Details")
     }
 }

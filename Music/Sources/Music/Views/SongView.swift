@@ -9,20 +9,29 @@ import Core
 import SwiftUI
 
 struct SongView: View {
+    @Environment(\.dismiss) private var dismiss
     
     @StateObject var viewModel: SongViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(viewModel.song.name)
-                .font(.body.bold())
+                .font(.title2.bold())
             
             Text(viewModel.song.artist.name)
-                .font(.footnote)
+                .font(.title3)
                 .foregroundStyle(.blue)
                 .onTapGesture {
                     // TODO: Push ArtistView
+                    print("Tapped on artist")
                 }
+        }
+        .navigationTitle("Song Details")
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                BackButton { dismiss() }
+            }
         }
     }
 }

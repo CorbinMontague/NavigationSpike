@@ -14,16 +14,20 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            viewBuilder.view(for: .explore)
-                .tabItem {
-                    Label("Explore", systemImage: "magnifyingglass")
-                }
-                .environmentObject(Explore.ModuleViewBuilder(externalViewBuilder: viewBuilder))
-            
-            viewBuilder.view(for: .playlists)
-                .tabItem {
-                    Label("Playlists", systemImage: "music.note.list")
-                }
+            Group {
+                viewBuilder.view(for: .explore)
+                    .tabItem {
+                        Label("Explore", systemImage: "magnifyingglass")
+                    }
+                    .environmentObject(Explore.ModuleViewBuilder(externalViewBuilder: viewBuilder))
+                
+                viewBuilder.view(for: .playlists)
+                    .tabItem {
+                        Label("Playlists", systemImage: "music.note.list")
+                    }
+            }
+            .toolbarBackground(.white, for: .tabBar)
+            .toolbarBackground(.visible, for: .tabBar)
         }
     }
 }
