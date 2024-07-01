@@ -1,25 +1,23 @@
 //
-//  SharedDestination.swift
-//  Navigation
+//  Destination.swift
+//  Music
 //
 //  Created by Corbin Montague on 7/1/24.
 //
 
-import Foundation
 import Core
+import Foundation
+import Navigation
 
-public indirect enum SharedDestination {
+public indirect enum Destination {
     
-    // root tab views
-    case explore
-    case playlists
-    
-    // commonly shared views
     case song(_ song: Song)
     case artist(_ artist: Artist)
+    
+    case external(_ destination: SharedDestination)
 }
 
-extension SharedDestination: Identifiable, Hashable {
+extension Destination: Identifiable, Hashable {
     public var id: String {
         return String(reflecting: self)
     }
@@ -28,7 +26,7 @@ extension SharedDestination: Identifiable, Hashable {
         hasher.combine(id)
     }
     
-    public static func == (lhs: SharedDestination, rhs: SharedDestination) -> Bool {
+    public static func == (lhs: Destination, rhs: Destination) -> Bool {
         lhs.id == rhs.id
     }
 }

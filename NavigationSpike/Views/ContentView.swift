@@ -18,6 +18,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Explore", systemImage: "magnifyingglass")
                 }
+                .environmentObject(Explore.ModuleViewBuilder(externalViewBuilder: viewBuilder))
             
             viewBuilder.view(for: .playlists)
                 .tabItem {

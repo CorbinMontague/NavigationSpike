@@ -5,10 +5,11 @@
 //  Created by Corbin Montague on 7/1/24.
 //
 
-import Music
+import Core
 import SwiftUI
 
 struct ExploreView: View {
+    @EnvironmentObject var viewBuilder: ModuleViewBuilder
     
     @StateObject var viewModel = ExploreViewModel()
     @StateObject var coordinator = ExploreCoordinator()
@@ -22,8 +23,7 @@ struct ExploreView: View {
             }
             .navigationTitle("Explore")
             .navigationDestination(for: Destination.self) { destination in
-                Text("Foo")
-                //                ModuleViewBuilder.view(for: destination)
+                viewBuilder.view(for: destination)
                     .environmentObject(coordinator)
             }
         }
@@ -39,7 +39,7 @@ struct ExploreView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
         .onTapGesture {
-            coordinator.push(.sharedDestination(.song(song)))
+            coordinator.push(.external(.song(song)))
         }
     }
 }

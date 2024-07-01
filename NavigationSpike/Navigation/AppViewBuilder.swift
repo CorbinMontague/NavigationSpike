@@ -7,26 +7,22 @@
 
 import Explore
 import Foundation
+import Music
 import Navigation
 import SwiftUI
 
 class AppViewBuilder: SharedViewBuilding {
-    var exploreViewBuilder: Explore.ViewBuilding
-    
-    init(exploreViewBuilder: Explore.ViewBuilding) {
-        self.exploreViewBuilder = exploreViewBuilder
-    }
     
     func view(for destination: Navigation.SharedDestination) -> AnyView {
         switch destination {
         case .explore:
-            return exploreViewBuilder.externalView(for: .explore)
+            return Explore.ViewFactory.makeExploreView()
         case .playlists:
             return AnyView(Text("Playlists TODO"))
         case .song(let song):
-            return AnyView(Text("Song[\(song.name)] TODO"))
+            return Music.ViewFactory.makeSongView(song: song)
         case .artist(let artist):
-            return AnyView(Text("Artist[\(artist.name)] TODO"))
+            return Music.ViewFactory.makeArtistView(artist: artist)
         }
     }
 }

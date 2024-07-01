@@ -12,7 +12,7 @@ public indirect enum Destination {
     
     case explore
     
-    case sharedDestination(_ destination: SharedDestination)
+    case external(_ destination: SharedDestination)
 }
 
 extension Destination: Identifiable, Hashable {

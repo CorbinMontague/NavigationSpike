@@ -5,7 +5,7 @@
 //  Created by Corbin Montague on 7/1/24.
 //
 
-import Music
+import Core
 import SwiftUI
 
 class ExploreViewModel: ObservableObject {

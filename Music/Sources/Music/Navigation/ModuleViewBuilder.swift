@@ -1,6 +1,6 @@
 //
 //  ModuleViewBuilder.swift
-//  Explore
+//  Music
 //
 //  Created by Corbin Montague on 6/30/22.
 //
@@ -19,8 +19,10 @@ public class ModuleViewBuilder: ObservableObject {
     
     @ViewBuilder func view(for destination: Destination) -> some View {
         switch destination {
-        case .explore:
-            ViewFactory.makeExploreView()
+        case .song(let song):
+            ViewFactory.makeSongView(song: song)
+        case .artist(let artist):
+            ViewFactory.makeArtistView(artist: artist)
             
         case .external(let sharedDestination):
             externalViewBuilder.view(for: sharedDestination)

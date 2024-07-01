@@ -14,10 +14,10 @@ struct ArtistView: View {
     var body: some View {
         List {
             Text("Artist: \(viewModel.artist.name)")
-
+            
             Section(header: Text("Songs")) {
-                ForEach(0..<25) { index in
-                    Text("Song \(index)")
+                ForEach(viewModel.artist.songs, id: \.name) { song in
+                    Text("TODO")
                 }
             }
         }

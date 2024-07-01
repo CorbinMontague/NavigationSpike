@@ -38,6 +38,7 @@
 		2926BA1B2C32FFF4000E2549 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2926BA212C32FFF4000E2549 /* NavigationSpikeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationSpikeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2926BA252C32FFF4000E2549 /* NavigationSpikeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSpikeTests.swift; sourceTree = "<group>"; };
+		294801352C333B93007AA54E /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
 		295F1DC82C3324D7003FA6E3 /* AppViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewBuilder.swift; sourceTree = "<group>"; };
 		297C61B12C330574003116D8 /* Explore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Explore; sourceTree = "<group>"; };
 		297C61B22C330588003116D8 /* Playlists */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Playlists; sourceTree = "<group>"; };
@@ -70,6 +71,7 @@
 		2926BA072C32FFF3000E2549 = {
 			isa = PBXGroup;
 			children = (
+				294801352C333B93007AA54E /* Core */,
 				297C61B42C3305C3003116D8 /* Navigation */,
 				297C61B32C3305AA003116D8 /* Music */,
 				297C61B12C330574003116D8 /* Explore */,
