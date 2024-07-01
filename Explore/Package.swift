@@ -16,16 +16,17 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(name: "Music", path: "../Music")
+        .package(name: "Music", path: "../Music"),
+        .package(name: "Navigation", path: "../Navigation")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "Explore",
-            dependencies: ["Music"]),
+            dependencies: ["Music", "Navigation"]),
         .testTarget(
             name: "ExploreTests",
-            dependencies: ["Explore", "Music"]),
+            dependencies: ["Explore", "Music", "Navigation"]),
     ]
 )
