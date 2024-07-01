@@ -27,9 +27,3 @@ public class ModuleViewBuilder {
         }
     }
 }
-
-extension ModuleViewBuilder: ViewBuilding {
-    public func externalView(for destination: Destination) -> AnyView {
-        return AnyView(view(for: destination))
-    }
-}

@@ -10,11 +10,7 @@ import Navigation
 import SwiftUI
 
 struct ContentView: View {
-    private var viewBuilder: SharedViewBuilding
-    
-    init(sharedViewBuilder: SharedViewBuilding) {
-        self.sharedViewBuilder = sharedViewBuilder
-    }
+    private var viewBuilder: SharedViewBuilding = AppViewBuilder()
     
     var body: some View {
         TabView {

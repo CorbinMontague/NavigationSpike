@@ -23,10 +23,10 @@ class AppViewBuilder: SharedViewBuilding {
             return exploreViewBuilder.externalView(for: .explore)
         case .playlists:
             return AnyView(Text("Playlists TODO"))
-        case .song:
-            return AnyView(Text("Song TODO"))
-        case .artist:
-            return AnyView(Text("Artist TODO"))
+        case .song(let song):
+            return AnyView(Text("Song[\(song.name)] TODO"))
+        case .artist(let artist):
+            return AnyView(Text("Artist[\(artist.name)] TODO"))
         }
     }
 }

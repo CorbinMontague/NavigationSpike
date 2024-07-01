@@ -39,7 +39,7 @@ struct ExploreView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
         .onTapGesture {
-            print("Tapped on \(song.name)")
+            coordinator.push(.sharedDestination(.song(song)))
         }
     }
 }
