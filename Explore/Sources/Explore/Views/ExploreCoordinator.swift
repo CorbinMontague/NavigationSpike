@@ -10,7 +10,6 @@ import FlowStacks
 import SwiftUI
 
 public struct ExploreCoordinator: View {
-    @EnvironmentObject var viewBuilder: DestinationViewBuilder
     
     @StateObject var viewModel = ExploreViewModel()
     
@@ -22,7 +21,7 @@ public struct ExploreCoordinator: View {
         FlowStack($path, withNavigation: true) {
             makeRootView()
                 .flowDestination(for: Destination.self) { destination in
-                    viewBuilder.view(at: destination)
+                    Globals.viewBuilder?.view(at: destination)
                 }
                 .navigationTitle("Explore")
         }

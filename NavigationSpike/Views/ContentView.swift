@@ -27,7 +27,6 @@ struct ContentView: View {
                     .tabItem {
                         Label("Explore", systemImage: "magnifyingglass")
                     }
-                    .environmentObject(Explore.DestinationViewBuilder(externalViewBuilder: viewBuilder))
                 
                 viewBuilder.view(at: .playlists)
                     .tag(Tab.playlists)

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 public struct ViewFactory {
-    static public func makeExploreCoordinator() -> AnyView {
+    public static func makeExploreCoordinator() -> AnyView {
         return AnyView(ExploreCoordinator())
     }
 }

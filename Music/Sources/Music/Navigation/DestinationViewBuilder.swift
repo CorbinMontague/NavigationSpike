@@ -17,7 +17,7 @@ public class DestinationViewBuilder: ObservableObject {
         self.externalViewBuilder = externalViewBuilder
     }
     
-    @ViewBuilder func view(for destination: Destination) -> some View {
+    @ViewBuilder func view(at destination: Destination) -> some View {
         switch destination {
         case .song(let song):
             ViewFactory.makeSongView(song: song)

@@ -12,6 +12,7 @@ import Navigation
 import SwiftUI
 
 class AppViewBuilder: SharedViewBuilding {
+    static let shared = AppViewBuilder()
     
     func view(at destination: Navigation.SharedDestination) -> AnyView {
         switch destination {

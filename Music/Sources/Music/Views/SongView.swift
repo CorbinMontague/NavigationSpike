@@ -24,16 +24,13 @@ struct SongView: View {
                 .font(.title3)
                 .foregroundStyle(.blue)
                 .onTapGesture {
-                    // TODO: Push ArtistView
-                    print("Tapped on artist")
                     let destination = Destination.external(.artist(viewModel.song.artist))
                     navigator.push(destination)
                 }
         }
-//        .flowDestination(for: Destination.self) { destination in
-//            viewBuilder.view(for: destination)
-//                .environmentObject(viewBuilder)
-//        }
+        .flowDestination(for: Destination.self) { destination in
+            Globals.viewBuilder?.view(at: destination)
+        }
         .navigationTitle("Song Details")
         .navigationBarBackButtonHidden(true)
         .toolbar {
