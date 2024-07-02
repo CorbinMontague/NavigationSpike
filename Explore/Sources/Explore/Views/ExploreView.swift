@@ -6,16 +6,17 @@
 //
 
 import Core
+import Navigation
 import SwiftUI
 
 struct ExploreView: View {
-    @EnvironmentObject var viewBuilder: ModuleViewBuilder
+    @EnvironmentObject var viewBuilder: DestinationViewBuilder
     
     @StateObject var viewModel = ExploreViewModel()
-    @StateObject var coordinator = ExploreCoordinator()
+    @StateObject var navigator = Navigator<Destination>()
     
     var body: some View {
-        NavigationStack(path: $coordinator.path) {
+        NavigationStack(path: $navigator.path) {
             List {
                 ForEach(viewModel.songs, id: \.name) { song in
                     makeSongCell(song: song)
@@ -24,7 +25,7 @@ struct ExploreView: View {
             .navigationTitle("Explore")
             .navigationDestination(for: Destination.self) { destination in
                 viewBuilder.view(for: destination)
-                    .environmentObject(coordinator)
+                    .environmentObject(navigator)
             }
         }
     }
@@ -39,7 +40,7 @@ struct ExploreView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
         .onTapGesture {
-            coordinator.push(.external(.song(song)))
+            navigator.push(.external(.song(song)))
         }
     }
 }

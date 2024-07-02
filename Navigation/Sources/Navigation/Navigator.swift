@@ -1,5 +1,5 @@
 //
-//  NavigationCoordinator.swift
+//  Navigator.swift
 //  Navigation
 //
 //  Created by Corbin Montague on 7/1/24.
@@ -7,25 +7,22 @@
 
 import Foundation
 
-/// An `ObservableObject` that helps facilitate navigation within a `NavigationStack`.
-public protocol NavigationCoordinator: ObservableObject {
-    associatedtype DestinationType where DestinationType: Hashable
-    
-    var path: [DestinationType] { get set }
-    var currentDestination: DestinationType? { get }
-    
-    func push(_ destination: DestinationType)
-    func pop()
-    func pop(_ numViews: Int)
-    func popToRoot()
-}
+public typealias PathNavigator = Navigator<AnyHashable>
 
-extension NavigationCoordinator {
-    public var currentDestination: DestinationType? {
+/// An `ObservableObject` that helps facilitate navigation within a `NavigationStack`.
+@MainActor
+public class Navigator<Destination>: ObservableObject {
+    
+    public init(path: [Destination] = []) {
+        self.path = path
+    }
+    
+    @Published public var path: [Destination]
+    public var currentDestination: Destination? {
         path.last
     }
     
-    public func push(_ destination: DestinationType) {
+    public func push(_ destination: Destination) {
         path.append(destination)
     }
     

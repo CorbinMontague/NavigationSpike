@@ -1,5 +1,5 @@
 //
-//  ModuleViewBuilder.swift
+//  DestinationViewBuilder.swift
 //  Explore
 //
 //  Created by Corbin Montague on 6/30/22.
@@ -9,7 +9,7 @@ import Foundation
 import Navigation
 import SwiftUI
 
-public class ModuleViewBuilder: ObservableObject {
+public class DestinationViewBuilder: ObservableObject {
     
     private var externalViewBuilder: SharedViewBuilding
     
