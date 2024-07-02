@@ -12,6 +12,7 @@
 		2926BA182C32FFF4000E2549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2926BA172C32FFF4000E2549 /* Assets.xcassets */; };
 		2926BA1C2C32FFF4000E2549 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2926BA1B2C32FFF4000E2549 /* Preview Assets.xcassets */; };
 		2926BA262C32FFF4000E2549 /* NavigationSpikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926BA252C32FFF4000E2549 /* NavigationSpikeTests.swift */; };
+		293527222C3438E000FE0EC5 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 293527212C3438E000FE0EC5 /* FlowStacks */; };
 		295F1DC92C3324D7003FA6E3 /* AppViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295F1DC82C3324D7003FA6E3 /* AppViewBuilder.swift */; };
 		297C61B72C33066A003116D8 /* Explore in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B62C33066A003116D8 /* Explore */; };
 		297C61B92C33066A003116D8 /* Music in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B82C33066A003116D8 /* Music */; };
@@ -52,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				297C61BB2C33066A003116D8 /* Navigation in Frameworks */,
+				293527222C3438E000FE0EC5 /* FlowStacks in Frameworks */,
 				297C61B92C33066A003116D8 /* Music in Frameworks */,
 				297C61BD2C33066A003116D8 /* Playlists in Frameworks */,
 				297C61B72C33066A003116D8 /* Explore in Frameworks */,
@@ -165,6 +167,7 @@
 				297C61B82C33066A003116D8 /* Music */,
 				297C61BA2C33066A003116D8 /* Navigation */,
 				297C61BC2C33066A003116D8 /* Playlists */,
+				293527212C3438E000FE0EC5 /* FlowStacks */,
 			);
 			productName = NavigationSpike;
 			productReference = 2926BA102C32FFF3000E2549 /* NavigationSpike.app */;
@@ -216,6 +219,9 @@
 				Base,
 			);
 			mainGroup = 2926BA072C32FFF3000E2549;
+			packageReferences = (
+				293527202C3438E000FE0EC5 /* XCRemoteSwiftPackageReference "FlowStacks" */,
+			);
 			productRefGroup = 2926BA112C32FFF3000E2549 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -541,7 +547,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		293527202C3438E000FE0EC5 /* XCRemoteSwiftPackageReference "FlowStacks" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnpatrickmorgan/FlowStacks";
+			requirement = {
+				kind = exactVersion;
+				version = 0.6.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		293527212C3438E000FE0EC5 /* FlowStacks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 293527202C3438E000FE0EC5 /* XCRemoteSwiftPackageReference "FlowStacks" */;
+			productName = FlowStacks;
+		};
 		297C61B62C33066A003116D8 /* Explore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Explore;

@@ -14,7 +14,7 @@ public indirect enum Destination {
     case song(_ song: Song)
     case artist(_ artist: Artist)
     
-    case external(_ destination: SharedDestination)
+    case external(_ destination: SharedScreen)
 }
 
 extension Destination: Identifiable, Hashable {

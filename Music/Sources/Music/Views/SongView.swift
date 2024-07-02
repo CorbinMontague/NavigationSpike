@@ -11,7 +11,7 @@ import SwiftUI
 
 struct SongView: View {
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject var navigator: PathNavigator
+//    @EnvironmentObject var navigator: PathNavigator
     
     @StateObject var viewModel: SongViewModel
     
@@ -26,8 +26,8 @@ struct SongView: View {
                 .onTapGesture {
                     // TODO: Push ArtistView
                     print("Tapped on artist")
-                    let destination = Destination.external(.artist(viewModel.song.artist))
-                    navigator.push(destination)
+//                    let destination = Destination.external(.artist(viewModel.song.artist))
+//                    navigator.push(destination)
                 }
         }
         .navigationTitle("Song Details")

@@ -17,13 +17,13 @@ public class DestinationViewBuilder: ObservableObject {
         self.externalViewBuilder = externalViewBuilder
     }
     
-    @ViewBuilder func view(for destination: Destination) -> some View {
-        switch destination {
+    @ViewBuilder func view(for screen: Screen) -> some View {
+        switch screen {
         case .explore:
-            ViewFactory.makeExploreView()
+            ViewFactory.makeExploreCoordinator()
             
-        case .external(let sharedDestination):
-            externalViewBuilder.view(for: sharedDestination)
+        case .external(let sharedScreen):
+            externalViewBuilder.view(for: sharedScreen)
         }
     }
 }

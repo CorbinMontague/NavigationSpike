@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Song {
+public struct Song: Codable {
     public var name: String
     public var artist: Artist
     

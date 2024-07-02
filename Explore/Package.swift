@@ -17,7 +17,8 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(name: "Navigation", path: "../Navigation"),
-        .package(name: "Core", path: "../Core")
+        .package(name: "Core", path: "../Core"),
+//        .package(url: "https://github.com/johnpatrickmorgan/FlowStacks", exact: Version("0.6.3"))
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.

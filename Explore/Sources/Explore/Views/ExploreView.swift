@@ -6,26 +6,18 @@
 //
 
 import Core
-import Navigation
+import FlowStacks
 import SwiftUI
 
 struct ExploreView: View {
-    @EnvironmentObject var viewBuilder: DestinationViewBuilder
-    
-    @StateObject var viewModel = ExploreViewModel()
-    @StateObject var navigator = Navigator<Destination>()
+//    @EnvironmentObject var navigator: FlowPathNavigator
+    @EnvironmentObject var navigator: FlowNavigator<Screen>
+    @ObservedObject var viewModel = ExploreViewModel()
     
     var body: some View {
-        NavigationStack(path: $navigator.path) {
-            List {
-                ForEach(viewModel.songs, id: \.name) { song in
-                    makeSongCell(song: song)
-                }
-            }
-            .navigationTitle("Explore")
-            .navigationDestination(for: Destination.self) { destination in
-                viewBuilder.view(for: destination)
-                    .environmentObject(navigator)
+        List {
+            ForEach(viewModel.songs, id: \.name) { song in
+                makeSongCell(song: song)
             }
         }
     }
@@ -40,7 +32,7 @@ struct ExploreView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
         .onTapGesture {
-            navigator.push(.external(.song(song)))
+            navigator.push(Screen.external(.song(song)))
         }
     }
 }

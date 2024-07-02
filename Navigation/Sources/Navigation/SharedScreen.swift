@@ -1,5 +1,5 @@
 //
-//  SharedDestination.swift
+//  SharedScreen.swift
 //  Navigation
 //
 //  Created by Corbin Montague on 7/1/24.
@@ -8,7 +8,7 @@
 import Foundation
 import Core
 
-public indirect enum SharedDestination {
+public indirect enum SharedScreen {
     
     // root tab views
     case explore
@@ -19,7 +19,7 @@ public indirect enum SharedDestination {
     case artist(_ artist: Artist)
 }
 
-extension SharedDestination: Identifiable, Hashable {
+extension SharedScreen: Identifiable, Hashable {
     public var id: String {
         return String(reflecting: self)
     }
@@ -28,7 +28,7 @@ extension SharedDestination: Identifiable, Hashable {
         hasher.combine(id)
     }
     
-    public static func == (lhs: SharedDestination, rhs: SharedDestination) -> Bool {
+    public static func == (lhs: SharedScreen, rhs: SharedScreen) -> Bool {
         lhs.id == rhs.id
     }
 }

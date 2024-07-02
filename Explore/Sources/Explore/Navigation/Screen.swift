@@ -1,5 +1,5 @@
 //
-//  Destination.swift
+//  Screen.swift
 //  Explore
 //
 //  Created by Corbin Montague on 7/1/24.
@@ -8,14 +8,14 @@
 import Foundation
 import Navigation
 
-public indirect enum Destination {
+public indirect enum Screen {
     
     case explore
     
-    case external(_ destination: SharedDestination)
+    case external(_ screen: SharedScreen)
 }
 
-extension Destination: Identifiable, Hashable {
+extension Screen: Identifiable, Hashable {
     public var id: String {
         return String(reflecting: self)
     }
@@ -24,7 +24,7 @@ extension Destination: Identifiable, Hashable {
         hasher.combine(id)
     }
     
-    public static func == (lhs: Destination, rhs: Destination) -> Bool {
+    public static func == (lhs: Screen, rhs: Screen) -> Bool {
         lhs.id == rhs.id
     }
 }
