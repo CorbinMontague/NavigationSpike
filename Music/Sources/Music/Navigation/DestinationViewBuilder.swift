@@ -25,7 +25,7 @@ public class DestinationViewBuilder: ObservableObject {
             ViewFactory.makeArtistView(artist: artist)
             
         case .external(let sharedDestination):
-            externalViewBuilder.view(for: sharedDestination)
+            externalViewBuilder.view(at: sharedDestination)
         }
     }
 }

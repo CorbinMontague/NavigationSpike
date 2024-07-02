@@ -10,8 +10,8 @@ import FlowStacks
 import SwiftUI
 
 struct ExploreView: View {
-//    @EnvironmentObject var navigator: FlowPathNavigator
-    @EnvironmentObject var navigator: FlowNavigator<Screen>
+    @EnvironmentObject var navigator: FlowPathNavigator
+//    @EnvironmentObject var navigator: FlowNavigator<Screen>
     @ObservedObject var viewModel = ExploreViewModel()
     
     var body: some View {
@@ -32,7 +32,7 @@ struct ExploreView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
         .onTapGesture {
-            navigator.push(Screen.external(.song(song)))
+            navigator.push(Destination.external(.song(song)))
         }
     }
 }

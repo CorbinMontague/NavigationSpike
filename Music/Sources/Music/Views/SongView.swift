@@ -6,12 +6,12 @@
 //
 
 import Core
-import Navigation
+import FlowStacks
 import SwiftUI
 
 struct SongView: View {
     @Environment(\.dismiss) private var dismiss
-//    @EnvironmentObject var navigator: PathNavigator
+    @EnvironmentObject var navigator: FlowPathNavigator
     
     @StateObject var viewModel: SongViewModel
     
@@ -26,10 +26,14 @@ struct SongView: View {
                 .onTapGesture {
                     // TODO: Push ArtistView
                     print("Tapped on artist")
-//                    let destination = Destination.external(.artist(viewModel.song.artist))
-//                    navigator.push(destination)
+                    let destination = Destination.external(.artist(viewModel.song.artist))
+                    navigator.push(destination)
                 }
         }
+//        .flowDestination(for: Destination.self) { destination in
+//            viewBuilder.view(for: destination)
+//                .environmentObject(viewBuilder)
+//        }
         .navigationTitle("Song Details")
         .navigationBarBackButtonHidden(true)
         .toolbar {

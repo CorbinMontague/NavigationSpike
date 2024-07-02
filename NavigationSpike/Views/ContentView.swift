@@ -22,14 +22,14 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             Group {
-                viewBuilder.view(for: .explore)
+                viewBuilder.view(at: .explore)
                     .tag(Tab.explore)
                     .tabItem {
                         Label("Explore", systemImage: "magnifyingglass")
                     }
                     .environmentObject(Explore.DestinationViewBuilder(externalViewBuilder: viewBuilder))
                 
-                viewBuilder.view(for: .playlists)
+                viewBuilder.view(at: .playlists)
                     .tag(Tab.playlists)
                     .tabItem {
                         Label("Playlists", systemImage: "music.note.list")

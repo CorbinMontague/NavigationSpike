@@ -14,16 +14,15 @@ public struct ExploreCoordinator: View {
     
     @StateObject var viewModel = ExploreViewModel()
     
-//    @State var path = FlowPath()
-    @State private var routes: [Route<Screen>] = []
+    @State var path = FlowPath()
+//    @State private var routes: [Route<Screen>] = []
     
     public init() { }
     public var body: some View {
-        FlowStack($routes, withNavigation: true) {
+        FlowStack($path, withNavigation: true) {
             makeRootView()
-                .flowDestination(for: Screen.self) { screen in
-                    viewBuilder.view(for: screen)
-                        .environmentObject(viewBuilder)
+                .flowDestination(for: Destination.self) { destination in
+                    viewBuilder.view(at: destination)
                 }
                 .navigationTitle("Explore")
         }

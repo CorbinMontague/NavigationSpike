@@ -13,8 +13,8 @@ import SwiftUI
 
 class AppViewBuilder: SharedViewBuilding {
     
-    func view(for screen: Navigation.SharedScreen) -> AnyView {
-        switch screen {
+    func view(at destination: Navigation.SharedDestination) -> AnyView {
+        switch destination {
         case .explore:
             return Explore.ViewFactory.makeExploreCoordinator()
         case .playlists:

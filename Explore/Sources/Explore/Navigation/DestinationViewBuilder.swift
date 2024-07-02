@@ -10,6 +10,7 @@ import Navigation
 import SwiftUI
 
 public class DestinationViewBuilder: ObservableObject {
+//    public typealias DestinationType = Destination
     
     private var externalViewBuilder: SharedViewBuilding
     
@@ -17,13 +18,13 @@ public class DestinationViewBuilder: ObservableObject {
         self.externalViewBuilder = externalViewBuilder
     }
     
-    @ViewBuilder func view(for screen: Screen) -> some View {
-        switch screen {
+    @ViewBuilder func view(at destination: Destination) -> some View {
+        switch destination {
         case .explore:
             ViewFactory.makeExploreCoordinator()
             
-        case .external(let sharedScreen):
-            externalViewBuilder.view(for: sharedScreen)
+        case .external(let sharedDestination):
+            externalViewBuilder.view(at: sharedDestination)
         }
     }
 }

@@ -9,5 +9,11 @@ import Foundation
 import SwiftUI
 
 public protocol SharedViewBuilding {
-    func view(for screen: SharedScreen) -> AnyView
+    func view(at destination: SharedDestination) -> AnyView
 }
+
+//public protocol DestinationViewBuilding {
+//    associatedtype DestinationType where DestinationType: Hashable
+//    
+//    func view(at destination: DestinationType) -> AnyView
+//}
