@@ -16,7 +16,6 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(name: "Navigation", path: "../Navigation"),
         .package(name: "Core", path: "../Core")
     ],
     targets: [
@@ -24,9 +23,9 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "Music",
-            dependencies: ["Navigation", "Core"]),
+            dependencies: ["Core"]),
         .testTarget(
             name: "MusicTests",
-            dependencies: ["Music", "Navigation", "Core"]),
+            dependencies: ["Music", "Core"]),
     ]
 )

@@ -5,8 +5,8 @@
 //  Created by Corbin Montague on 6/30/22.
 //
 
+import Core
 import Foundation
-import Navigation
 import SwiftUI
 
 public class DestinationViewBuilder: ObservableObject {

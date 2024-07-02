@@ -1,12 +1,11 @@
 //
 //  SharedDestination.swift
-//  Navigation
+//  Core
 //
 //  Created by Corbin Montague on 7/1/24.
 //
 
 import Foundation
-import Core
 
 public indirect enum SharedDestination {
     

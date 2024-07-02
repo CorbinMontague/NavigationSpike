@@ -10,7 +10,6 @@ import FlowStacks
 import SwiftUI
 
 struct SongView: View {
-    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var navigator: FlowPathNavigator
     
     @StateObject var viewModel: SongViewModel
@@ -23,14 +22,9 @@ struct SongView: View {
             
             Section(header: Text("Artist")) {
                 Text("\(viewModel.song.artist.name)")
-                    .foregroundStyle(.blue)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        let destination = Destination.external(.artist(viewModel.song.artist))
-                        navigator.push(destination)
-                    }
             }
+            
+            NavigationActionsView(destination: Destination.external(.artist(viewModel.song.artist)))
         }
         .flowDestination(for: Destination.self) { destination in
             Globals.viewBuilder?.view(at: destination)
@@ -38,8 +32,14 @@ struct SongView: View {
         .navigationTitle("Song Details")
         .navigationBarBackButtonHidden(true)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                BackButton { dismiss() }
+            if navigator.routes.last?.isPresented == false {
+                ToolbarItem(placement: .topBarLeading) {
+                    BackButton { navigator.goBack() }
+                }
+            } else {
+                ToolbarItem(placement: .topBarTrailing) {
+                    DismissButton { navigator.goBack() }
+                }
             }
         }
     }

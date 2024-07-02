@@ -14,13 +14,18 @@ let package = Package(
             name: "Core",
             targets: ["Core"]),
     ],
+    dependencies: [
+        // Dependencies declare other packages that this package depends on.
+        .package(url: "https://github.com/johnpatrickmorgan/FlowStacks", exact: Version("0.6.3"))
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "Core"),
+            name: "Core",
+            dependencies: ["FlowStacks"]),
         .testTarget(
             name: "CoreTests",
-            dependencies: ["Core"]),
+            dependencies: ["Core", "FlowStacks"]),
     ]
 )

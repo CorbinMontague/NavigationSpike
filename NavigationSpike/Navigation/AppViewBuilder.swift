@@ -5,16 +5,16 @@
 //  Created by Corbin Montague on 7/1/24.
 //
 
+import Core
 import Explore
 import Foundation
 import Music
-import Navigation
 import SwiftUI
 
 class AppViewBuilder: SharedViewBuilding {
     static let shared = AppViewBuilder()
     
-    func view(at destination: Navigation.SharedDestination) -> AnyView {
+    func view(at destination: SharedDestination) -> AnyView {
         switch destination {
         case .explore:
             return Explore.ViewFactory.makeExploreCoordinator()

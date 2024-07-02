@@ -7,7 +7,6 @@
 
 import Core
 import Foundation
-import Navigation
 
 public indirect enum Destination {
     

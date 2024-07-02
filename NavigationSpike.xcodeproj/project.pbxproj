@@ -13,10 +13,10 @@
 		2926BA1C2C32FFF4000E2549 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2926BA1B2C32FFF4000E2549 /* Preview Assets.xcassets */; };
 		2926BA262C32FFF4000E2549 /* NavigationSpikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926BA252C32FFF4000E2549 /* NavigationSpikeTests.swift */; };
 		293527222C3438E000FE0EC5 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 293527212C3438E000FE0EC5 /* FlowStacks */; };
+		293D340E2C3495E300BB7D07 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 293D340D2C3495E300BB7D07 /* Core */; };
 		295F1DC92C3324D7003FA6E3 /* AppViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295F1DC82C3324D7003FA6E3 /* AppViewBuilder.swift */; };
 		297C61B72C33066A003116D8 /* Explore in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B62C33066A003116D8 /* Explore */; };
 		297C61B92C33066A003116D8 /* Music in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B82C33066A003116D8 /* Music */; };
-		297C61BB2C33066A003116D8 /* Navigation in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61BA2C33066A003116D8 /* Navigation */; };
 		297C61BD2C33066A003116D8 /* Playlists in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61BC2C33066A003116D8 /* Playlists */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +44,6 @@
 		297C61B12C330574003116D8 /* Explore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Explore; sourceTree = "<group>"; };
 		297C61B22C330588003116D8 /* Playlists */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Playlists; sourceTree = "<group>"; };
 		297C61B32C3305AA003116D8 /* Music */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Music; sourceTree = "<group>"; };
-		297C61B42C3305C3003116D8 /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +51,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				297C61BB2C33066A003116D8 /* Navigation in Frameworks */,
 				293527222C3438E000FE0EC5 /* FlowStacks in Frameworks */,
 				297C61B92C33066A003116D8 /* Music in Frameworks */,
 				297C61BD2C33066A003116D8 /* Playlists in Frameworks */,
+				293D340E2C3495E300BB7D07 /* Core in Frameworks */,
 				297C61B72C33066A003116D8 /* Explore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,7 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				294801352C333B93007AA54E /* Core */,
-				297C61B42C3305C3003116D8 /* Navigation */,
 				297C61B32C3305AA003116D8 /* Music */,
 				297C61B12C330574003116D8 /* Explore */,
 				297C61B22C330588003116D8 /* Playlists */,
@@ -165,9 +163,9 @@
 			packageProductDependencies = (
 				297C61B62C33066A003116D8 /* Explore */,
 				297C61B82C33066A003116D8 /* Music */,
-				297C61BA2C33066A003116D8 /* Navigation */,
 				297C61BC2C33066A003116D8 /* Playlists */,
 				293527212C3438E000FE0EC5 /* FlowStacks */,
+				293D340D2C3495E300BB7D07 /* Core */,
 			);
 			productName = NavigationSpike;
 			productReference = 2926BA102C32FFF3000E2549 /* NavigationSpike.app */;
@@ -564,6 +562,10 @@
 			package = 293527202C3438E000FE0EC5 /* XCRemoteSwiftPackageReference "FlowStacks" */;
 			productName = FlowStacks;
 		};
+		293D340D2C3495E300BB7D07 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
 		297C61B62C33066A003116D8 /* Explore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Explore;
@@ -571,10 +573,6 @@
 		297C61B82C33066A003116D8 /* Music */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Music;
-		};
-		297C61BA2C33066A003116D8 /* Navigation */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Navigation;
 		};
 		297C61BC2C33066A003116D8 /* Playlists */ = {
 			isa = XCSwiftPackageProductDependency;

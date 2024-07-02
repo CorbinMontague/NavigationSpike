@@ -5,8 +5,8 @@
 //  Created by Corbin Montague on 7/1/24.
 //
 
+import Core
 import Foundation
-import Navigation
 
 public indirect enum Destination {
     

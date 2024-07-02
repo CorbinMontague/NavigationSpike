@@ -1,7 +1,7 @@
 //
 //  SharedViewBuilding.swift
-//  Navigation
-//
+//  Core
+//import Core
 //  Created by Corbin Montague on 6/30/22.
 //
 

@@ -10,7 +10,6 @@ import FlowStacks
 import SwiftUI
 
 struct ArtistView: View {
-    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var navigator: FlowPathNavigator
     
     @StateObject var viewModel: ArtistViewModel
@@ -33,12 +32,20 @@ struct ArtistView: View {
                         }
                 }
             }
+            
+            NavigationActionsView<Destination>()
         }
         .navigationTitle("Artist Details")
         .navigationBarBackButtonHidden(true)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                BackButton { dismiss() }
+            if navigator.routes.last?.isPresented == false {
+                ToolbarItem(placement: .topBarLeading) {
+                    BackButton { navigator.goBack() }
+                }
+            } else {
+                ToolbarItem(placement: .topBarTrailing) {
+                    DismissButton { navigator.goBack() }
+                }
             }
         }
     }
