@@ -17,11 +17,16 @@ struct ArtistView: View {
     
     var body: some View {
         List {
-            Text("Artist: \(viewModel.artist.name)")
+            Section(header: Text("Artist")) {
+                Text("\(viewModel.artist.name)")
+            }
             
             Section(header: Text("Songs")) {
                 ForEach(viewModel.artist.songs, id: \.name) { song in
                     Text("\(song.name)")
+                        .foregroundStyle(.blue)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
                         .onTapGesture {
                             let destination = Destination.external(.song(song))
                             navigator.push(destination)

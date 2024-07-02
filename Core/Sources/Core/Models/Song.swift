@@ -22,8 +22,8 @@ public struct Song: Codable {
 extension Song {
     public static func makeAllSongs() -> [Song] {
         var songs: [Song] = []
-        for supportedArtist in SupportedArtist.allCases {
-            songs.append(contentsOf: supportedArtist.artist.songs)
+        for artist in Artist.allCases {
+            songs.append(contentsOf: artist.songs)
         }
         return songs
     }

@@ -16,17 +16,21 @@ struct SongView: View {
     @StateObject var viewModel: SongViewModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(viewModel.song.name)
-                .font(.title2.bold())
+        List {
+            Section(header: Text("Song")) {
+                Text("\(viewModel.song.name)")
+            }
             
-            Text(viewModel.song.artist.name)
-                .font(.title3)
-                .foregroundStyle(.blue)
-                .onTapGesture {
-                    let destination = Destination.external(.artist(viewModel.song.artist))
-                    navigator.push(destination)
-                }
+            Section(header: Text("Artist")) {
+                Text("\(viewModel.song.artist.name)")
+                    .foregroundStyle(.blue)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        let destination = Destination.external(.artist(viewModel.song.artist))
+                        navigator.push(destination)
+                    }
+            }
         }
         .flowDestination(for: Destination.self) { destination in
             Globals.viewBuilder?.view(at: destination)
