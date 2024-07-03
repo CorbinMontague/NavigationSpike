@@ -9,6 +9,7 @@ import Core
 import Explore
 import Foundation
 import Music
+import Playlists
 import SwiftUI
 
 class AppViewBuilder: SharedViewBuilding {
@@ -17,9 +18,9 @@ class AppViewBuilder: SharedViewBuilding {
     func view(at destination: SharedDestination) -> AnyView {
         switch destination {
         case .explore:
-            return Explore.ViewFactory.makeExploreCoordinator()
+            return Explore.ViewFactory.makeExploreCoordinatorView()
         case .playlists:
-            return AnyView(Text("Playlists TODO"))
+            return Playlists.ViewFactory.makePlaylistsCoordinatorView()
         case .song(let song):
             return Music.ViewFactory.makeSongView(song: song)
         case .artist(let artist):

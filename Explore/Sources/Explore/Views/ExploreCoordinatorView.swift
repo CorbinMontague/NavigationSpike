@@ -1,5 +1,5 @@
 //
-//  ExploreCoordinator.swift
+//  ExploreCoordinatorView.swift
 //  Explore
 //
 //  Created by Corbin Montague on 7/1/24.
@@ -9,12 +9,11 @@ import Foundation
 import FlowStacks
 import SwiftUI
 
-public struct ExploreCoordinator: View {
+public struct ExploreCoordinatorView: View {
     
     @StateObject var viewModel = ExploreViewModel()
     
     @State var path = FlowPath()
-//    @State private var routes: [Route<Screen>] = []
     
     public init() { }
     public var body: some View {

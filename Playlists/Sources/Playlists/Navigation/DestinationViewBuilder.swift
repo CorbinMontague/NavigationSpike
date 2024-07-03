@@ -1,6 +1,6 @@
 //
 //  DestinationViewBuilder.swift
-//  Explore
+//  Playlists
 //
 //  Created by Corbin Montague on 6/30/22.
 //
@@ -18,8 +18,10 @@ public class DestinationViewBuilder: ObservableObject {
     
     @ViewBuilder func view(at destination: Destination) -> some View {
         switch destination {
-        case .explore:
-            ViewFactory.makeExploreCoordinatorView()
+        case .playlists:
+            ViewFactory.makePlaylistsCoordinatorView()
+        case .playlist(let playlist):
+            ViewFactory.makePlaylistView(playlist: playlist)
             
         case .external(let sharedDestination):
             externalViewBuilder.view(at: sharedDestination)

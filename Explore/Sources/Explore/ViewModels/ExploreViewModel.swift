@@ -10,7 +10,6 @@ import SwiftUI
 
 public class ExploreViewModel: ObservableObject {
     
-    
     enum State {
         case none
         case loading
@@ -24,7 +23,7 @@ public class ExploreViewModel: ObservableObject {
     
     @Published var songs: [Song]
     
-    public init(songs: [Song] = Song.makeAllSongs()) {
+    public init(songs: [Song] = []) {
         self.songs = songs
     }
     
@@ -40,6 +39,7 @@ public class ExploreViewModel: ObservableObject {
                 try await Task.sleep(nanoseconds: 1_000_000_000)
                 
                 print("Songs Fetched!")
+                self.songs = Song.makeAllSongs()
                 self.state = .songsLoaded
                 continuation.resume()
             }
