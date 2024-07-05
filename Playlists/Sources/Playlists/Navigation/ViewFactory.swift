@@ -21,8 +21,8 @@ public struct ViewFactory {
         return AnyView(CreatePlaylistView(viewModel: viewModel))
     }
     
-    public static func makePlaylistView(playlist: Playlist) -> AnyView {
-        let viewModel = PlaylistViewModel(playlist: playlist)
+    public static func makePlaylistView(playlist: Playlist, onDeletePlaylist: @escaping ((Playlist) -> Void)) -> AnyView {
+        let viewModel = PlaylistViewModel(playlist: playlist, onDeletePlaylist: onDeletePlaylist)
         return AnyView(PlaylistView(viewModel: viewModel))
     }
 }

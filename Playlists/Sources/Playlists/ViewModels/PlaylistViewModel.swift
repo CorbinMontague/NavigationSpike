@@ -12,8 +12,11 @@ import SwiftUI
 class PlaylistViewModel: ObservableObject {
     
     @Published var playlist: Playlist
+    var onDeletePlaylist: ((Playlist) -> Void)
     
-    init(playlist: Playlist) {
+    init(playlist: Playlist,
+         onDeletePlaylist: @escaping ((Playlist) -> Void)) {
         self.playlist = playlist
+        self.onDeletePlaylist = onDeletePlaylist
     }
 }

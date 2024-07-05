@@ -17,8 +17,7 @@ public struct CreateButton: View {
     
     public var body: some View {
         Image(systemName: "plus.square")
-            .foregroundStyle(.green)
-            .fontWeight(.bold)
+            .foregroundStyle(.blue)
             .onTapGesture {
                 action?()
             }

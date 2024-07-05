@@ -59,7 +59,16 @@ class PlaylistsViewModel: ObservableObject {
     }
     
     func onPlaylistCellTapped(playlist: Playlist) {
-        let destination = Destination.playlist(playlist)
+        let destination = Destination.playlist(playlist) { playlistToDelete in
+            for i in 0..<self.playlists.count {
+                let playlist = self.playlists[i]
+                if playlist.name == playlistToDelete.name {
+                    self.playlists.remove(at: i)
+                    break
+                }
+            }
+            self.navigator.path.dismiss()
+        }
         navigator.path.push(destination)
     }
     

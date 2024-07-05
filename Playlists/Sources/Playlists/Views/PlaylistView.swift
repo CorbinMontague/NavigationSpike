@@ -31,6 +31,7 @@ struct PlaylistView: View {
                             navigator.push(destination)
                         }
                 }
+//                .onDelete(perform: <#T##Optional<(IndexSet) -> Void>##Optional<(IndexSet) -> Void>##(IndexSet) -> Void#>)
             }
         }
         .navigationTitle("Playlist Details")
@@ -40,9 +41,14 @@ struct PlaylistView: View {
                 BackButton { navigator.goBack() }
             }
             
-//            ToolbarItem(placement: .topBarTrailing) {
-//                Button("Delete"
-//            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    viewModel.onDeletePlaylist(viewModel.playlist)
+                } label: {
+                    Text("Delete")
+                        .foregroundStyle(.red)
+                }
+            }
         }
     }
 }
