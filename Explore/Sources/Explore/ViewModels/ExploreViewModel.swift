@@ -8,7 +8,7 @@
 import Core
 import SwiftUI
 
-public class ExploreViewModel: ObservableObject {
+class ExploreViewModel: ObservableObject {
     
     enum State {
         case none
@@ -18,13 +18,16 @@ public class ExploreViewModel: ObservableObject {
     }
     @Published var state: State = .none
     
+    @Published var navigator: ExploreCoordinator
     @Published var songs: [Song] {
         didSet {
             state = songs.isEmpty ? .empty : .songsLoaded
         }
     }
     
-    public init(songs: [Song] = []) {
+    init(navigator: ExploreCoordinator,
+                songs: [Song] = []) {
+        self.navigator = navigator
         self.songs = songs
     }
     

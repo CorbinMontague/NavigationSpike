@@ -11,11 +11,13 @@ import SwiftUI
 
 struct ExploreCoordinatorView: View {
     
-    @StateObject var coordinator = ExploreCoordinator.shared
-    @StateObject var viewModel = ExploreViewModel()
+    @StateObject var viewModel: ExploreViewModel
+    
+    // even though the vm already has a reference to this, we need this reference here to tell SwiftUI that PlaylistsCoordinatorView owns the strong reference to PlaylistsCoordinator
+    @StateObject var navigator: ExploreCoordinator
     
     var body: some View {
-        FlowStack($coordinator.path, withNavigation: true) {
+        FlowStack($navigator.path, withNavigation: true) {
             makeRootView()
                 .flowDestination(for: Destination.self) { destination in
                     Globals.viewBuilder?.view(at: destination)

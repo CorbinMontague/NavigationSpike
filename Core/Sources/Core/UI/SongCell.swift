@@ -34,3 +34,30 @@ public struct SongCell<DestinationType: Hashable>: View {
         }
     }
 }
+
+// Alternative approach
+//public struct SongCell: View {
+//    
+//    let song: Song
+//    var onTapped: (() -> Void)
+//    
+//    public init(song: Song,
+//                onTapped: @escaping (() -> Void)) {
+//        self.song = song
+//        self.onTapped = onTapped
+//    }
+//    
+//    public var body: some View {
+//        VStack(alignment: .leading, spacing: 8) {
+//            Text(song.name)
+//                .font(.body.bold())
+//            Text(song.artist.name)
+//                .font(.footnote)
+//        }
+//        .frame(maxWidth: .infinity, alignment: .leading)
+//        .contentShape(Rectangle())
+//        .onTapGesture {
+//            onTapped()
+//        }
+//    }
+//}

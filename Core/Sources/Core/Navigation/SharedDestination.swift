@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Destinations shared across modules
 public indirect enum SharedDestination {
     
     // root tab views
