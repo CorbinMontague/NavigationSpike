@@ -43,16 +43,16 @@ public struct SongCell: View {
 // if we want to handle navigation within this shared view, but inject a destination so it can differ between callers
 //public struct SongCell<DestinationType: Hashable>: View {
 //    @EnvironmentObject var navigator: FlowPathNavigator
-//    
+//
 //    let song: Song
 //    let destination: DestinationType
-//    
+//
 //    public init(song: Song,
 //                destination: DestinationType) {
 //        self.song = song
 //        self.destination = destination
 //    }
-//    
+//
 //    public var body: some View {
 //        HStack {
 //            VStack(alignment: .leading, spacing: 8) {
@@ -61,9 +61,9 @@ public struct SongCell: View {
 //                Text(song.artist.name)
 //                    .font(.footnote)
 //            }
-//            
+//
 //            Spacer()
-//            
+//
 //            Image(systemName: "chevron.right")
 //        }
 //        .frame(maxWidth: .infinity, alignment: .leading)
@@ -76,16 +76,17 @@ public struct SongCell: View {
 
 // if we want to let the caller handle navigation
 //public struct SongCell: View {
-//    
+//
+//    // these properties could be abstracted into a view model
 //    let song: Song
 //    var onTapped: (() -> Void)
-//    
+//
 //    public init(song: Song,
 //                onTapped: @escaping (() -> Void)) {
 //        self.song = song
 //        self.onTapped = onTapped
 //    }
-//    
+//
 //    public var body: some View {
 //        HStack {
 //            VStack(alignment: .leading, spacing: 8) {
@@ -94,9 +95,9 @@ public struct SongCell: View {
 //                Text(song.artist.name)
 //                    .font(.footnote)
 //            }
-//            
+//
 //            Spacer()
-//            
+//
 //            Image(systemName: "chevron.right")
 //        }
 //        .frame(maxWidth: .infinity, alignment: .leading)

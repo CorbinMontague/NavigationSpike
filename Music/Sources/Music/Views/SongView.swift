@@ -14,6 +14,12 @@ struct SongView: View {
     
     @StateObject var viewModel: SongViewModel
     
+    @State var routeStyle: RouteStyle = .push {
+        didSet {
+            print("SongView.routeStyle: \(routeStyle)")
+        }
+    }
+    
     var body: some View {
         List {
             Section(header: Text("Song")) {
@@ -29,17 +35,26 @@ struct SongView: View {
         .flowDestination(for: Destination.self) { destination in
             Globals.viewBuilder?.view(at: destination)
         }
+        .onAppear {
+            if let style = navigator.routes.last?.style {
+                self.routeStyle = style
+            }
+        }
         .navigationTitle("Song Details")
         .navigationBarBackButtonHidden(true)
         .toolbar {
-            if navigator.routes.last?.isPresented == false {
+            switch routeStyle {
+            case .push:
                 ToolbarItem(placement: .topBarLeading) {
                     BackButton { navigator.goBack() }
                 }
-            } else {
+            case .cover:
                 ToolbarItem(placement: .topBarTrailing) {
                     DismissButton { navigator.goBack() }
                 }
+            default:
+                // we don't show any navigation toolbar buttons for sheet presentations
+                ToolbarItem { }
             }
         }
     }
