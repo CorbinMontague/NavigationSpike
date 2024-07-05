@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var coordinator = AppCoordinator()
+    @StateObject var coordinator = AppCoordinator.shared
     
     var body: some View {
         TabView(selection: $coordinator.selectedTab) {

@@ -32,16 +32,15 @@ public final class ExploreRouter {
 
 extension ExploreRouter {
     
-    private func commonInternalRouteHandler() {
+    private func routeToExplore() {
+        print("routeToExplore")
         // select explore tab
         appCoordinator.selectedTab = .explore
         
         // dismiss all sheets/fullscreencovers
         coordinator.path.dismissAll()
-    }
-    
-    private func routeToExplore() {
-        commonInternalRouteHandler()
+        
+        // go back to root view
         coordinator.path.goBackToRoot()
     }
 }

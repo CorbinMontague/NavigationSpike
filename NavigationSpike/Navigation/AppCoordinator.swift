@@ -17,12 +17,16 @@ class AppCoordinator: AppCoordinating, SharedViewBuilding, ObservableObject {
     
     // MARK: - Dependencies
     
-    let exploreRouter = Explore.Globals.router
-    let playlistsRouter = Playlists.Globals.router
+    var exploreRouter: ExploreRouter? = nil
+    var playlistsRouter: PlaylistsRouter? = nil
     
     // MARK: - AppCoordinating
     
-    @Published var selectedTab: Tab = .explore
+    @Published var selectedTab: Tab = .explore {
+        didSet {
+            print("selectedTab: \(selectedTab)")
+        }
+    }
     
     func route(to destination: SharedDestination) {
         switch destination {

@@ -17,15 +17,18 @@ struct NavigationSpikeApp: App {
     // - https://github.com/hmlongco/Resolver
     // - https://github.com/hmlongco/Factory
     init() {
-        let appCoordinator = AppCoordinator.shared
+        let coordinator = AppCoordinator.shared
         
-        Explore.Globals.viewBuilder = Explore.DestinationViewBuilder(externalViewBuilder: appCoordinator)
-        Explore.Globals.router = Explore.ExploreRouter(appCoordinator: appCoordinator)
+        Explore.Globals.viewBuilder = Explore.DestinationViewBuilder(externalViewBuilder: coordinator)
+        Explore.Globals.router = Explore.ExploreRouter(appCoordinator: coordinator)
         
-        Playlists.Globals.viewBuilder = Playlists.DestinationViewBuilder(externalViewBuilder: appCoordinator)
-        Playlists.Globals.router = Playlists.PlaylistsRouter(appCoordinator: appCoordinator)
+        Playlists.Globals.viewBuilder = Playlists.DestinationViewBuilder(externalViewBuilder: coordinator)
+        Playlists.Globals.router = Playlists.PlaylistsRouter(appCoordinator: coordinator)
         
-        Music.Globals.viewBuilder = Music.DestinationViewBuilder(externalViewBuilder: appCoordinator)
+        Music.Globals.viewBuilder = Music.DestinationViewBuilder(externalViewBuilder: coordinator)
+        
+        coordinator.exploreRouter = Explore.Globals.router
+        coordinator.playlistsRouter = Playlists.Globals.router
     }
     
     var body: some Scene {

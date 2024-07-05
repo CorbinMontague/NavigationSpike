@@ -34,22 +34,21 @@ public final class PlaylistsRouter {
 
 extension PlaylistsRouter {
     
-    private func commonInternalRouteHandler() {
-        // select explore tab
-        appCoordinator.selectedTab = .explore
+    private func routeToPlaylists() {
+        print("routeToPlaylists")
+        // select playlists tab
+        appCoordinator.selectedTab = .playlists
         
         // dismiss all sheets/fullscreencovers
         coordinator.path.dismissAll()
-    }
-    
-    private func routeToPlaylists() {
-        commonInternalRouteHandler()
+        
+        // go back to root view
         coordinator.path.goBackToRoot()
     }
     
     private func routeToPlaylist(playlistId: Int) {
-        commonInternalRouteHandler()
-        coordinator.path.goBackToRoot()
+        print("routeToPlaylist: \(playlistId)")
+        routeToPlaylists()
         
         // TODO: Push PlaylistView
 //        let destination = Destination.playlist(<#T##playlist: Playlist##Playlist#>,
