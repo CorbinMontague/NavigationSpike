@@ -1,14 +1,14 @@
 //
-//  BackButton.swift
+//  CreateButton.swift
 //  Core
 //
-//  Created by Corbin Montague on 7/1/24.
+//  Created by Corbin Montague on 7/2/24.
 //
 
 import Foundation
 import SwiftUI
 
-public struct BackButton: View {
+public struct CreateButton: View {
     var action: (() -> Void)?
     
     public init(action: (() -> Void)? = nil) {
@@ -16,8 +16,9 @@ public struct BackButton: View {
     }
     
     public var body: some View {
-        Image(systemName: "chevron.backward.square")
-            .foregroundStyle(.blue)
+        Image(systemName: "plus.square")
+            .foregroundStyle(.green)
+            .fontWeight(.bold)
             .onTapGesture {
                 action?()
             }

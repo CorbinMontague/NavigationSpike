@@ -11,6 +11,7 @@ import Foundation
 public indirect enum Destination {
     
     case playlists
+    case createPlaylist
     case playlist(_ playlist: Playlist)
     
     case external(_ screen: SharedDestination)

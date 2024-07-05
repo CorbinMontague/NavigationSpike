@@ -9,33 +9,39 @@ import Core
 import FlowStacks
 import SwiftUI
 
-struct PlaylistsCoordinatorView: View {
-    @EnvironmentObject var navigator: FlowPathNavigator
+public struct PlaylistsCoordinatorView: View {
     
     @StateObject var viewModel = PlaylistsViewModel()
     
-    var body: some View {
-        Text("Playlists")
-//        List {
-//            Section(header: Text("Artist")) {
-//                Text("\(viewModel.artist.name)")
-//            }
-//            
-//            Section(header: Text("Songs")) {
-//                ForEach(viewModel.artist.songs, id: \.name) { song in
-//                    Text("\(song.name)")
-//                        .foregroundStyle(.blue)
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//                        .contentShape(Rectangle())
-//                        .onTapGesture {
-//                            let destination = Destination.external(.song(song))
-//                            navigator.push(destination)
-//                        }
-//                }
-//            }
-//            
-//            NavigationActionsView<Destination>()
-//        }
-        .navigationTitle("Playlists")
+    @State var path = FlowPath()
+    
+    public init() { }
+    public var body: some View {
+        FlowStack($path, withNavigation: true) {
+            makeRootView()
+                .flowDestination(for: Destination.self) { destination in
+                    Globals.viewBuilder?.view(at: destination)
+                }
+                .navigationTitle("Playlists")
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        CreateButton { viewModel.onCreatePlaylistTapped() }
+                    }
+                }
+        }
+    }
+    
+    @ViewBuilder private func makeRootView() -> some View {
+        switch viewModel.state {
+        case .playlistsLoaded:
+            PlaylistsView(viewModel: viewModel)
+        case .empty:
+            Text("No Playlists")
+        default:
+            ProgressView()
+                .task {
+                    await viewModel.fetchPlaylists()
+                }
+        }
     }
 }

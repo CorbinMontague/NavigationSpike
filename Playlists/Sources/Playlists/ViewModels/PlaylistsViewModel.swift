@@ -15,6 +15,7 @@ class PlaylistsViewModel: ObservableObject {
         case none
         case loading
         case playlistsLoaded
+        case empty
     }
     @Published var state: State = .none {
         didSet {
@@ -41,9 +42,14 @@ class PlaylistsViewModel: ObservableObject {
                 
                 print("Playlists Fetched!")
                 self.playlists = []
-                self.state = .playlistsLoaded
+                self.state = .empty
                 continuation.resume()
             }
         }
+    }
+    
+    func onCreatePlaylistTapped() {
+        print("onCreatePlaylistTapped")
+        // tell navigator to present CreatePlaylistView as a sheet
     }
 }

@@ -16,7 +16,7 @@ public struct DismissButton: View {
     }
     
     public var body: some View {
-        Image(systemName: "x.circle")
+        Image(systemName: "x.square")
             .foregroundStyle(.blue)
             .onTapGesture {
                 action?()
