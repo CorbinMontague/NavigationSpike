@@ -16,6 +16,16 @@ public struct Song: Codable, Hashable {
         self.name = name
         self.artist = artist
     }
+    
+    public static func == (lhs: Song, rhs: Song) -> Bool {
+        return lhs.name == rhs.name && lhs.artist == rhs.artist
+    }
+    
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(artist)
+    }
 }
 
 /// Helps build dummy data

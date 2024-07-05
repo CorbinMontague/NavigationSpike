@@ -51,15 +51,4 @@ struct PlaylistView: View {
             }
         }
     }
-    
-//    func onDeleteSong(at offsets: IndexSet) {
-//        viewModel.playlist.songs =
-//        viewModel.playlist.songs.enumerated().filter { (i, song) -> Bool in
-//            let removed = offsets.contains(i)
-//            if removed {
-//                print("Removing \(song.name)")
-//            }
-//            return !removed
-//        }.map { $0.1 }
-//    }
 }
