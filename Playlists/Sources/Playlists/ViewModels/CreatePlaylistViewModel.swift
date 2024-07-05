@@ -11,6 +11,9 @@ import Foundation
 class CreatePlaylistViewModel: ObservableObject {
     
     @Published var playlistName: String = ""
+    @Published var songsToInclude: [Song] = []
+    @Published var songsToAdd: [Song] = Song.makeAllSongs()
+    
     var onCreatePlaylist: ((Playlist) -> Void)
     
     init(onCreatePlaylist: @escaping ((Playlist) -> Void)) {
@@ -18,13 +21,7 @@ class CreatePlaylistViewModel: ObservableObject {
     }
     
     func onCreatePlaylistTapped() {
-        // create new playlist with a random song
-        var newPlaylist = Playlist(name: playlistName)
-        
-        if let randomSong = Song.makeAllSongs().randomElement() {
-            newPlaylist.songs = [randomSong]
-        }
-        
+        var newPlaylist = Playlist(name: playlistName, songs: songsToInclude)
         onCreatePlaylist(newPlaylist)
     }
 }

@@ -22,6 +22,25 @@ struct CreatePlaylistView: View {
             )
             .disableAutocorrection(true)
             
+            Section(header: Text("Songs")) {
+                ForEach(viewModel.songsToInclude, id: \.name) { song in
+                    Text("\(song.name)")
+                }
+            }
+            
+            Section(header: Text("Songs to add")) {
+                ForEach(Array(viewModel.songsToAdd.enumerated()), id: \.offset) { index, song in
+                    Text("\(song.name)")
+                        .foregroundStyle(.blue)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            viewModel.songsToInclude.append(song)
+                            viewModel.songsToAdd.remove(at: index)
+                        }
+                }
+            }
+            
             Section(footer: makeCreatePlaylistButton()) {
                 EmptyView()
             }
