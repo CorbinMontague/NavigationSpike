@@ -46,4 +46,9 @@ class ExploreViewModel: ObservableObject {
             }
         }
     }
+    
+//    func onSongCellTapped(song: Song) {
+//        let destination = Destination.external(.song(song))
+//        navigator.path.push(destination)
+//    }
 }

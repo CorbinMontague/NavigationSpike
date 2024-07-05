@@ -16,7 +16,16 @@ struct ExploreView: View {
     var body: some View {
         List {
             ForEach(viewModel.songs, id: \.name) { song in
-                SongCell<Destination>(song: song, destination: Destination.external(.song(song)))
+                // if we want to handle navigation within the shared view
+                SongCell(song: song)
+                
+                // if we want to handle navigation within the shared view, but inject a destination so the destination could differ between callers
+//                SongCell<Destination>(song: song, destination: Destination.external(.song(song)))
+                
+                // if we want to handle navigation ourselves
+//                SongCell(song: song) {
+//                    viewModel.onSongCellTapped(song: song)
+//                }
             }
         }
     }

@@ -22,14 +22,16 @@ struct PlaylistView: View {
             
             Section(header: Text("Songs")) {
                 ForEach(viewModel.playlist.songs, id: \.name) { song in
-                    Text("\(song.name)")
-                        .foregroundStyle(.blue)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            let destination = Destination.external(.song(song))
-                            navigator.push(destination)
-                        }
+                    // if we want to handle navigation within the shared view
+                    SongCell(song: song)
+                    
+                    // if we want to handle navigation within the shared view, but inject a destination so the destination could differ between callers
+    //                SongCell<Destination>(song: song, destination: Destination.external(.song(song)))
+                    
+                    // if we want to handle navigation ourselves
+    //                SongCell(song: song) {
+    //                    viewModel.onSongCellTapped(song: song)
+    //                }
                 }
                 .onDelete(perform: viewModel.onDeleteSong)
             }

@@ -5,6 +5,7 @@
 //  Created by Corbin Montague on 7/1/24.
 //
 
+import Core
 import Foundation
 import FlowStacks
 import SwiftUI
@@ -21,6 +22,9 @@ struct ExploreCoordinatorView: View {
             makeRootView()
                 .flowDestination(for: Destination.self) { destination in
                     Globals.viewBuilder?.view(at: destination)
+                }
+                .flowDestination(for: SharedDestination.self) { sharedDestination in
+                    Globals.viewBuilder?.view(at: .external(sharedDestination))
                 }
                 .navigationTitle("Explore")
         }

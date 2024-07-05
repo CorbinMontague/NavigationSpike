@@ -22,6 +22,9 @@ struct PlaylistsCoordinatorView: View {
                 .flowDestination(for: Destination.self) { destination in
                     Globals.viewBuilder?.view(at: destination)
                 }
+                .flowDestination(for: SharedDestination.self) { sharedDestination in
+                    Globals.viewBuilder?.view(at: .external(sharedDestination))
+                }
                 .navigationTitle("Playlists")
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
