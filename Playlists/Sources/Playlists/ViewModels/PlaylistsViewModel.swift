@@ -7,6 +7,7 @@
 
 import Core
 import Foundation
+import FlowStacks
 import SwiftUI
 
 class PlaylistsViewModel: ObservableObject {
@@ -17,21 +18,24 @@ class PlaylistsViewModel: ObservableObject {
         case playlistsLoaded
         case empty
     }
-    @Published var state: State = .none {
+    @Published var state: State = .none
+    
+    @Published var playlists: [Playlist] {
         didSet {
-            print("State: \(state)")
+            state = playlists.isEmpty ? .empty : .playlistsLoaded
         }
     }
     
-    @Published var playlists: [Playlist]
+    @Published var navigator: PlaylistsCoordinator
     
-    init(playlists: [Playlist] = []) {
+    init(navigator: PlaylistsCoordinator,
+         playlists: [Playlist] = []) {
+        self.navigator = navigator
         self.playlists = playlists
     }
     
     @MainActor
     func fetchPlaylists() async {
-        print("Fetching Playlists...")
         state = .loading
         
         // pretend we hit the network to fetch song data
@@ -40,16 +44,26 @@ class PlaylistsViewModel: ObservableObject {
                 // Delay the task by 1 second to simulate waiting on a network request
                 try await Task.sleep(nanoseconds: 1_000_000_000)
                 
-                print("Playlists Fetched!")
                 self.playlists = []
-                self.state = .empty
                 continuation.resume()
             }
         }
     }
     
     func onCreatePlaylistTapped() {
-        print("onCreatePlaylistTapped")
-        // tell navigator to present CreatePlaylistView as a sheet
+        let destination = Destination.createPlaylist { newPlaylist in
+            self.playlists.append(newPlaylist)
+            self.navigator.path.dismiss()
+        }
+        navigator.path.presentSheet(destination)
+    }
+    
+    func onPlaylistCellTapped(playlist: Playlist) {
+        let destination = Destination.playlist(playlist)
+        navigator.path.push(destination)
+    }
+    
+    func onDeletePlaylistTapped() {
+        
     }
 }

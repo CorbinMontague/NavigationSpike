@@ -12,7 +12,7 @@ public struct Playlist {
     public var songs: [Song]
     
     public init(name: String,
-                songs: [Song]) {
+                songs: [Song] = []) {
         self.name = name
         self.songs = songs
     }

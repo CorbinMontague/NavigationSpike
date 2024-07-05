@@ -9,14 +9,15 @@ import Core
 import FlowStacks
 import SwiftUI
 
-public struct PlaylistsCoordinatorView: View {
+struct PlaylistsCoordinatorView: View {
     
-    @StateObject var coordinator = PlaylistsCoordinator.shared
-    @StateObject var viewModel = PlaylistsViewModel()
+    @StateObject var viewModel: PlaylistsViewModel
     
-    public init() { }
-    public var body: some View {
-        FlowStack($coordinator.path, withNavigation: true) {
+    // even though the vm already has a reference to this, we need this reference here to tell SwiftUI that PlaylistsCoordinatorView owns the strong reference to PlaylistsCoordinator
+    @StateObject var navigator: PlaylistsCoordinator
+    
+    var body: some View {
+        FlowStack($navigator.path, withNavigation: true) {
             makeRootView()
                 .flowDestination(for: Destination.self) { destination in
                     Globals.viewBuilder?.view(at: destination)

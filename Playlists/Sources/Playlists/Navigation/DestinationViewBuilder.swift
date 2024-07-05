@@ -20,8 +20,8 @@ public class DestinationViewBuilder: ObservableObject {
         switch destination {
         case .playlists:
             ViewFactory.makePlaylistsCoordinatorView()
-        case .createPlaylist:
-            ViewFactory.makeCreatePlaylistView()
+        case .createPlaylist(let onCreatePlaylist):
+            ViewFactory.makeCreatePlaylistView(onCreatePlaylist: onCreatePlaylist)
         case .playlist(let playlist):
             ViewFactory.makePlaylistView(playlist: playlist)
             

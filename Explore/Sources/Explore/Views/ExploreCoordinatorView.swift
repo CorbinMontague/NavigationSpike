@@ -9,13 +9,12 @@ import Foundation
 import FlowStacks
 import SwiftUI
 
-public struct ExploreCoordinatorView: View {
+struct ExploreCoordinatorView: View {
     
     @StateObject var coordinator = ExploreCoordinator.shared
     @StateObject var viewModel = ExploreViewModel()
     
-    public init() { }
-    public var body: some View {
+    var body: some View {
         FlowStack($coordinator.path, withNavigation: true) {
             makeRootView()
                 .flowDestination(for: Destination.self) { destination in
@@ -29,6 +28,8 @@ public struct ExploreCoordinatorView: View {
         switch viewModel.state {
         case .songsLoaded:
             ExploreView(viewModel: viewModel)
+        case .empty:
+            Text("No Songs")
         default:
             ProgressView()
                 .task {

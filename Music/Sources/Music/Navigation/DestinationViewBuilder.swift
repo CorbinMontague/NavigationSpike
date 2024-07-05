@@ -10,7 +10,6 @@ import Foundation
 import SwiftUI
 
 public class DestinationViewBuilder: ObservableObject {
-    
     private var externalViewBuilder: SharedViewBuilding
     
     public init(externalViewBuilder: SharedViewBuilding) {

@@ -7,6 +7,7 @@
 
 import Explore
 import Music
+import Playlists
 import SwiftUI
 
 @main
@@ -18,6 +19,7 @@ struct NavigationSpikeApp: App {
     init() {
         let appViewBuilder = AppViewBuilder.shared
         Explore.Globals.viewBuilder = Explore.DestinationViewBuilder(externalViewBuilder: appViewBuilder)
+        Playlists.Globals.viewBuilder = Playlists.DestinationViewBuilder(externalViewBuilder: appViewBuilder)
         Music.Globals.viewBuilder = Music.DestinationViewBuilder(externalViewBuilder: appViewBuilder)
     }
     

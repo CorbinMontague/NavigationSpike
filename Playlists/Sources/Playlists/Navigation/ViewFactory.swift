@@ -11,11 +11,14 @@ import SwiftUI
 
 public struct ViewFactory {
     public static func makePlaylistsCoordinatorView() -> AnyView {
-        return AnyView(PlaylistsCoordinatorView())
+        let navCoordinator = PlaylistsCoordinator.shared
+        let viewModel = PlaylistsViewModel(navigator: navCoordinator)
+        return AnyView(PlaylistsCoordinatorView(viewModel: viewModel, navigator: navCoordinator))
     }
     
-    public static func makeCreatePlaylistView() -> AnyView {
-        return AnyView(CreatePlaylistView())
+    public static func makeCreatePlaylistView(onCreatePlaylist: @escaping ((Playlist) -> Void)) -> AnyView {
+        let viewModel = CreatePlaylistViewModel(onCreatePlaylist: onCreatePlaylist)
+        return AnyView(CreatePlaylistView(viewModel: viewModel))
     }
     
     public static func makePlaylistView(playlist: Playlist) -> AnyView {

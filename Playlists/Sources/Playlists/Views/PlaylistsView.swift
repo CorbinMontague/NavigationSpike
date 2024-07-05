@@ -10,16 +10,16 @@ import FlowStacks
 import SwiftUI
 
 struct PlaylistsView: View {
-    @EnvironmentObject var navigator: FlowPathNavigator
     
-    @StateObject var viewModel: PlaylistsViewModel
+    @ObservedObject var viewModel: PlaylistsViewModel
     
     var body: some View {
         List {
-            // List of PlaylistCell get rendered here
-        }
-        .flowDestination(for: Destination.self) { destination in
-            Globals.viewBuilder?.view(at: destination)
+            ForEach(viewModel.playlists, id: \.name) { playlist in
+                PlaylistCell(playlist: playlist) {
+                    viewModel.onPlaylistCellTapped(playlist: playlist)
+                }
+            }
         }
     }
 }

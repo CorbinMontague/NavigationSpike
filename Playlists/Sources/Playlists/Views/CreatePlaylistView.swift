@@ -12,7 +12,7 @@ import SwiftUI
 struct CreatePlaylistView: View {
     @EnvironmentObject var navigator: FlowPathNavigator
     
-    @StateObject var viewModel = CreatePlaylistViewModel()
+    @StateObject var viewModel: CreatePlaylistViewModel
     
     var body: some View {
         Form {
@@ -21,6 +21,21 @@ struct CreatePlaylistView: View {
                 text: $viewModel.playlistName
             )
             .disableAutocorrection(true)
+            
+            Section(footer: makeCreatePlaylistButton()) {
+                EmptyView()
+            }
+        }
+    }
+    
+    @ViewBuilder private func makeCreatePlaylistButton() -> some View {
+        HStack {
+            Spacer()
+            Button("Create Playlist") {
+                viewModel.onCreatePlaylistTapped()
+            }
+            .disabled(viewModel.playlistName.isEmpty)
+            Spacer()
         }
     }
 }

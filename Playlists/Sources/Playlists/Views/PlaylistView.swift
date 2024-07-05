@@ -15,33 +15,34 @@ struct PlaylistView: View {
     @StateObject var viewModel: PlaylistViewModel
     
     var body: some View {
-        Text("Playlist")
-//        List {
-//            Section(header: Text("Song")) {
-//                Text("\(viewModel.song.name)")
+        List {
+            Section(header: Text("Playlist")) {
+                Text("\(viewModel.playlist.name)")
+            }
+            
+            Section(header: Text("Songs")) {
+                ForEach(viewModel.playlist.songs, id: \.name) { song in
+                    Text("\(song.name)")
+                        .foregroundStyle(.blue)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            let destination = Destination.external(.song(song))
+                            navigator.push(destination)
+                        }
+                }
+            }
+        }
+        .navigationTitle("Playlist Details")
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton { navigator.goBack() }
+            }
+            
+//            ToolbarItem(placement: .topBarTrailing) {
+//                Button("Delete"
 //            }
-//            
-//            Section(header: Text("Artist")) {
-//                Text("\(viewModel.song.artist.name)")
-//            }
-//            
-//            NavigationActionsView(destination: Destination.external(.artist(viewModel.song.artist)))
-//        }
-//        .flowDestination(for: Destination.self) { destination in
-//            Globals.viewBuilder?.view(at: destination)
-//        }
-//        .navigationTitle("Song Details")
-//        .navigationBarBackButtonHidden(true)
-//        .toolbar {
-//            if navigator.routes.last?.isPresented == false {
-//                ToolbarItem(placement: .topBarLeading) {
-//                    BackButton { navigator.goBack() }
-//                }
-//            } else {
-//                ToolbarItem(placement: .topBarTrailing) {
-//                    DismissButton { navigator.goBack() }
-//                }
-//            }
-//        }
+        }
     }
 }
