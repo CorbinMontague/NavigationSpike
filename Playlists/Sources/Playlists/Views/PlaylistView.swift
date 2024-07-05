@@ -43,6 +43,7 @@ struct PlaylistView: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
+                    navigator.dismiss()
                     viewModel.onDeletePlaylist(viewModel.playlist)
                 } label: {
                     Text("Delete")

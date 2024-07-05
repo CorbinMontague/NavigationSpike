@@ -51,6 +51,7 @@ struct CreatePlaylistView: View {
         HStack {
             Spacer()
             Button("Create Playlist") {
+                navigator.dismiss()
                 viewModel.onCreatePlaylistTapped()
             }
             .disabled(viewModel.playlistName.isEmpty)

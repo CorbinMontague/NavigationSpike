@@ -51,43 +51,48 @@ class PlaylistsViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Actions
+    
     func onCreatePlaylistTapped() {
         let destination = Destination.createPlaylist { newPlaylist in
             self.playlists.append(newPlaylist)
-            self.navigator.path.dismiss()
         }
         navigator.path.presentSheet(destination)
     }
     
     func onPlaylistCellTapped(playlist: Playlist) {
         let destination = Destination.playlist(playlist) { playlistToDelete in
-            for i in 0..<self.playlists.count {
-                let playlist = self.playlists[i]
-                if playlist.name == playlistToDelete.name {
-                    self.playlists.remove(at: i)
-                    break
-                }
-            }
-            self.navigator.path.dismiss()
+            self.deletePlaylist(playlistToDelete)
         } onRemoveSongFromPlaylist: { songToDelete, editedPlaylist in
-            for playlistIndex in 0..<self.playlists.count {
-                let playlist = self.playlists[playlistIndex]
-                if playlist.name == editedPlaylist.name {
-                    for songIndex in 0..<playlist.songs.count {
-                        let song = playlist.songs[songIndex]
-                        if song.name == songToDelete.name {
-                            self.playlists[playlistIndex].songs.remove(at: songIndex)
-                            break
-                        }
+            self.delete(song: songToDelete, from: editedPlaylist)
+        }
+        
+        navigator.path.push(destination)
+    }
+    
+    func deletePlaylist(_ playlistToDelete: Playlist) {
+        for i in 0..<self.playlists.count {
+            let playlist = self.playlists[i]
+            if playlist == playlistToDelete {
+                self.playlists.remove(at: i)
+                break
+            }
+        }
+        //            self.navigator.path.dismiss() // we could dismiss from here instead of from the view that called this closure if we want
+    }
+    
+    func delete(song songToDelete: Song, from editedPlaylist: Playlist) {
+        for playlistIndex in 0..<self.playlists.count {
+            let playlist = self.playlists[playlistIndex]
+            if playlist == editedPlaylist {
+                for songIndex in 0..<playlist.songs.count {
+                    let song = playlist.songs[songIndex]
+                    if song == songToDelete {
+                        self.playlists[playlistIndex].songs.remove(at: songIndex)
+                        break
                     }
                 }
             }
         }
-
-        navigator.path.push(destination)
-    }
-    
-    func onDeletePlaylistTapped() {
-        
     }
 }
