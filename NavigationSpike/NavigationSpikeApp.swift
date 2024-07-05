@@ -18,7 +18,10 @@ struct NavigationSpikeApp: App {
     // - https://github.com/hmlongco/Factory
     init() {
         let appCoordinator = AppCoordinator.shared
+        
         Explore.Globals.viewBuilder = Explore.DestinationViewBuilder(externalViewBuilder: appCoordinator)
+        Explore.Globals.router = Explore.ExploreRouter(appCoordinator: appCoordinator)
+        
         Playlists.Globals.viewBuilder = Playlists.DestinationViewBuilder(externalViewBuilder: appCoordinator)
         Music.Globals.viewBuilder = Music.DestinationViewBuilder(externalViewBuilder: appCoordinator)
     }

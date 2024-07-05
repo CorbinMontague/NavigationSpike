@@ -12,13 +12,10 @@ import Music
 import Playlists
 import SwiftUI
 
-enum Tab: Hashable {
-    case explore
-    case playlists
-}
-
-class AppCoordinator: SharedViewBuilding, ObservableObject {
+class AppCoordinator: AppCoordinating, SharedViewBuilding, ObservableObject {
     static let shared = AppCoordinator()
+    
+    let exploreRouter = Explore.Globals.router
     
     @Published var selectedTab: Tab = .explore
     
@@ -35,15 +32,22 @@ class AppCoordinator: SharedViewBuilding, ObservableObject {
         }
     }
     
+    func route(to destination: SharedDestination) {
+        switch destination {
+        case .explore:
+            exploreRouter?.route(to: destination)
+        default:
+            break
+        }
+    }
+    
     func handle(deeplink: Deeplink) {
         print("Handle Deeplink: \(deeplink)")
         switch deeplink {
         case .explore:
-            selectedTab = .explore
+            route(to: .explore)
         case .playlists:
-            selectedTab = .playlists
-        case .song(let songName):
-            selectedTab = .explore
+            route(to: .playlists)
         }
     }
 }
