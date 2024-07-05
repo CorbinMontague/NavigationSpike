@@ -17,10 +17,10 @@ struct NavigationSpikeApp: App {
     // - https://github.com/hmlongco/Resolver
     // - https://github.com/hmlongco/Factory
     init() {
-        let appViewBuilder = AppViewBuilder.shared
-        Explore.Globals.viewBuilder = Explore.DestinationViewBuilder(externalViewBuilder: appViewBuilder)
-        Playlists.Globals.viewBuilder = Playlists.DestinationViewBuilder(externalViewBuilder: appViewBuilder)
-        Music.Globals.viewBuilder = Music.DestinationViewBuilder(externalViewBuilder: appViewBuilder)
+        let appCoordinator = AppCoordinator.shared
+        Explore.Globals.viewBuilder = Explore.DestinationViewBuilder(externalViewBuilder: appCoordinator)
+        Playlists.Globals.viewBuilder = Playlists.DestinationViewBuilder(externalViewBuilder: appCoordinator)
+        Music.Globals.viewBuilder = Music.DestinationViewBuilder(externalViewBuilder: appCoordinator)
     }
     
     var body: some Scene {

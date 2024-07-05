@@ -9,26 +9,20 @@ import Core
 import Explore
 import SwiftUI
 
-enum Tab: Hashable {
-    case explore
-    case playlists
-}
-
 struct ContentView: View {
-    private var viewBuilder: SharedViewBuilding = AppViewBuilder()
     
-    @State var selectedTab: Tab = .explore
+    @StateObject var coordinator = AppCoordinator()
     
     var body: some View {
-        TabView(selection: $selectedTab) {
+        TabView(selection: $coordinator.selectedTab) {
             Group {
-                viewBuilder.view(at: .explore)
+                coordinator.view(at: .explore)
                     .tag(Tab.explore)
                     .tabItem {
                         Label("Explore", systemImage: "magnifyingglass")
                     }
                 
-                viewBuilder.view(at: .playlists)
+                coordinator.view(at: .playlists)
                     .tag(Tab.playlists)
                     .tabItem {
                         Label("Playlists", systemImage: "music.note.list")
@@ -36,6 +30,10 @@ struct ContentView: View {
             }
             .toolbarBackground(.white, for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)
+        }
+        .onOpenURL { url in
+            guard let deeplink = Deeplink(url: url) else { return }
+            coordinator.handle(deeplink: deeplink)
         }
     }
 }

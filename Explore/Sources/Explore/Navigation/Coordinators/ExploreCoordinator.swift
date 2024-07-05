@@ -9,9 +9,9 @@ import Core
 import FlowStacks
 import SwiftUI
 
-class ExploreCoordinator: NavigationCoordinator {
-    static let shared = ExploreCoordinator()
+public class ExploreCoordinator: NavigationCoordinator {
+    public static let shared = ExploreCoordinator()
     
-    @Published var path = FlowPath()
+    @Published public var path = FlowPath()
     
 }

@@ -1,5 +1,5 @@
 //
-//  AppViewBuilder.swift
+//  AppCoordinator.swift
 //  NavigationSpike
 //
 //  Created by Corbin Montague on 7/1/24.
@@ -12,8 +12,15 @@ import Music
 import Playlists
 import SwiftUI
 
-class AppViewBuilder: SharedViewBuilding {
-    static let shared = AppViewBuilder()
+enum Tab: Hashable {
+    case explore
+    case playlists
+}
+
+class AppCoordinator: SharedViewBuilding, ObservableObject {
+    static let shared = AppCoordinator()
+    
+    @Published var selectedTab: Tab = .explore
     
     func view(at destination: SharedDestination) -> AnyView {
         switch destination {
@@ -25,6 +32,18 @@ class AppViewBuilder: SharedViewBuilding {
             return Music.ViewFactory.makeSongView(song: song)
         case .artist(let artist):
             return Music.ViewFactory.makeArtistView(artist: artist)
+        }
+    }
+    
+    func handle(deeplink: Deeplink) {
+        print("Handle Deeplink: \(deeplink)")
+        switch deeplink {
+        case .explore:
+            selectedTab = .explore
+        case .playlists:
+            selectedTab = .playlists
+        case .song(let songName):
+            selectedTab = .explore
         }
     }
 }

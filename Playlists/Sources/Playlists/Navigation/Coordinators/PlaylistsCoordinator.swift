@@ -9,9 +9,9 @@ import Core
 import FlowStacks
 import SwiftUI
 
-class PlaylistsCoordinator: NavigationCoordinator {
-    static let shared = PlaylistsCoordinator()
+public class PlaylistsCoordinator: NavigationCoordinator {
+    static public let shared = PlaylistsCoordinator()
     
-    @Published var path = FlowPath()
+    @Published public var path = FlowPath()
     
 }
