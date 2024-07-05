@@ -17,6 +17,7 @@ public indirect enum SharedDestination {
     // commonly shared views
     case song(_ song: Song)
     case artist(_ artist: Artist)
+    case playlist(playlistId: Int)
 }
 
 extension SharedDestination: Identifiable, Hashable {

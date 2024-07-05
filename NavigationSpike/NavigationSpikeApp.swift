@@ -23,6 +23,8 @@ struct NavigationSpikeApp: App {
         Explore.Globals.router = Explore.ExploreRouter(appCoordinator: appCoordinator)
         
         Playlists.Globals.viewBuilder = Playlists.DestinationViewBuilder(externalViewBuilder: appCoordinator)
+        Playlists.Globals.router = Playlists.PlaylistsRouter(appCoordinator: appCoordinator)
+        
         Music.Globals.viewBuilder = Music.DestinationViewBuilder(externalViewBuilder: appCoordinator)
     }
     

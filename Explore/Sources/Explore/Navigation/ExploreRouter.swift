@@ -10,7 +10,7 @@ import Foundation
 
 public final class ExploreRouter {
     
-    private var exploreCoordinator = ExploreCoordinator.shared
+    private var coordinator = ExploreCoordinator.shared
     private var appCoordinator: AppCoordinating
     
     public init(appCoordinator: AppCoordinating) {
@@ -37,18 +37,11 @@ extension ExploreRouter {
         appCoordinator.selectedTab = .explore
         
         // dismiss all sheets/fullscreencovers
-        //        await sheetsDismisser.dismissSheets(shouldAnimate: false,
-        //                                            shouldDismissPrioritizedSheets: false)
+        coordinator.path.dismissAll()
     }
     
     private func routeToExplore() {
         commonInternalRouteHandler()
-        exploreCoordinator.path.goBackToRoot()
+        coordinator.path.goBackToRoot()
     }
-    
-    //    @MainActor
-    //    private func routeToEarningsReport(shiftId: Int, startWeek: String) async {
-    //        await routeToEarnings()
-    //        coordinator.pushEarningsWeekOf(startWeek, expandedShiftId: shiftId)
-    //    }
 }
