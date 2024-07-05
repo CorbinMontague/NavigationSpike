@@ -23,6 +23,7 @@ class PlaylistsViewModel: ObservableObject {
     @Published var playlists: [Playlist] {
         didSet {
             state = playlists.isEmpty ? .empty : .playlistsLoaded
+            print("Playlists: \(playlists)")
         }
     }
     
@@ -68,7 +69,21 @@ class PlaylistsViewModel: ObservableObject {
                 }
             }
             self.navigator.path.dismiss()
+        } onRemoveSongFromPlaylist: { songToDelete, editedPlaylist in
+            for playlistIndex in 0..<self.playlists.count {
+                let playlist = self.playlists[playlistIndex]
+                if playlist.name == editedPlaylist.name {
+                    for songIndex in 0..<playlist.songs.count {
+                        let song = playlist.songs[songIndex]
+                        if song.name == songToDelete.name {
+                            self.playlists[playlistIndex].songs.remove(at: songIndex)
+                            break
+                        }
+                    }
+                }
+            }
         }
+
         navigator.path.push(destination)
     }
     
