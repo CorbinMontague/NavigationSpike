@@ -11,13 +11,12 @@ import SwiftUI
 
 public struct PlaylistsCoordinatorView: View {
     
+    @StateObject var coordinator = PlaylistsCoordinator.shared
     @StateObject var viewModel = PlaylistsViewModel()
-    
-    @State var path = FlowPath()
     
     public init() { }
     public var body: some View {
-        FlowStack($path, withNavigation: true) {
+        FlowStack($coordinator.path, withNavigation: true) {
             makeRootView()
                 .flowDestination(for: Destination.self) { destination in
                     Globals.viewBuilder?.view(at: destination)

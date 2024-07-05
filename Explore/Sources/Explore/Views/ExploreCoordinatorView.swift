@@ -11,13 +11,12 @@ import SwiftUI
 
 public struct ExploreCoordinatorView: View {
     
+    @StateObject var coordinator = ExploreCoordinator.shared
     @StateObject var viewModel = ExploreViewModel()
-    
-    @State var path = FlowPath()
     
     public init() { }
     public var body: some View {
-        FlowStack($path, withNavigation: true) {
+        FlowStack($coordinator.path, withNavigation: true) {
             makeRootView()
                 .flowDestination(for: Destination.self) { destination in
                     Globals.viewBuilder?.view(at: destination)
