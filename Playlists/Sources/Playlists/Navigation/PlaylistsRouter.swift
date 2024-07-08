@@ -11,9 +11,9 @@ import Foundation
 public final class PlaylistsRouter {
     
     private var coordinator = PlaylistsCoordinator.shared
-    private var appCoordinator: AppCoordinating
+    private weak var appCoordinator: AppCoordinating?
     
-    public init(appCoordinator: AppCoordinating) {
+    public init(appCoordinator: AppCoordinating?) {
         self.appCoordinator = appCoordinator
     }
     
@@ -27,7 +27,7 @@ public final class PlaylistsRouter {
             
             // external routes
         default:
-            appCoordinator.route(to: destination)
+            appCoordinator?.route(to: destination)
         }
     }
 }
@@ -37,7 +37,7 @@ extension PlaylistsRouter {
     private func routeToPlaylists() {
         print("routeToPlaylists")
         // select playlists tab
-        appCoordinator.selectedTab = .playlists
+        appCoordinator?.selectedTab = .playlists
         
         // dismiss all sheets/fullscreencovers
         coordinator.path.dismissAll()

@@ -11,9 +11,9 @@ import Foundation
 public final class ExploreRouter {
     
     private var coordinator = ExploreCoordinator.shared
-    private var appCoordinator: AppCoordinating
+    private weak var appCoordinator: AppCoordinating?
     
-    public init(appCoordinator: AppCoordinating) {
+    public init(appCoordinator: AppCoordinating?) {
         self.appCoordinator = appCoordinator
     }
     
@@ -25,7 +25,7 @@ public final class ExploreRouter {
             
             // external routes
         default:
-            appCoordinator.route(to: destination)
+            appCoordinator?.route(to: destination)
         }
     }
 }
@@ -35,7 +35,7 @@ extension ExploreRouter {
     private func routeToExplore() {
         print("routeToExplore")
         // select explore tab
-        appCoordinator.selectedTab = .explore
+        appCoordinator?.selectedTab = .explore
         
         // dismiss all sheets/fullscreencovers
         coordinator.path.dismissAll()

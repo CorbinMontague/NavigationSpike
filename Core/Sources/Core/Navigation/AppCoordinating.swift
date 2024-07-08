@@ -13,7 +13,7 @@ public enum Tab: Hashable {
     case playlists
 }
 
-public protocol AppCoordinating {
+public protocol AppCoordinating: AnyObject {
     var selectedTab: Tab { get set }
     
     func route(to destination: SharedDestination)

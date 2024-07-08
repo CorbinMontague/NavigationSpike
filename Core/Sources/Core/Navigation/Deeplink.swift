@@ -13,6 +13,7 @@ public enum Deeplink {
     case playlists
     
     // commonly shared views
+//    case song(_ name: String)
     case playlist(_ playlistId: Int)
     
     public init?(url: URL) {
@@ -22,6 +23,13 @@ public enum Deeplink {
             self = .explore
         case "playlists":
             self = .playlists
+            
+//        case "song":
+//            if let songName = url.pathComponents.dropFirst().first {
+//                self = .song(songName)
+//            } else {
+//                self = .explore
+//            }
             
         case "playlist":
             if let playlistString = url.pathComponents.dropFirst().first,
