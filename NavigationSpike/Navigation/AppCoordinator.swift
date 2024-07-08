@@ -41,6 +41,8 @@ class AppCoordinator: AppCoordinating, SharedViewBuilding, ObservableObject {
     
     // MARK: - View Building
     
+    // TODO: Consider moving this into its own AppViewFactory struct. Shouldn't need to be behing protocol
+    // since it will not have any dependencies and will be a static func.
     func view(at destination: SharedDestination) -> AnyView {
         switch destination {
         case .explore:
@@ -58,7 +60,7 @@ class AppCoordinator: AppCoordinating, SharedViewBuilding, ObservableObject {
     
     // MARK: - Deeplink Handling
     
-    // TODO: Move into its own struct
+    // TODO: Move behind protocol and probably into its own struct
     func handle(deeplink: Deeplink) {
         print("Handle Deeplink: \(deeplink)")
         switch deeplink {
@@ -66,8 +68,8 @@ class AppCoordinator: AppCoordinating, SharedViewBuilding, ObservableObject {
             route(to: .explore)
         case .playlists:
             route(to: .playlists)
-        case .playlist(let playlistId):
-            route(to: .playlist(playlistId: playlistId))
+        case .playlist(let playlistName):
+            route(to: .playlist(playlistName: playlistName))
         }
     }
 }

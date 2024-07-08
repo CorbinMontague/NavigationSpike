@@ -22,8 +22,8 @@ public final class PlaylistsRouter {
             // internal routes
         case .playlists:
             routeToPlaylists()
-        case .playlist(let playlistId):
-            routeToPlaylist(playlistId: playlistId)
+        case .playlist(let playlistName):
+            routeToPlaylist(playlistName: playlistName)
             
             // external routes
         default:
@@ -46,8 +46,8 @@ extension PlaylistsRouter {
         coordinator.path.goBackToRoot()
     }
     
-    private func routeToPlaylist(playlistId: Int) {
-        print("routeToPlaylist: \(playlistId)")
+    private func routeToPlaylist(playlistName: String) {
+        print("routeToPlaylist: \(playlistName)")
         routeToPlaylists()
         
         // TODO: Push PlaylistView

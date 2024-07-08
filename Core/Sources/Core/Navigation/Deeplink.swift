@@ -14,7 +14,7 @@ public enum Deeplink {
     
     // commonly shared views
 //    case song(_ name: String)
-    case playlist(_ playlistId: Int)
+    case playlist(_ playlistName: String)
     
     public init?(url: URL) {
         guard url.scheme == "navigationspike" else { return nil }
@@ -32,10 +32,8 @@ public enum Deeplink {
 //            }
             
         case "playlist":
-            if let playlistString = url.pathComponents.dropFirst().first,
-               let playlistId = Int(playlistString),
-               playlistId >= 0 {
-                self = .playlist(playlistId)
+            if let playlistName = url.pathComponents.dropFirst().first {
+                self = .playlist(playlistName)
             } else {
                 self = .playlists
             }

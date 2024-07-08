@@ -18,7 +18,6 @@
 		297C61B72C33066A003116D8 /* Explore in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B62C33066A003116D8 /* Explore */; };
 		297C61B92C33066A003116D8 /* Music in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B82C33066A003116D8 /* Music */; };
 		297C61BD2C33066A003116D8 /* Playlists in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61BC2C33066A003116D8 /* Playlists */; };
-		2995A9022C386F6F00D6C593 /* DeeplinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2995A9012C386F6F00D6C593 /* DeeplinkHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +45,6 @@
 		297C61B22C330588003116D8 /* Playlists */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Playlists; sourceTree = "<group>"; };
 		297C61B32C3305AA003116D8 /* Music */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Music; sourceTree = "<group>"; };
 		2995A9002C386DA700D6C593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		2995A9012C386F6F00D6C593 /* DeeplinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				295F1DC82C3324D7003FA6E3 /* AppCoordinator.swift */,
-				2995A9012C386F6F00D6C593 /* DeeplinkHandler.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -261,7 +258,6 @@
 			files = (
 				295F1DC92C3324D7003FA6E3 /* AppCoordinator.swift in Sources */,
 				2926BA162C32FFF3000E2549 /* ContentView.swift in Sources */,
-				2995A9022C386F6F00D6C593 /* DeeplinkHandler.swift in Sources */,
 				2926BA142C32FFF3000E2549 /* NavigationSpikeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
