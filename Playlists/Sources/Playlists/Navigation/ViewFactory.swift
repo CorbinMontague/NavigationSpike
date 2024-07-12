@@ -13,12 +13,16 @@ public struct ViewFactory {
     public static func makePlaylistsCoordinatorView() -> AnyView {
         let coordinator = PlaylistsCoordinator.shared
         let viewModel = PlaylistsViewModel(coordinator: coordinator)
-        return AnyView(PlaylistsCoordinatorView(viewModel: viewModel, coordinator: coordinator))
+        return AnyView(PlaylistsCoordinatorView(coordinator: coordinator,
+                                                viewModel: viewModel))
     }
     
     public static func makeCreatePlaylistCoordinatorView(onCreatePlaylist: @escaping ((Playlist) -> Void)) -> AnyView {
-        let viewModel = CreatePlaylistViewModel(onCreatePlaylist: onCreatePlaylist)
-        return AnyView(CreatePlaylistCoordinatorView(viewModel: viewModel))
+        let coordinator = CreatePlaylistCoordinator()
+        let viewModel = CreatePlaylistViewModel(coordinator: coordinator,
+                                                onCreatePlaylist: onCreatePlaylist)
+        return AnyView(CreatePlaylistCoordinatorView(coordinator: coordinator,
+                                                     viewModel: viewModel))
     }
     
     public static func makePlaylistView(store: PlaylistStore) -> AnyView {

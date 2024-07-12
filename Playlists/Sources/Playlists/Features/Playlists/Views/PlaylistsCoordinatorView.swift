@@ -11,11 +11,8 @@ import SwiftUI
 
 struct PlaylistsCoordinatorView: View {
     
-    @StateObject var viewModel: PlaylistsViewModel
-    
-    // even though the view model also has a reference to this, we need this @StateObject reference here to tell SwiftUI
-    // that PlaylistsCoordinatorView owns the strong reference to PlaylistsCoordinator
     @StateObject var coordinator: PlaylistsCoordinator
+    @StateObject var viewModel: PlaylistsViewModel
     
     var body: some View {
         FlowStack($coordinator.path, withNavigation: true) {
