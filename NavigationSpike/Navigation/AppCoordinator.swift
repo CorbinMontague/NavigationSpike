@@ -18,6 +18,7 @@ class AppCoordinator: AppCoordinating, ObservableObject {
     
     // MARK: - Dependencies
     
+    // AppCoordinator needs a reference to each tab's NavigationCoordinator so it can delegate navigation logic to the correct module
     var exploreCoordinator: ExploreCoordinator? = nil
     var playlistsCoordinator: PlaylistsCoordinator? = nil
     
