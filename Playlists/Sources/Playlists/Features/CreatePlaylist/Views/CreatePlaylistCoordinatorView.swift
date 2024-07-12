@@ -18,11 +18,11 @@ struct CreatePlaylistCoordinatorView: View {
     var body: some View {
         FlowStack($path, withNavigation: true) {
             CreatePlaylistWithNameView(viewModel: viewModel)
-                .flowDestination(for: Destination.self) { destination in
-                    Globals.viewBuilder?.view(at: destination)
+                .flowDestination(for: Screen.self) { screen in
+                    Globals.viewBuilder?.view(for: screen)
                 }
-                .flowDestination(for: SharedDestination.self) { sharedDestination in
-                    Globals.viewBuilder?.view(at: .external(sharedDestination))
+                .flowDestination(for: SharedScreen.self) { sharedScreen in
+                    Globals.viewBuilder?.view(for: .external(sharedScreen))
                 }
                 .navigationTitle("Create Playlist")
                 .toolbar {

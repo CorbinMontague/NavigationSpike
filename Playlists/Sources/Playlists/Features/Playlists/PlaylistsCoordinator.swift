@@ -51,7 +51,7 @@ extension PlaylistsCoordinator {
         } onRemoveSongFromPlaylist: { _, _ in
             
         }
-        let destination = Destination.playlist(store: store)
-        path.push(destination)
+        let screen = Screen.playlist(store: store)
+        path.push(screen)
     }
 }

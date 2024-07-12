@@ -16,8 +16,8 @@ import SwiftUI
 class AppViewBuilder: SharedViewBuilding {
     static let shared = AppViewBuilder()
     
-    func view(at destination: SharedDestination) -> AnyView {
-        switch destination {
+    func view(for screen: SharedScreen) -> AnyView {
+        switch screen {
         case .explore:
             return Explore.ViewFactory.makeExploreCoordinatorView()
         case .playlists:

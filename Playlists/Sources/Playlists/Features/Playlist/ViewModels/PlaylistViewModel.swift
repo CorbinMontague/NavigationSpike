@@ -16,8 +16,8 @@ public struct PlaylistStore {
     var onRemoveSongFromPlaylist: ((Song, Playlist) -> Void)
     
     public init(playlist: Playlist,
-         onDeletePlaylist: @escaping (Playlist) -> Void,
-         onRemoveSongFromPlaylist: @escaping (Song, Playlist) -> Void) {
+                onDeletePlaylist: @escaping (Playlist) -> Void,
+                onRemoveSongFromPlaylist: @escaping (Song, Playlist) -> Void) {
         self.playlist = playlist
         self.playlistName = playlist.name
         self.onDeletePlaylist = onDeletePlaylist
@@ -25,8 +25,8 @@ public struct PlaylistStore {
     }
     
     public init(playlistName: String,
-         onDeletePlaylist: @escaping (Playlist) -> Void,
-         onRemoveSongFromPlaylist: @escaping (Song, Playlist) -> Void) {
+                onDeletePlaylist: @escaping (Playlist) -> Void,
+                onRemoveSongFromPlaylist: @escaping (Song, Playlist) -> Void) {
         self.playlistName = playlistName
         self.onDeletePlaylist = onDeletePlaylist
         self.onRemoveSongFromPlaylist = onRemoveSongFromPlaylist
@@ -46,10 +46,17 @@ class PlaylistViewModel: ObservableObject {
     init(store: PlaylistStore) {
         if let playlist = store.playlist {
             self.playlist = playlist
-        } else if let playlists = UserDefaults.value(forKey: "playlists") as? [Playlist] {
-            for playlist in playlists {
-                if playlist.name == store.playlistName {
-                    self.playlist = playlist
+        } else {
+            print("Attempting to decode saved playlists to find playlist: \(store.playlistName)")
+            if let data = UserDefaults.standard.object(forKey: UserDefaultsKeys.playlists.rawValue) as? Data {
+                print("Found saved playlists data!")
+                if let playlistsDecoded = try? JSONDecoder().decode(Array.self, from: data) as [Playlist] {
+                    print("Successfully decoded saved playlists data!")
+                    for playlist in playlistsDecoded {
+                        if playlist.name == store.playlistName {
+                            self.playlist = playlist
+                        }
+                    }
                 }
             }
         }

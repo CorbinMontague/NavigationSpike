@@ -54,11 +54,15 @@ class PlaylistsViewModel: ObservableObject {
     // MARK: - Actions
     
     func onCreatePlaylistTapped() {
-        let destination = Destination.createPlaylist { newPlaylist in
+        let screen = Screen.createPlaylist { newPlaylist in
             self.playlists.append(newPlaylist)
-            UserDefaults.standard.set(self.playlists, forKey: "playlists")
+            
+            // save playlists data to UserDefaults
+            if let encoded = try? JSONEncoder().encode(self.playlists) {
+                UserDefaults.standard.set(encoded, forKey: UserDefaultsKeys.playlists.rawValue)
+            }
         }
-        coordinator.path.presentSheet(destination, withNavigation: true)
+        coordinator.path.presentSheet(screen, withNavigation: true)
     }
     
     func onPlaylistCellTapped(playlist: Playlist) {
@@ -68,8 +72,8 @@ class PlaylistsViewModel: ObservableObject {
             self.delete(song: songToDelete, from: editedPlaylist)
         }
 
-        let destination = Destination.playlist(store: store)
-        coordinator.path.push(destination)
+        let screen = Screen.playlist(store: store)
+        coordinator.path.push(screen)
     }
     
     func deletePlaylist(_ playlistToDelete: Playlist) {

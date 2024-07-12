@@ -8,26 +8,26 @@
 import FlowStacks
 import SwiftUI
 
-public struct NavigationActionsView<DestinationType: Hashable>: View {
+public struct NavigationActionsView<ScreenType: Hashable>: View {
     @EnvironmentObject var navigator: FlowPathNavigator
     
     @State var goBackNum: Int = 2
     @State var popNum: Int = 2
-    var destination: DestinationType?
+    var screen: ScreenType?
     
-    public init(destination: DestinationType? = nil) {
-        self.destination = destination
+    public init(screen: ScreenType? = nil) {
+        self.screen = screen
     }
     public var body: some View {
         
-        if let destination = self.destination {
+        if let screen = self.screen {
             Section(header: Text("Push")) {
                 Text("Push")
                     .foregroundStyle(.blue)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        navigator.push(destination)
+                        navigator.push(screen)
                     }
             }
             
@@ -37,7 +37,7 @@ public struct NavigationActionsView<DestinationType: Hashable>: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        navigator.presentSheet(destination, withNavigation: true)
+                        navigator.presentSheet(screen, withNavigation: true)
                     }
                 
                 Text("Present Cover")
@@ -45,7 +45,7 @@ public struct NavigationActionsView<DestinationType: Hashable>: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        navigator.presentCover(destination, withNavigation: true)
+                        navigator.presentCover(screen, withNavigation: true)
                     }
             }
         }

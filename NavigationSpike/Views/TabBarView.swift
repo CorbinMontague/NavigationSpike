@@ -17,13 +17,13 @@ struct TabBarView: View {
     var body: some View {
         TabView(selection: $coordinator.selectedTab) {
             Group {
-                viewBuilder.view(at: .explore)
+                viewBuilder.view(for: .explore)
                     .tag(Tab.explore)
                     .tabItem {
                         Label("Explore", systemImage: "magnifyingglass")
                     }
                 
-                viewBuilder.view(at: .playlists)
+                viewBuilder.view(for: .playlists)
                     .tag(Tab.playlists)
                     .tabItem {
                         Label("Playlists", systemImage: "music.note.list")

@@ -1,5 +1,5 @@
 //
-//  SharedDestination.swift
+//  SharedScreen.swift
 //  Core
 //
 //  Created by Corbin Montague on 7/1/24.
@@ -7,20 +7,20 @@
 
 import Foundation
 
-/// Destinations shared across modules.
-/// This low-level enum helps us avoid code duplication across experience modules that want to reference cross-module destinations.
-public indirect enum SharedDestination {
+/// Screens shared across modules.
+/// This low-level enum helps us avoid code duplication across experience modules that want to reference cross-module screens.
+public indirect enum SharedScreen {
     
     // root tab views
     case explore
     case playlists
     
-    // commonly shared views
+    // other views shared across modules
     case song(_ song: Song)
     case artist(_ artist: Artist)
 }
 
-extension SharedDestination: Identifiable, Hashable {
+extension SharedScreen: Identifiable, Hashable {
     public var id: String {
         return String(reflecting: self)
     }
@@ -29,7 +29,7 @@ extension SharedDestination: Identifiable, Hashable {
         hasher.combine(id)
     }
     
-    public static func == (lhs: SharedDestination, rhs: SharedDestination) -> Bool {
+    public static func == (lhs: SharedScreen, rhs: SharedScreen) -> Bool {
         lhs.id == rhs.id
     }
 }

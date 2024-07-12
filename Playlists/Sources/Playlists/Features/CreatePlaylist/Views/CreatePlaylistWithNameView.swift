@@ -28,7 +28,7 @@ struct CreatePlaylistWithNameView: View {
                 EmptyView()
             }
         }
-        // using this API to avoid needing to define additional Destination cases for each of the views within the create playlist flow
+        // using this API to avoid needing to define additional Screen cases for each of the views within the create playlist flow
         .flowDestination(isPresented: $isPushingNextStep,
                          style: .push,
                          destination: {

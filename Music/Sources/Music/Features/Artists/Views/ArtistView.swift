@@ -29,13 +29,13 @@ struct ArtistView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            let destination = Destination.external(.song(song))
-                            navigator.push(destination)
+                            let screen = Screen.external(.song(song))
+                            navigator.push(screen)
                         }
                 }
             }
             
-            NavigationActionsView<Destination>()
+            NavigationActionsView<Screen>()
         }
         .navigationTitle("Artist Details")
         .navigationBarBackButtonHidden(true)

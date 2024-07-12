@@ -48,7 +48,7 @@ class ExploreViewModel: ObservableObject {
     }
     
     func onSongCellTapped(song: Song) {
-        let destination = Destination.external(.song(song))
-        coordinator.path.push(destination)
+        let screen = Screen.external(.song(song))
+        coordinator.path.push(screen)
     }
 }

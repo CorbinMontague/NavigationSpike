@@ -27,8 +27,8 @@ struct PlaylistView: View {
                             // if we want to handle navigation within the shared view
                             SongCell(song: song)
                             
-                            // if we want to handle navigation within the shared view, but inject a destination so the destination could differ between callers
-                            //                SongCell<Destination>(song: song, destination: Destination.external(.song(song)))
+                            // if we want to handle navigation within the shared view, but inject a Screen so it can differ between callers
+                            //                SongCell<Screen>(song: song, screen: Screen.external(.song(song)))
                             
                             // if we want to handle navigation ourselves
                             //                SongCell(song: song) {

@@ -26,10 +26,10 @@ struct SongView: View {
                 Text("\(viewModel.song.artist.name)")
             }
             
-            NavigationActionsView(destination: Destination.external(.artist(viewModel.song.artist)))
+            NavigationActionsView(screen: Screen.external(.artist(viewModel.song.artist)))
         }
-        .flowDestination(for: Destination.self) { destination in
-            Globals.viewBuilder?.view(at: destination)
+        .flowDestination(for: Screen.self) { screen in
+            Globals.viewBuilder?.view(for: screen)
         }
         .navigationTitle("Song Details")
         .navigationBarBackButtonHidden(true)

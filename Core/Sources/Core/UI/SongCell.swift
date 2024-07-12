@@ -34,23 +34,23 @@ public struct SongCell: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
         .onTapGesture {
-            let destination = SharedDestination.song(song)
-            navigator.push(destination)
+            let screen = SharedScreen.song(song)
+            navigator.push(screen)
         }
     }
 }
 
-// if we want to handle navigation within this shared view, but inject a destination so it can differ between callers
-//public struct SongCell<DestinationType: Hashable>: View {
+// if we want to handle navigation within this shared view, but inject a Screen so it can differ between callers
+//public struct SongCell<ScreenType: Hashable>: View {
 //    @EnvironmentObject var navigator: FlowPathNavigator
 //
 //    let song: Song
-//    let destination: DestinationType
+//    let screen: ScreenType
 //
 //    public init(song: Song,
-//                destination: DestinationType) {
+//                screen: ScreenType) {
 //        self.song = song
-//        self.destination = destination
+//        self.screen = screen
 //    }
 //
 //    public var body: some View {
@@ -69,7 +69,7 @@ public struct SongCell: View {
 //        .frame(maxWidth: .infinity, alignment: .leading)
 //        .contentShape(Rectangle())
 //        .onTapGesture {
-//            navigator.push(destination)
+//            navigator.push(screen)
 //        }
 //    }
 //}

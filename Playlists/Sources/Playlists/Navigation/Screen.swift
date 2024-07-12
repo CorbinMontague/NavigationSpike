@@ -1,5 +1,5 @@
 //
-//  Destination.swift
+//  Screen.swift
 //  Playlists
 //
 //  Created by Corbin Montague on 7/1/24.
@@ -8,16 +8,16 @@
 import Core
 import Foundation
 
-public indirect enum Destination {
+public indirect enum Screen {
     
     case playlists
     case createPlaylist(_ onCreatePlaylist: ((Playlist) -> Void))
     case playlist(store: PlaylistStore)
     
-    case external(_ screen: SharedDestination)
+    case external(_ screen: SharedScreen)
 }
 
-extension Destination: Identifiable, Hashable {
+extension Screen: Identifiable, Hashable {
     public var id: String {
         return String(reflecting: self)
     }
@@ -26,7 +26,7 @@ extension Destination: Identifiable, Hashable {
         hasher.combine(id)
     }
     
-    public static func == (lhs: Destination, rhs: Destination) -> Bool {
+    public static func == (lhs: Screen, rhs: Screen) -> Bool {
         lhs.id == rhs.id
     }
 }

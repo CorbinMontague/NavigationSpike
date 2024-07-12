@@ -1,5 +1,5 @@
 //
-//  DestinationViewBuilder.swift
+//  ScreenViewBuilder.swift
 //  Playlists
 //
 //  Created by Corbin Montague on 6/30/22.
@@ -9,15 +9,15 @@ import Core
 import Foundation
 import SwiftUI
 
-public class DestinationViewBuilder {
+public class ScreenViewBuilder {
     private var externalViewBuilder: SharedViewBuilding
     
     public init(externalViewBuilder: SharedViewBuilding) {
         self.externalViewBuilder = externalViewBuilder
     }
     
-    @ViewBuilder func view(at destination: Destination) -> some View {
-        switch destination {
+    @ViewBuilder func view(for screen: Screen) -> some View {
+        switch screen {
         case .playlists:
             ViewFactory.makePlaylistsCoordinatorView()
         case .createPlaylist(let onCreatePlaylist):
@@ -25,8 +25,8 @@ public class DestinationViewBuilder {
         case .playlist(let store):
             ViewFactory.makePlaylistView(store: store)
             
-        case .external(let sharedDestination):
-            externalViewBuilder.view(at: sharedDestination)
+        case .external(let sharedScreen):
+            externalViewBuilder.view(for: sharedScreen)
         }
     }
 }
