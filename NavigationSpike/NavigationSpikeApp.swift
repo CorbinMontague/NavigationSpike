@@ -41,8 +41,7 @@ struct NavigationSpikeApp: App {
                 initAppDependencies()
             }
             .onOpenURL { url in
-                guard let deeplink = Deeplink(url: url) else { return }
-                coordinator.handle(deeplink: deeplink)
+                coordinator.handle(url: url)
             }
         }
     }

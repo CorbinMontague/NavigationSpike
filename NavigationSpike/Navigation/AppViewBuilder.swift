@@ -26,8 +26,6 @@ class AppViewBuilder: SharedViewBuilding {
             return Music.ViewFactory.makeSongView(song: song)
         case .artist(let artist):
             return Music.ViewFactory.makeArtistView(artist: artist)
-        default:
-            return AnyView(EmptyView()) // SharedDestinations that only need routing, and no view building
         }
     }
 }

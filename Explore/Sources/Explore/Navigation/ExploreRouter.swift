@@ -17,15 +17,15 @@ public final class ExploreRouter {
         self.appCoordinator = appCoordinator
     }
     
-    public func route(to destination: SharedDestination) {
-        switch destination {
+    public func route(to deeplink: Deeplink) {
+        switch deeplink {
             // internal routes
         case .explore:
             routeToExplore()
             
             // external routes
         default:
-            appCoordinator?.route(to: destination)
+            appCoordinator?.route(to: deeplink)
         }
     }
 }

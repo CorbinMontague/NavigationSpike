@@ -8,12 +8,9 @@
 import Foundation
 
 public enum Deeplink {
-    // root tab views
+    
     case explore
     case playlists
-    
-    // commonly shared views
-//    case song(_ name: String)
     case playlist(_ playlistName: String)
     
     public init?(url: URL) {
@@ -23,14 +20,6 @@ public enum Deeplink {
             self = .explore
         case "playlists":
             self = .playlists
-            
-//        case "song":
-//            if let songName = url.pathComponents.dropFirst().first {
-//                self = .song(songName)
-//            } else {
-//                self = .explore
-//            }
-            
         case "playlist":
             if let playlistName = url.pathComponents.dropFirst().first {
                 self = .playlist(playlistName)
@@ -41,5 +30,19 @@ public enum Deeplink {
         default:
             return nil
         }
+    }
+}
+
+extension Deeplink: Identifiable, Hashable {
+    public var id: String {
+        return String(reflecting: self)
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    public static func == (lhs: Deeplink, rhs: Deeplink) -> Bool {
+        lhs.id == rhs.id
     }
 }

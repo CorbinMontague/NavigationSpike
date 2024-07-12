@@ -16,5 +16,6 @@ public enum Tab: Hashable {
 public protocol AppCoordinating: AnyObject {
     var selectedTab: Tab { get set }
     
-    func route(to destination: SharedDestination)
+    @discardableResult func handle(url: URL) -> Bool
+    func route(to: Deeplink)
 }

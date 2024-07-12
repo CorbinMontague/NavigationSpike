@@ -7,7 +7,8 @@
 
 import Foundation
 
-/// Destinations shared across modules
+/// Destinations shared across modules.
+/// This low-level enum helps us avoid code duplication across experience modules that want to reference cross-module destinations.
 public indirect enum SharedDestination {
     
     // root tab views
@@ -17,7 +18,6 @@ public indirect enum SharedDestination {
     // commonly shared views
     case song(_ song: Song)
     case artist(_ artist: Artist)
-    case playlist(playlistName: String)
 }
 
 extension SharedDestination: Identifiable, Hashable {

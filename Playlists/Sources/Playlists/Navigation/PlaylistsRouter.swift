@@ -17,8 +17,8 @@ public final class PlaylistsRouter {
         self.appCoordinator = appCoordinator
     }
     
-    public func route(to destination: SharedDestination) {
-        switch destination {
+    public func route(to deeplink: Deeplink) {
+        switch deeplink {
             // internal routes
         case .playlists:
             routeToPlaylists()
@@ -27,7 +27,7 @@ public final class PlaylistsRouter {
             
             // external routes
         default:
-            appCoordinator?.route(to: destination)
+            appCoordinator?.route(to: deeplink)
         }
     }
 }

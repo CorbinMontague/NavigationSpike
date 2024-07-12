@@ -12,7 +12,7 @@ import Music
 import Playlists
 import SwiftUI
 
-/// Handles navigation at the app layer.
+/// Handles navigation at the app-level.
 class AppCoordinator: AppCoordinating, ObservableObject {
     static let shared = AppCoordinator()
     
@@ -38,32 +38,27 @@ class AppCoordinator: AppCoordinating, ObservableObject {
             print("selectedTab: \(selectedTab)")
         }
     }
-    
-    func route(to destination: SharedDestination) {
-        switch destination {
-        case .explore:
-            exploreRouter?.route(to: destination)
-        case .playlists, .playlist:
-            playlistsRouter?.route(to: destination)
-        default:
-            break // Some SharedDestinations only need view building, and have no supported route yet
-        }
-    }
 }
 
-// MARK: - DeeplinkHandling
-
-// TODO: This should probably live in a seperate class that depends on AppCoordinating
-extension AppCoordinator: DeeplinkHandling {
-    func handle(deeplink: Deeplink) {
-        print("Handle Deeplink: \(deeplink)")
+// This deeplinking/routing logic could live in a seperate class that depends on the module routers
+extension AppCoordinator {
+    @discardableResult func handle(url: URL) -> Bool {
+        guard let deeplink = Deeplink(url: url) else {
+            print("Warning: URL is not a supported Deeplink")
+            return false
+        }
+        
+        route(to: deeplink)
+        return true
+    }
+    
+    func route(to deeplink: Deeplink) {
+        print("Routing to: \(deeplink)")
         switch deeplink {
         case .explore:
-            route(to: .explore)
-        case .playlists:
-            route(to: .playlists)
-        case .playlist(let playlistName):
-            route(to: .playlist(playlistName: playlistName))
+            exploreRouter?.route(to: deeplink)
+        case .playlists, .playlist:
+            playlistsRouter?.route(to: deeplink)
         }
     }
 }

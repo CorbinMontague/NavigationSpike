@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+/// Builds cross-module Views.
 public protocol SharedViewBuilding {
     func view(at destination: SharedDestination) -> AnyView
 }
