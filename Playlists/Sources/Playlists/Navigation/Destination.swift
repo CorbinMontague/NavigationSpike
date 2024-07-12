@@ -12,9 +12,7 @@ public indirect enum Destination {
     
     case playlists
     case createPlaylist(_ onCreatePlaylist: ((Playlist) -> Void))
-    case playlist(_ playlist: Playlist,
-                  onDeletePlaylist: ((Playlist) -> Void),
-                  onRemoveSongFromPlaylist: ((Song, Playlist) -> Void))
+    case playlist(store: PlaylistStore)
     
     case external(_ screen: SharedDestination)
 }

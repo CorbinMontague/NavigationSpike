@@ -51,9 +51,12 @@ extension PlaylistsRouter {
         routeToPlaylists()
         
         // TODO: Push PlaylistView
-//        let destination = Destination.playlist(<#T##playlist: Playlist##Playlist#>,
-//                                               onDeletePlaylist: <#T##((Playlist) -> Void)##((Playlist) -> Void)##(Playlist) -> Void#>,
-//                                               onRemoveSongFromPlaylist: <#T##((Song, Playlist) -> Void)##((Song, Playlist) -> Void)##(Song, Playlist) -> Void#>)
-//        coordinator.path.push(<#T##screen: AnyHashable##AnyHashable#>)
+        let store = PlaylistStore(playlistName: "Foo") { _ in
+            
+        } onRemoveSongFromPlaylist: { _, _ in
+            
+        }
+        let destination = Destination.playlist(store: store)
+        coordinator.path.push(destination)
     }
 }

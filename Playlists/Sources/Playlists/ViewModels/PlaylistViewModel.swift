@@ -9,27 +9,58 @@ import Core
 import Foundation
 import SwiftUI
 
+public struct PlaylistStore {
+    var playlistName: String
+    var playlist: Playlist? = nil
+    var onDeletePlaylist: ((Playlist) -> Void)
+    var onRemoveSongFromPlaylist: ((Song, Playlist) -> Void)
+    
+    public init(playlist: Playlist,
+         onDeletePlaylist: @escaping (Playlist) -> Void,
+         onRemoveSongFromPlaylist: @escaping (Song, Playlist) -> Void) {
+        self.playlist = playlist
+        self.playlistName = playlist.name
+        self.onDeletePlaylist = onDeletePlaylist
+        self.onRemoveSongFromPlaylist = onRemoveSongFromPlaylist
+    }
+    
+    public init(playlistName: String,
+         onDeletePlaylist: @escaping (Playlist) -> Void,
+         onRemoveSongFromPlaylist: @escaping (Song, Playlist) -> Void) {
+        self.playlistName = playlistName
+        self.onDeletePlaylist = onDeletePlaylist
+        self.onRemoveSongFromPlaylist = onRemoveSongFromPlaylist
+    }
+}
+
 class PlaylistViewModel: ObservableObject {
     
-    @Published var playlist: Playlist {
+    @Published var playlist: Playlist? {
         didSet {
-            print("Playlist: \(playlist)")
+            print("Playlist: \(String(describing: playlist))")
         }
     }
     var onDeletePlaylist: ((Playlist) -> Void)
     var onRemoveSongFromPlaylist: ((Song, Playlist) -> Void)
     
-    init(playlist: Playlist,
-         onDeletePlaylist: @escaping ((Playlist) -> Void),
-         onRemoveSongFromPlaylist: @escaping ((Song, Playlist) -> Void)) {
-        self.playlist = playlist
-        self.onDeletePlaylist = onDeletePlaylist
-        self.onRemoveSongFromPlaylist = onRemoveSongFromPlaylist
+    init(store: PlaylistStore) {
+        if let playlist = store.playlist {
+            self.playlist = playlist
+        } else if let playlists = UserDefaults.value(forKey: "playlists") as? [Playlist] {
+            for playlist in playlists {
+                if playlist.name == store.playlistName {
+                    self.playlist = playlist
+                }
+            }
+        }
+        self.onDeletePlaylist = store.onDeletePlaylist
+        self.onRemoveSongFromPlaylist = store.onRemoveSongFromPlaylist
     }
     
     func onDeleteSong(at offsets: IndexSet) {
         // remove song locally from playlist
-        playlist.songs =
+        guard let playlist = self.playlist else { return }
+        self.playlist?.songs =
         playlist.songs.enumerated().filter { (i, song) -> Bool in
             let removed = offsets.contains(i)
             if removed {

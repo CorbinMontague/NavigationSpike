@@ -56,17 +56,19 @@ class PlaylistsViewModel: ObservableObject {
     func onCreatePlaylistTapped() {
         let destination = Destination.createPlaylist { newPlaylist in
             self.playlists.append(newPlaylist)
+            UserDefaults.standard.set(self.playlists, forKey: "playlists")
         }
         navigator.path.presentSheet(destination)
     }
     
     func onPlaylistCellTapped(playlist: Playlist) {
-        let destination = Destination.playlist(playlist) { playlistToDelete in
+        let store = PlaylistStore(playlist: playlist) { playlistToDelete in
             self.deletePlaylist(playlistToDelete)
         } onRemoveSongFromPlaylist: { songToDelete, editedPlaylist in
             self.delete(song: songToDelete, from: editedPlaylist)
         }
-        
+
+        let destination = Destination.playlist(store: store)
         navigator.path.push(destination)
     }
     

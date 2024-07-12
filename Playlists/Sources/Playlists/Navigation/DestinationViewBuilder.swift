@@ -22,12 +22,8 @@ public class DestinationViewBuilder: ObservableObject {
             ViewFactory.makePlaylistsCoordinatorView()
         case .createPlaylist(let onCreatePlaylist):
             ViewFactory.makeCreatePlaylistView(onCreatePlaylist: onCreatePlaylist)
-        case .playlist(let playlist,
-                       let onDeletePlaylist,
-                       let onRemoveSongFromPlaylist):
-            ViewFactory.makePlaylistView(playlist: playlist,
-                                         onDeletePlaylist: onDeletePlaylist,
-                                         onRemoveSongFromPlaylist: onRemoveSongFromPlaylist)
+        case .playlist(let store):
+            ViewFactory.makePlaylistView(store: store)
             
         case .external(let sharedDestination):
             externalViewBuilder.view(at: sharedDestination)
