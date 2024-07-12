@@ -10,10 +10,15 @@ import FlowStacks
 import SwiftUI
 
 public class ExploreCoordinator: NavigationCoordinator {
-    public static let shared = ExploreCoordinator()
     
-    @Published public var path = FlowPath()
+    @Published public var path: FlowPath
     public weak var appCoordinator: AppCoordinating?
+    
+    public init(path: FlowPath = FlowPath(),
+                appCoordinator: AppCoordinating? = nil) {
+        self.path = path
+        self.appCoordinator = appCoordinator
+    }
     
     public func navigate(to deeplink: Deeplink) {
         switch deeplink {

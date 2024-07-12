@@ -21,8 +21,12 @@ struct NavigationSpikeApp: App {
     // - https://github.com/hmlongco/Resolver
     // - https://github.com/hmlongco/Factory
     private func initAppDependencies() {
+        Explore.Globals.coordinator.appCoordinator = coordinator
         Explore.Globals.viewBuilder = Explore.ScreenViewBuilder(externalViewBuilder: viewBuilder)
+        
+        Playlists.Globals.coordinator.appCoordinator = coordinator
         Playlists.Globals.viewBuilder = Playlists.ScreenViewBuilder(externalViewBuilder: viewBuilder)
+        
         Music.Globals.viewBuilder = Music.ScreenViewBuilder(externalViewBuilder: viewBuilder)
         
         self.coordinator.exploreCoordinator = Explore.Globals.coordinator

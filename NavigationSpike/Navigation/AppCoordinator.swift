@@ -19,14 +19,14 @@ class AppCoordinator: AppCoordinating, ObservableObject {
     // MARK: - Dependencies
     
     // AppCoordinator needs a reference to each tab's NavigationCoordinator so it can delegate navigation logic to the correct module
-    var exploreCoordinator: ExploreCoordinator? = nil
-    var playlistsCoordinator: PlaylistsCoordinator? = nil
+    var exploreCoordinator: ExploreCoordinator
+    var playlistsCoordinator: PlaylistsCoordinator
     
     // MARK: - Init
     
     init(selectedTab: Tab = .explore,
-         exploreCoordinator: ExploreCoordinator? = nil,
-         playlistsCoordinator: PlaylistsCoordinator? = nil) {
+         exploreCoordinator: ExploreCoordinator = Explore.Globals.coordinator,
+         playlistsCoordinator: PlaylistsCoordinator = Playlists.Globals.coordinator) {
         self.selectedTab = selectedTab
         self.exploreCoordinator = exploreCoordinator
         self.playlistsCoordinator = playlistsCoordinator
@@ -54,9 +54,9 @@ class AppCoordinator: AppCoordinating, ObservableObject {
         print("Navigating to: \(deeplink)")
         switch deeplink {
         case .explore:
-            exploreCoordinator?.navigate(to: deeplink)
+            exploreCoordinator.navigate(to: deeplink)
         case .playlists, .playlist:
-            playlistsCoordinator?.navigate(to: deeplink)
+            playlistsCoordinator.navigate(to: deeplink)
         }
     }
 }

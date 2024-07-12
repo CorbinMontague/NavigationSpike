@@ -11,7 +11,7 @@ import SwiftUI
 
 public struct ViewFactory {
     public static func makePlaylistsCoordinatorView() -> AnyView {
-        let coordinator = PlaylistsCoordinator.shared
+        let coordinator = Globals.coordinator
         let viewModel = PlaylistsViewModel(coordinator: coordinator)
         return AnyView(PlaylistsCoordinatorView(coordinator: coordinator,
                                                 viewModel: viewModel))

@@ -10,7 +10,7 @@ import SwiftUI
 
 public struct ViewFactory {
     public static func makeExploreCoordinatorView() -> AnyView {
-        let coordinator = ExploreCoordinator.shared
+        let coordinator = Globals.coordinator
         let viewModel = ExploreViewModel(coordinator: coordinator)
         return AnyView(ExploreCoordinatorView(viewModel: viewModel, coordinator: coordinator))
     }

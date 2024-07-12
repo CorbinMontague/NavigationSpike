@@ -18,7 +18,7 @@ struct PlaylistView: View {
         Group {
             if let playlist = viewModel.playlist {
                 List {
-                    Section(header: Text("Playlist")) {
+                    Section(header: Text("Name")) {
                         Text("\(playlist.name)")
                     }
                     
