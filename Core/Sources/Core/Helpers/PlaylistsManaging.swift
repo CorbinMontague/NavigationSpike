@@ -15,7 +15,10 @@ public protocol PlaylistsManaging {
     
 
     @discardableResult func loadPlaylists() -> [Playlist]
+    func loadPlaylist(playlistId: String) -> Playlist?
+    
     func addPlaylist(playlist: Playlist)
+    
     @discardableResult func deletePlaylist(playlistId: String) -> Bool
     @discardableResult func deleteSongFromPlaylist(songId: String, playlistId: String) -> Bool
 }

@@ -45,12 +45,12 @@ public struct SongCell: View {
 //    @EnvironmentObject var navigator: FlowPathNavigator
 //
 //    let song: Song
-//    let screen: ScreenType
+//    let screenToPush: ScreenType
 //
 //    public init(song: Song,
-//                screen: ScreenType) {
+//                screenToPush: ScreenType) {
 //        self.song = song
-//        self.screen = screen
+//        self.screenToPush = screenToPush
 //    }
 //
 //    public var body: some View {
@@ -69,7 +69,7 @@ public struct SongCell: View {
 //        .frame(maxWidth: .infinity, alignment: .leading)
 //        .contentShape(Rectangle())
 //        .onTapGesture {
-//            navigator.push(screen)
+//            navigator.push(screenToPush)
 //        }
 //    }
 //}

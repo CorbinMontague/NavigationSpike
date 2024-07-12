@@ -11,41 +11,27 @@ import FlowStacks
 import SwiftUI
 
 public struct PlaylistStore {
-    var playlistName: String
+    var playlistId: String
     var playlist: Playlist? = nil
-    var onDeletePlaylist: ((Playlist) -> Void)
-    var onRemoveSongFromPlaylist: ((Song, Playlist) -> Void)
     
-    public init(playlist: Playlist,
-                onDeletePlaylist: @escaping (Playlist) -> Void,
-                onRemoveSongFromPlaylist: @escaping (Song, Playlist) -> Void) {
+    public init(playlist: Playlist) {
         self.playlist = playlist
-        self.playlistName = playlist.name
-        self.onDeletePlaylist = onDeletePlaylist
-        self.onRemoveSongFromPlaylist = onRemoveSongFromPlaylist
+        self.playlistId = playlist.id
     }
     
-    public init(playlistName: String,
-                onDeletePlaylist: @escaping (Playlist) -> Void,
-                onRemoveSongFromPlaylist: @escaping (Song, Playlist) -> Void) {
-        self.playlistName = playlistName
-        self.onDeletePlaylist = onDeletePlaylist
-        self.onRemoveSongFromPlaylist = onRemoveSongFromPlaylist
+    public init(playlistId: String) {
+        self.playlistId = playlistId
     }
 }
 
 class PlaylistViewModel: ObservableObject {
     
-    @Published var playlist: Playlist? {
-        didSet {
-            print("Playlist: \(String(describing: playlist))")
-        }
-    }
-    var onDeletePlaylist: ((Playlist) -> Void)
-    var onRemoveSongFromPlaylist: ((Song, Playlist) -> Void)
+    @Published var playlist: Playlist?
     var navigator: FlowPathNavigator? = nil
+    var playlistsManager: PlaylistsManaging
     
-    init(store: PlaylistStore) {
+    init(store: PlaylistStore,
+         playlistsManager: PlaylistsManaging = PlaylistsManager.shared) {
         if let playlist = store.playlist {
             self.playlist = playlist
         } else {
@@ -54,21 +40,20 @@ class PlaylistViewModel: ObservableObject {
             if let data = UserDefaults.standard.object(forKey: UserDefaultsKeys.playlists.rawValue) as? Data {
                 if let playlistsDecoded = try? JSONDecoder().decode(Array.self, from: data) as [Playlist] {
                     for playlist in playlistsDecoded {
-                        if playlist.name == store.playlistName {
+                        if playlist.id == store.playlistId {
                             self.playlist = playlist
                         }
                     }
                 }
             }
         }
-        self.onDeletePlaylist = store.onDeletePlaylist
-        self.onRemoveSongFromPlaylist = store.onRemoveSongFromPlaylist
+        self.playlistsManager = playlistsManager
     }
     
     @MainActor
-    func foo(_ playlist: Playlist) {
+    func onDeletePlaylist(_ playlist: Playlist) {
         navigator?.dismiss()
-        onDeletePlaylist(playlist)
+        playlistsManager.deletePlaylist(playlistId: playlist.id)
     }
     
     func onSwipeToDeleteSong(at offsets: IndexSet) {
@@ -78,8 +63,8 @@ class PlaylistViewModel: ObservableObject {
         playlist.songs.enumerated().filter { (i, song) -> Bool in
             let removed = offsets.contains(i)
             if removed {
-                // tell PlaylistsView this song was deleted so it can update the appropriate PlaylistCell's count
-                onRemoveSongFromPlaylist(song, playlist)
+                // remove song globally from playlist
+                self.playlistsManager.deleteSongFromPlaylist(songId: song.id, playlistId: playlist.id)
             }
             return !removed
         }.map { $0.1 }

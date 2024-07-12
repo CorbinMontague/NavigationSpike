@@ -64,7 +64,7 @@ class PlaylistsViewModel: ObservableObject {
     func fetchPlaylists() async {
         state = .loading
         
-        // pretend we hit the network to fetch song data
+        // pretend we hit the network to fetch playlist data
         return await withCheckedContinuation { continuation in
             Task {
                 // Delay the task by 1 second to simulate waiting on a network request
@@ -78,7 +78,7 @@ class PlaylistsViewModel: ObservableObject {
     
     // MARK: - Actions
     
-    func onCreatePlaylistTapped() {
+    func onCreatePlaylistButtonTapped() {
         let screen = Screen.createPlaylist { newPlaylist in
             self.playlistsManager.addPlaylist(playlist: newPlaylist)
         }
@@ -86,12 +86,7 @@ class PlaylistsViewModel: ObservableObject {
     }
     
     func onPlaylistCellTapped(playlist: Playlist) {
-        let store = PlaylistStore(playlist: playlist) { playlistToDelete in
-            self.playlistsManager.deletePlaylist(playlistId: playlistToDelete.id)
-        } onRemoveSongFromPlaylist: { songToDelete, editedPlaylist in
-            self.playlistsManager.deleteSongFromPlaylist(songId: songToDelete.id, playlistId: editedPlaylist.id)
-        }
-        
+        let store = PlaylistStore(playlist: playlist)
         let screen = Screen.playlist(store: store)
         coordinator.path.push(screen)
     }

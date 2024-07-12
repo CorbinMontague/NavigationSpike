@@ -38,6 +38,15 @@ final public class PlaylistsManager: PlaylistsManaging, ObservableObject {
         return playlists
     }
     
+    public func loadPlaylist(playlistId: String) -> Playlist? {
+        for playlist in playlists {
+            if playlist.id == playlistId {
+                return playlist
+            }
+        }
+        return nil
+    }
+    
     public func addPlaylist(playlist: Playlist) {
         print("Add Playlist: \(playlist.id)")
         playlists.append(playlist)

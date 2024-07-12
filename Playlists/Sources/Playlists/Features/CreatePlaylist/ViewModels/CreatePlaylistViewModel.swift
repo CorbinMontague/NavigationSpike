@@ -24,6 +24,10 @@ class CreatePlaylistViewModel: ObservableObject {
     }
     
     func onCreatePlaylistTapped() {
+        // Tip
+        // We could inject PlaylistsManaging into this view model and tell it to create this playlist instead, but I
+        // wanted to show that we can leverage closures to push/present screens that need to communicate back to their caller
+        
         // let PlaylistsView know we created this playlist
         let newPlaylist = Playlist(name: playlistName,
                                    songs: songsToInclude)

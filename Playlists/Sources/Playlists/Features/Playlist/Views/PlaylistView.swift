@@ -24,11 +24,12 @@ struct PlaylistView: View {
                     
                     Section(header: Text("Songs")) {
                         ForEach(playlist.songs, id: \.id) { song in
+                            // Tip
                             // if we want to handle navigation within the shared view
                             SongCell(song: song)
                             
                             // if we want to handle navigation within the shared view, but inject a Screen so it can differ between callers
-                            //                SongCell<Screen>(song: song, screen: Screen.external(.song(song)))
+                            //                SongCell<Screen>(song: song, screenToPush: Screen.external(.song(song)))
                             
                             // if we want to handle navigation ourselves
                             //                SongCell(song: song) {
@@ -43,6 +44,9 @@ struct PlaylistView: View {
             }
         }
         .onAppear {
+            // Tip
+            // we can give view models a reference to their View's FlowPathNavigator or NavigationCoordinator
+            // using this approach if we don't want to pass it in through its constructor
             viewModel.navigator = navigator
         }
         .navigationTitle("Playlist Details")
@@ -55,7 +59,7 @@ struct PlaylistView: View {
             if let playlist = viewModel.playlist {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        viewModel.foo(playlist)
+                        viewModel.onDeletePlaylist(playlist)
                     } label: {
                         Text("Delete")
                             .foregroundStyle(.red)

@@ -24,8 +24,8 @@ public class PlaylistsCoordinator: NavigationCoordinator {
         switch deeplink {
         case .playlists:
             navigateToPlaylists()
-        case .playlist(let playlistName):
-            navigateToPlaylist(playlistName: playlistName)
+        case .playlist(let playlistId):
+            navigateToPlaylist(playlistId: playlistId)
         default:
             appCoordinator?.navigate(to: deeplink)
         }
@@ -45,17 +45,10 @@ extension PlaylistsCoordinator {
         path.goBackToRoot()
     }
     
-    private func navigateToPlaylist(playlistName: String) {
+    private func navigateToPlaylist(playlistId: String) {
         navigateToPlaylists()
         
-        // TODO: Push PlaylistView
-        // iterate over all playlists contained within PlaylistsViewModel
-        // if we find a playlist with a matching name, push PlaylistView
-        let store = PlaylistStore(playlistName: "Foo") { _ in
-            
-        } onRemoveSongFromPlaylist: { _, _ in
-            
-        }
+        let store = PlaylistStore(playlistId: playlistId)
         let screen = Screen.playlist(store: store)
         path.push(screen)
     }

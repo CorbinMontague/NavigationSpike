@@ -20,6 +20,11 @@ struct ExploreCoordinatorView: View {
     var body: some View {
         FlowStack($coordinator.path, withNavigation: true) {
             makeRootView()
+                .task {
+                    if viewModel.state == .none {
+                        await viewModel.fetchSongs()
+                    }
+                }
                 .flowDestination(for: Screen.self) { screen in
                     Globals.viewBuilder?.view(for: screen)
                 }
@@ -38,9 +43,6 @@ struct ExploreCoordinatorView: View {
             Text("No Songs")
         default:
             ProgressView()
-                .task {
-                    await viewModel.fetchSongs()
-                }
         }
     }
 }

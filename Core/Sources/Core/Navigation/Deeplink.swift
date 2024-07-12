@@ -11,7 +11,7 @@ public enum Deeplink {
     
     case explore
     case playlists
-    case playlist(_ playlistName: String)
+    case playlist(_ playlistId: String)
     
     public init?(url: URL) {
         guard url.scheme == "navigationspike" else { return nil }
@@ -21,8 +21,8 @@ public enum Deeplink {
         case "playlists":
             self = .playlists
         case "playlist":
-            if let playlistName = url.pathComponents.dropFirst().first {
-                self = .playlist(playlistName)
+            if let playlistId = url.pathComponents.dropFirst().first {
+                self = .playlist(playlistId)
             } else {
                 self = .playlists
             }

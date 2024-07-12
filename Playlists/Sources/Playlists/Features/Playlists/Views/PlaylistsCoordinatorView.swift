@@ -17,6 +17,12 @@ struct PlaylistsCoordinatorView: View {
     var body: some View {
         FlowStack($coordinator.path, withNavigation: true) {
             makeRootView()
+                .task {
+                    if viewModel.state == .none {
+                        viewModel.setupObservers()
+                        await viewModel.fetchPlaylists()
+                    }
+                }
                 .flowDestination(for: Screen.self) { screen in
                     Globals.viewBuilder?.view(for: screen)
                 }
@@ -26,7 +32,7 @@ struct PlaylistsCoordinatorView: View {
                 .navigationTitle("Playlists")
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
-                        CreateButton { viewModel.onCreatePlaylistTapped() }
+                        CreateButton { viewModel.onCreatePlaylistButtonTapped() }
                     }
                 }
         }
@@ -53,11 +59,5 @@ struct PlaylistsCoordinatorView: View {
     
     @ViewBuilder private func makeLoadingStateView() -> some View {
         ProgressView()
-            .task {
-                if viewModel.state == .none {
-                    viewModel.setupObservers()
-                }
-                await viewModel.fetchPlaylists()
-            }
     }
 }
