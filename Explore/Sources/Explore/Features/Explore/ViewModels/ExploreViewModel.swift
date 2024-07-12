@@ -11,11 +11,12 @@ import SwiftUI
 class ExploreViewModel: ObservableObject {
     
     enum State {
+        case none
         case loading
         case songsLoaded
         case empty
     }
-    @Published var state: State = .loading {
+    @Published var state: State = .none {
         didSet {
             print("ExploreViewModel.state: \(state)")
         }

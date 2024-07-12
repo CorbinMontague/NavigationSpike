@@ -14,7 +14,8 @@ public protocol PlaylistsManaging {
     var playlistsPublisher: AnyPublisher<[Playlist], Never> { get }
     
 
-    func loadPlaylists() -> [Playlist]
+    @discardableResult func loadPlaylists() -> [Playlist]
+    func addPlaylist(playlist: Playlist)
     @discardableResult func deletePlaylist(playlistId: String) -> Bool
     @discardableResult func deleteSongFromPlaylist(songId: String, playlistId: String) -> Bool
 }

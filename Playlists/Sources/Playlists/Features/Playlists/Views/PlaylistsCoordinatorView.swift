@@ -11,7 +11,7 @@ import SwiftUI
 
 struct PlaylistsCoordinatorView: View {
     
-    @StateObject var coordinator: PlaylistsCoordinator
+    @StateObject var coordinator: PlaylistsCoordinator = Globals.coordinator
     @StateObject var viewModel: PlaylistsViewModel
     
     var body: some View {
@@ -38,7 +38,7 @@ struct PlaylistsCoordinatorView: View {
             makePlaylistsView()
         case .empty:
             makeEmptyStateView()
-        case .loading:
+        default:
             makeLoadingStateView()
         }
     }
@@ -54,6 +54,9 @@ struct PlaylistsCoordinatorView: View {
     @ViewBuilder private func makeLoadingStateView() -> some View {
         ProgressView()
             .task {
+                if viewModel.state == .none {
+                    viewModel.setupObservers()
+                }
                 await viewModel.fetchPlaylists()
             }
     }

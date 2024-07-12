@@ -10,6 +10,7 @@ import FlowStacks
 import SwiftUI
 
 struct PlaylistsView: View {
+    @EnvironmentObject var navigator: FlowPathNavigator
     
     @ObservedObject var viewModel: PlaylistsViewModel
     
