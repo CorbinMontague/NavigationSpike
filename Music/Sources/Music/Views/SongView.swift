@@ -11,14 +11,10 @@ import SwiftUI
 
 struct SongView: View {
     @EnvironmentObject var navigator: FlowPathNavigator
+    @Environment(\.routeStyle) var routeStyle: RouteStyle?
+    @Environment(\.routeIndex) var routeIndex
     
     @StateObject var viewModel: SongViewModel
-    
-    @State var routeStyle: RouteStyle = .push {
-        didSet {
-            print("SongView.routeStyle: \(routeStyle)")
-        }
-    }
     
     var body: some View {
         List {
@@ -35,26 +31,25 @@ struct SongView: View {
         .flowDestination(for: Destination.self) { destination in
             Globals.viewBuilder?.view(at: destination)
         }
-        .onAppear {
-            if let style = navigator.routes.last?.style {
-                self.routeStyle = style
-            }
-        }
         .navigationTitle("Song Details")
         .navigationBarBackButtonHidden(true)
         .toolbar {
-            switch routeStyle {
-            case .push:
+            // render a back button if this view was pushed
+            if let routeStyle = routeStyle, routeStyle.isPush {
                 ToolbarItem(placement: .topBarLeading) {
-                    BackButton { navigator.goBack() }
+                    BackButton { navigator.pop() }
                 }
-            case .cover:
+            }
+            
+            // render a dismiss button if this view was presented or was pushed by a view contained within a modal
+            if let routeStyle = routeStyle, routeStyle.isSheet || routeStyle.isCover {
                 ToolbarItem(placement: .topBarTrailing) {
-                    DismissButton { navigator.goBack() }
+                    DismissButton { navigator.dismiss() }
                 }
-            default:
-                // we don't show any navigation toolbar buttons for sheet presentations
-                ToolbarItem { }
+            } else if navigator.isRouteInModal(routeIndex: routeIndex) {
+                ToolbarItem(placement: .topBarTrailing) {
+                    DismissButton { navigator.dismiss() }
+                }
             }
         }
     }
