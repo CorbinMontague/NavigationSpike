@@ -13,13 +13,7 @@ public class PlaylistsCoordinator: NavigationCoordinator {
     static public let shared = PlaylistsCoordinator()
     
     @Published public var path = FlowPath()
-    private weak var appCoordinator: AppCoordinating?
-    
-    public init(path: FlowPath = FlowPath(),
-                appCoordinator: AppCoordinating? = nil) {
-        self.path = path
-        self.appCoordinator = appCoordinator
-    }
+    public weak var appCoordinator: AppCoordinating?
     
     public func navigate(to deeplink: Deeplink) {
         switch deeplink {

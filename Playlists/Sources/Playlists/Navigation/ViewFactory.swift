@@ -16,9 +16,9 @@ public struct ViewFactory {
         return AnyView(PlaylistsCoordinatorView(viewModel: viewModel, coordinator: coordinator))
     }
     
-    public static func makeCreatePlaylistView(onCreatePlaylist: @escaping ((Playlist) -> Void)) -> AnyView {
+    public static func makeCreatePlaylistCoordinatorView(onCreatePlaylist: @escaping ((Playlist) -> Void)) -> AnyView {
         let viewModel = CreatePlaylistViewModel(onCreatePlaylist: onCreatePlaylist)
-        return AnyView(CreatePlaylistView(viewModel: viewModel))
+        return AnyView(CreatePlaylistCoordinatorView(viewModel: viewModel))
     }
     
     public static func makePlaylistView(store: PlaylistStore) -> AnyView {

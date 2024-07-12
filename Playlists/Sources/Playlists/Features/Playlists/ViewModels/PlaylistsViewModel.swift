@@ -58,7 +58,7 @@ class PlaylistsViewModel: ObservableObject {
             self.playlists.append(newPlaylist)
             UserDefaults.standard.set(self.playlists, forKey: "playlists")
         }
-        coordinator.path.presentSheet(destination)
+        coordinator.path.presentSheet(destination, withNavigation: true)
     }
     
     func onPlaylistCellTapped(playlist: Playlist) {

@@ -1,27 +1,21 @@
 //
-//  CreatePlaylistView.swift
+//  CreatePlaylistWithSongsView.swift
 //  Playlists
 //
-//  Created by Corbin Montague on 7/1/24.
+//  Created by Corbin Montague on 7/12/24.
 //
 
 import Core
+import Foundation
 import FlowStacks
 import SwiftUI
 
-struct CreatePlaylistView: View {
+struct CreatePlaylistWithSongsView: View {
     @EnvironmentObject var navigator: FlowPathNavigator
-    
-    @StateObject var viewModel: CreatePlaylistViewModel
+    @ObservedObject var viewModel: CreatePlaylistViewModel
     
     var body: some View {
         Form {
-            TextField(
-                "Playlist Name",
-                text: $viewModel.playlistName
-            )
-            .disableAutocorrection(true)
-            
             Section(header: Text("Songs")) {
                 ForEach(viewModel.songsToInclude, id: \.name) { song in
                     Text("\(song.name)")
@@ -45,6 +39,17 @@ struct CreatePlaylistView: View {
                 EmptyView()
             }
         }
+        .navigationTitle(viewModel.playlistName)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                BackButton { navigator.pop() }
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                DismissButton { navigator.dismiss() }
+            }
+        }
     }
     
     @ViewBuilder private func makeCreatePlaylistButton() -> some View {
@@ -54,7 +59,6 @@ struct CreatePlaylistView: View {
                 navigator.dismiss()
                 viewModel.onCreatePlaylistTapped()
             }
-            .disabled(viewModel.playlistName.isEmpty)
             Spacer()
         }
     }

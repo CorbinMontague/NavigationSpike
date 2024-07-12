@@ -21,7 +21,7 @@ public class DestinationViewBuilder {
         case .playlists:
             ViewFactory.makePlaylistsCoordinatorView()
         case .createPlaylist(let onCreatePlaylist):
-            ViewFactory.makeCreatePlaylistView(onCreatePlaylist: onCreatePlaylist)
+            ViewFactory.makeCreatePlaylistCoordinatorView(onCreatePlaylist: onCreatePlaylist)
         case .playlist(let store):
             ViewFactory.makePlaylistView(store: store)
             
