@@ -35,7 +35,7 @@ struct PlaylistView: View {
                             //                    viewModel.onSongCellTapped(song: song)
                             //                }
                         }
-                        .onDelete(perform: viewModel.onDeleteSong)
+                        .onDelete(perform: viewModel.onSwipeToDeleteSong)
                     }
                 }
             } else {

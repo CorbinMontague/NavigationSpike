@@ -47,7 +47,7 @@ class PlaylistViewModel: ObservableObject {
         if let playlist = store.playlist {
             self.playlist = playlist
         } else {
-            print("Attempting to decode saved playlists to find playlist: \(store.playlistName)")
+            print("Attempting to load saved playlists to find playlist: \(store.playlistName)")
             if let data = UserDefaults.standard.object(forKey: UserDefaultsKeys.playlists.rawValue) as? Data {
                 print("Found saved playlists data!")
                 if let playlistsDecoded = try? JSONDecoder().decode(Array.self, from: data) as [Playlist] {
@@ -64,7 +64,7 @@ class PlaylistViewModel: ObservableObject {
         self.onRemoveSongFromPlaylist = store.onRemoveSongFromPlaylist
     }
     
-    func onDeleteSong(at offsets: IndexSet) {
+    func onSwipeToDeleteSong(at offsets: IndexSet) {
         // remove song locally from playlist
         guard let playlist = self.playlist else { return }
         self.playlist?.songs =

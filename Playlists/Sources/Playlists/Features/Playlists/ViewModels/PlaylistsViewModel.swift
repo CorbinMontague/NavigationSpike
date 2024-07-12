@@ -22,8 +22,9 @@ class PlaylistsViewModel: ObservableObject {
     
     @Published var playlists: [Playlist] {
         didSet {
-            state = playlists.isEmpty ? .empty : .playlistsLoaded
             print("Playlists: \(playlists)")
+            state = playlists.isEmpty ? .empty : .playlistsLoaded
+            savePlaylistsToDisk()
         }
     }
     
@@ -45,7 +46,14 @@ class PlaylistsViewModel: ObservableObject {
                 // Delay the task by 1 second to simulate waiting on a network request
                 try await Task.sleep(nanoseconds: 1_000_000_000)
                 
-                self.playlists = []
+                print("Attempting to load saved playlists")
+                if let data = UserDefaults.standard.object(forKey: UserDefaultsKeys.playlists.rawValue) as? Data {
+                    print("Found saved playlists data!")
+                    if let playlistsDecoded = try? JSONDecoder().decode(Array.self, from: data) as [Playlist] {
+                        print("Successfully decoded saved playlists data!")
+                        self.playlists = playlistsDecoded
+                    }
+                }
                 continuation.resume()
             }
         }
@@ -56,11 +64,6 @@ class PlaylistsViewModel: ObservableObject {
     func onCreatePlaylistTapped() {
         let screen = Screen.createPlaylist { newPlaylist in
             self.playlists.append(newPlaylist)
-            
-            // save playlists data to UserDefaults
-            if let encoded = try? JSONEncoder().encode(self.playlists) {
-                UserDefaults.standard.set(encoded, forKey: UserDefaultsKeys.playlists.rawValue)
-            }
         }
         coordinator.path.presentSheet(screen, withNavigation: true)
     }
@@ -76,7 +79,20 @@ class PlaylistsViewModel: ObservableObject {
         coordinator.path.push(screen)
     }
     
-    func deletePlaylist(_ playlistToDelete: Playlist) {
+    func onSwipeToDeletePlaylist(at offsets: IndexSet) {
+        self.playlists =
+        self.playlists.enumerated().filter { (i, playlist) -> Bool in
+            let removed = offsets.contains(i)
+            if removed {
+                deletePlaylist(playlist)
+            }
+            return !removed
+        }.map { $0.1 }
+    }
+    
+    // MARK: - Helpers
+    
+    private func deletePlaylist(_ playlistToDelete: Playlist) {
         for i in 0..<self.playlists.count {
             let playlist = self.playlists[i]
             if playlist == playlistToDelete {
@@ -84,10 +100,9 @@ class PlaylistsViewModel: ObservableObject {
                 break
             }
         }
-        //            self.coordinator.path.dismiss() // we could dismiss from here instead of from the view that called this closure if we want
     }
     
-    func delete(song songToDelete: Song, from editedPlaylist: Playlist) {
+    private func delete(song songToDelete: Song, from editedPlaylist: Playlist) {
         for playlistIndex in 0..<self.playlists.count {
             let playlist = self.playlists[playlistIndex]
             if playlist == editedPlaylist {
@@ -99,6 +114,12 @@ class PlaylistsViewModel: ObservableObject {
                     }
                 }
             }
+        }
+    }
+    
+    private func savePlaylistsToDisk() {
+        if let encoded = try? JSONEncoder().encode(self.playlists) {
+            UserDefaults.standard.set(encoded, forKey: UserDefaultsKeys.playlists.rawValue)
         }
     }
 }

@@ -20,6 +20,7 @@ struct PlaylistsView: View {
                     viewModel.onPlaylistCellTapped(playlist: playlist)
                 }
             }
+            .onDelete(perform: viewModel.onSwipeToDeletePlaylist)
         }
     }
 }
