@@ -11,9 +11,9 @@ import SwiftUI
 
 public struct ViewFactory {
     public static func makePlaylistsCoordinatorView() -> AnyView {
-        let navigator = PlaylistsCoordinator.shared
-        let viewModel = PlaylistsViewModel(navigator: navigator)
-        return AnyView(PlaylistsCoordinatorView(viewModel: viewModel, navigator: navigator))
+        let coordinator = PlaylistsCoordinator.shared
+        let viewModel = PlaylistsViewModel(coordinator: coordinator)
+        return AnyView(PlaylistsCoordinatorView(viewModel: viewModel, coordinator: coordinator))
     }
     
     public static func makeCreatePlaylistView(onCreatePlaylist: @escaping ((Playlist) -> Void)) -> AnyView {

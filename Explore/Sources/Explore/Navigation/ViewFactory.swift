@@ -10,8 +10,8 @@ import SwiftUI
 
 public struct ViewFactory {
     public static func makeExploreCoordinatorView() -> AnyView {
-        let navigator = ExploreCoordinator.shared
-        let viewModel = ExploreViewModel(navigator: navigator)
-        return AnyView(ExploreCoordinatorView(viewModel: viewModel, navigator: navigator))
+        let coordinator = ExploreCoordinator.shared
+        let viewModel = ExploreViewModel(coordinator: coordinator)
+        return AnyView(ExploreCoordinatorView(viewModel: viewModel, coordinator: coordinator))
     }
 }

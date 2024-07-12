@@ -27,11 +27,11 @@ class PlaylistsViewModel: ObservableObject {
         }
     }
     
-    @Published var navigator: PlaylistsCoordinator
+    @Published var coordinator: PlaylistsCoordinator
     
-    init(navigator: PlaylistsCoordinator,
+    init(coordinator: PlaylistsCoordinator,
          playlists: [Playlist] = []) {
-        self.navigator = navigator
+        self.coordinator = coordinator
         self.playlists = playlists
     }
     
@@ -58,7 +58,7 @@ class PlaylistsViewModel: ObservableObject {
             self.playlists.append(newPlaylist)
             UserDefaults.standard.set(self.playlists, forKey: "playlists")
         }
-        navigator.path.presentSheet(destination)
+        coordinator.path.presentSheet(destination)
     }
     
     func onPlaylistCellTapped(playlist: Playlist) {
@@ -69,7 +69,7 @@ class PlaylistsViewModel: ObservableObject {
         }
 
         let destination = Destination.playlist(store: store)
-        navigator.path.push(destination)
+        coordinator.path.push(destination)
     }
     
     func deletePlaylist(_ playlistToDelete: Playlist) {
@@ -80,7 +80,7 @@ class PlaylistsViewModel: ObservableObject {
                 break
             }
         }
-        //            self.navigator.path.dismiss() // we could dismiss from here instead of from the view that called this closure if we want
+        //            self.coordinator.path.dismiss() // we could dismiss from here instead of from the view that called this closure if we want
     }
     
     func delete(song songToDelete: Song, from editedPlaylist: Playlist) {

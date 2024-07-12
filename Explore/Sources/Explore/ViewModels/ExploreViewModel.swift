@@ -18,16 +18,16 @@ class ExploreViewModel: ObservableObject {
     }
     @Published var state: State = .none
     
-    @Published var navigator: ExploreCoordinator
+    @Published var coordinator: ExploreCoordinator
     @Published var songs: [Song] {
         didSet {
             state = songs.isEmpty ? .empty : .songsLoaded
         }
     }
     
-    init(navigator: ExploreCoordinator,
+    init(coordinator: ExploreCoordinator,
          songs: [Song] = []) {
-        self.navigator = navigator
+        self.coordinator = coordinator
         self.songs = songs
     }
     
@@ -49,6 +49,6 @@ class ExploreViewModel: ObservableObject {
     
     func onSongCellTapped(song: Song) {
         let destination = Destination.external(.song(song))
-        navigator.path.push(destination)
+        coordinator.path.push(destination)
     }
 }

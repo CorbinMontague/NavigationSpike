@@ -14,10 +14,10 @@ struct PlaylistsCoordinatorView: View {
     @StateObject var viewModel: PlaylistsViewModel
     
     // even though the vm already has a reference to this, we need this reference here to tell SwiftUI that PlaylistsCoordinatorView owns the strong reference to PlaylistsCoordinator
-    @StateObject var navigator: PlaylistsCoordinator
+    @StateObject var coordinator: PlaylistsCoordinator
     
     var body: some View {
-        FlowStack($navigator.path, withNavigation: true) {
+        FlowStack($coordinator.path, withNavigation: true) {
             makeRootView()
                 .flowDestination(for: Destination.self) { destination in
                     Globals.viewBuilder?.view(at: destination)
@@ -37,14 +37,26 @@ struct PlaylistsCoordinatorView: View {
     @ViewBuilder private func makeRootView() -> some View {
         switch viewModel.state {
         case .playlistsLoaded:
-            PlaylistsView(viewModel: viewModel)
+            makePlaylistsView()
         case .empty:
-            Text("No Playlists")
+            makeEmptyStateView()
         default:
-            ProgressView()
-                .task {
-                    await viewModel.fetchPlaylists()
-                }
+            makeLoadingStateView()
         }
+    }
+    
+    @ViewBuilder private func makePlaylistsView() -> some View {
+        PlaylistsView(viewModel: viewModel)
+    }
+    
+    @ViewBuilder private func makeEmptyStateView() -> some View {
+        Text("No Playlists")
+    }
+    
+    @ViewBuilder private func makeLoadingStateView() -> some View {
+        ProgressView()
+            .task {
+                await viewModel.fetchPlaylists()
+            }
     }
 }
