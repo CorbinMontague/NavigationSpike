@@ -33,7 +33,6 @@ public final class ExploreRouter {
 extension ExploreRouter {
     
     private func routeToExplore() {
-        print("routeToExplore")
         // select explore tab
         appCoordinator?.selectedTab = .explore
         

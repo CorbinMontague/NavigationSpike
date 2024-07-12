@@ -13,6 +13,7 @@ public enum Tab: Hashable {
     case playlists
 }
 
+/// Handles navigation at the app-level.
 public protocol AppCoordinating: AnyObject {
     var selectedTab: Tab { get set }
     

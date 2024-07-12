@@ -35,7 +35,6 @@ public final class PlaylistsRouter {
 extension PlaylistsRouter {
     
     private func routeToPlaylists() {
-        print("routeToPlaylists")
         // select playlists tab
         appCoordinator?.selectedTab = .playlists
         
@@ -47,7 +46,6 @@ extension PlaylistsRouter {
     }
     
     private func routeToPlaylist(playlistName: String) {
-        print("routeToPlaylist: \(playlistName)")
         routeToPlaylists()
         
         // TODO: Push PlaylistView
