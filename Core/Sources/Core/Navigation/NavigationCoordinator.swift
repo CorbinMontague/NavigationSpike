@@ -8,7 +8,11 @@
 import FlowStacks
 import SwiftUI
 
-// Allows us to mock coordinators in unit tests.
+/// Stores a FlowStack's navigation state and supports cross-module navigation.
+///
+/// This protocol allows us to mock coordinators in unit tests.
 public protocol NavigationCoordinator: ObservableObject {
     var path: FlowPath { get }
+    
+    func navigate(to deeplink: Deeplink)
 }

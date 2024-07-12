@@ -13,10 +13,10 @@ public enum Tab: Hashable {
     case playlists
 }
 
-/// Handles navigation at the app-level.
+/// Stores app-level navigation state (like selected tab) and supports cross-module navigation.
 public protocol AppCoordinating: AnyObject {
     var selectedTab: Tab { get set }
     
     @discardableResult func handle(url: URL) -> Bool
-    func route(to: Deeplink)
+    func navigate(to deeplink: Deeplink)
 }

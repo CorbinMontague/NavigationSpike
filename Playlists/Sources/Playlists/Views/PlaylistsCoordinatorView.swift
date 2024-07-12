@@ -13,7 +13,8 @@ struct PlaylistsCoordinatorView: View {
     
     @StateObject var viewModel: PlaylistsViewModel
     
-    // even though the vm already has a reference to this, we need this reference here to tell SwiftUI that PlaylistsCoordinatorView owns the strong reference to PlaylistsCoordinator
+    // even though the view model also has a reference to this, we need this @StateObject reference here to tell SwiftUI
+    // that PlaylistsCoordinatorView owns the strong reference to PlaylistsCoordinator
     @StateObject var coordinator: PlaylistsCoordinator
     
     var body: some View {

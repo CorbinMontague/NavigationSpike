@@ -10,6 +10,6 @@ import Foundation
 public struct Globals {
     public static let shared = Globals()
     
+    public static var coordinator = ExploreCoordinator.shared
     public static var viewBuilder: DestinationViewBuilder?
-    public static var router: ExploreRouter?
 }

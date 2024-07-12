@@ -18,17 +18,17 @@ class AppCoordinator: AppCoordinating, ObservableObject {
     
     // MARK: - Dependencies
     
-    var exploreRouter: ExploreRouter? = nil
-    var playlistsRouter: PlaylistsRouter? = nil
+    var exploreCoordinator: ExploreCoordinator? = nil
+    var playlistsCoordinator: PlaylistsCoordinator? = nil
     
     // MARK: - Init
     
     init(selectedTab: Tab = .explore,
-         exploreRouter: ExploreRouter? = nil,
-         playlistsRouter: PlaylistsRouter? = nil) {
+         exploreCoordinator: ExploreCoordinator? = nil,
+         playlistsCoordinator: PlaylistsCoordinator? = nil) {
         self.selectedTab = selectedTab
-        self.exploreRouter = exploreRouter
-        self.playlistsRouter = playlistsRouter
+        self.exploreCoordinator = exploreCoordinator
+        self.playlistsCoordinator = playlistsCoordinator
     }
     
     // MARK: - AppCoordinating
@@ -38,27 +38,24 @@ class AppCoordinator: AppCoordinating, ObservableObject {
             print("selectedTab: \(selectedTab)")
         }
     }
-}
-
-// This deeplinking/routing logic could live in a seperate class that depends on the module routers
-extension AppCoordinator {
+    
     @discardableResult func handle(url: URL) -> Bool {
         guard let deeplink = Deeplink(url: url) else {
             print("Warning: URL is not a supported Deeplink")
             return false
         }
         
-        route(to: deeplink)
+        navigate(to: deeplink)
         return true
     }
     
-    func route(to deeplink: Deeplink) {
-        print("Routing to: \(deeplink)")
+    func navigate(to deeplink: Deeplink) {
+        print("Navigating to: \(deeplink)")
         switch deeplink {
         case .explore:
-            exploreRouter?.route(to: deeplink)
+            exploreCoordinator?.navigate(to: deeplink)
         case .playlists, .playlist:
-            playlistsRouter?.route(to: deeplink)
+            playlistsCoordinator?.navigate(to: deeplink)
         }
     }
 }
