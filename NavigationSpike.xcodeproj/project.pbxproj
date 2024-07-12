@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2926BA142C32FFF3000E2549 /* NavigationSpikeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926BA132C32FFF3000E2549 /* NavigationSpikeApp.swift */; };
-		2926BA162C32FFF3000E2549 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926BA152C32FFF3000E2549 /* ContentView.swift */; };
+		2926BA162C32FFF3000E2549 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926BA152C32FFF3000E2549 /* TabBarView.swift */; };
 		2926BA182C32FFF4000E2549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2926BA172C32FFF4000E2549 /* Assets.xcassets */; };
 		2926BA1C2C32FFF4000E2549 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2926BA1B2C32FFF4000E2549 /* Preview Assets.xcassets */; };
 		2926BA262C32FFF4000E2549 /* NavigationSpikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926BA252C32FFF4000E2549 /* NavigationSpikeTests.swift */; };
@@ -18,6 +18,7 @@
 		297C61B72C33066A003116D8 /* Explore in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B62C33066A003116D8 /* Explore */; };
 		297C61B92C33066A003116D8 /* Music in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B82C33066A003116D8 /* Music */; };
 		297C61BD2C33066A003116D8 /* Playlists in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61BC2C33066A003116D8 /* Playlists */; };
+		2999CF792C4177F8004C82B8 /* AppViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2999CF782C4177F8004C82B8 /* AppViewBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +34,7 @@
 /* Begin PBXFileReference section */
 		2926BA102C32FFF3000E2549 /* NavigationSpike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationSpike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2926BA132C32FFF3000E2549 /* NavigationSpikeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSpikeApp.swift; sourceTree = "<group>"; };
-		2926BA152C32FFF3000E2549 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2926BA152C32FFF3000E2549 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		2926BA172C32FFF4000E2549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2926BA192C32FFF4000E2549 /* NavigationSpike.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NavigationSpike.entitlements; sourceTree = "<group>"; };
 		2926BA1B2C32FFF4000E2549 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -45,6 +46,7 @@
 		297C61B22C330588003116D8 /* Playlists */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Playlists; sourceTree = "<group>"; };
 		297C61B32C3305AA003116D8 /* Music */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Music; sourceTree = "<group>"; };
 		2995A9002C386DA700D6C593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2999CF782C4177F8004C82B8 /* AppViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +128,7 @@
 		295F1DC62C3324C1003FA6E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2926BA152C32FFF3000E2549 /* ContentView.swift */,
+				2926BA152C32FFF3000E2549 /* TabBarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				295F1DC82C3324D7003FA6E3 /* AppCoordinator.swift */,
+				2999CF782C4177F8004C82B8 /* AppViewBuilder.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -257,7 +260,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				295F1DC92C3324D7003FA6E3 /* AppCoordinator.swift in Sources */,
-				2926BA162C32FFF3000E2549 /* ContentView.swift in Sources */,
+				2926BA162C32FFF3000E2549 /* TabBarView.swift in Sources */,
+				2999CF792C4177F8004C82B8 /* AppViewBuilder.swift in Sources */,
 				2926BA142C32FFF3000E2549 /* NavigationSpikeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

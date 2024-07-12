@@ -12,7 +12,8 @@ import Music
 import Playlists
 import SwiftUI
 
-class AppCoordinator: AppCoordinating, SharedViewBuilding, ObservableObject {
+/// Handles navigation at the app layer.
+class AppCoordinator: AppCoordinating, ObservableObject {
     static let shared = AppCoordinator()
     
     // MARK: - Dependencies
@@ -20,9 +21,19 @@ class AppCoordinator: AppCoordinating, SharedViewBuilding, ObservableObject {
     var exploreRouter: ExploreRouter? = nil
     var playlistsRouter: PlaylistsRouter? = nil
     
+    // MARK: - Init
+    
+    init(selectedTab: Tab = .explore,
+         exploreRouter: ExploreRouter? = nil,
+         playlistsRouter: PlaylistsRouter? = nil) {
+        self.selectedTab = selectedTab
+        self.exploreRouter = exploreRouter
+        self.playlistsRouter = playlistsRouter
+    }
+    
     // MARK: - AppCoordinating
     
-    @Published var selectedTab: Tab = .explore {
+    @Published var selectedTab: Tab {
         didSet {
             print("selectedTab: \(selectedTab)")
         }
@@ -35,32 +46,15 @@ class AppCoordinator: AppCoordinating, SharedViewBuilding, ObservableObject {
         case .playlists, .playlist:
             playlistsRouter?.route(to: destination)
         default:
-            break // SharedDestinations that only need view building, and no routing
+            break // Some SharedDestinations only need view building, and have no supported route yet
         }
     }
-    
-    // MARK: - View Building
-    
-    // TODO: Consider moving this into its own AppViewFactory struct. Shouldn't need to be behing protocol
-    // since it will not have any dependencies and will be a static func.
-    func view(at destination: SharedDestination) -> AnyView {
-        switch destination {
-        case .explore:
-            return Explore.ViewFactory.makeExploreCoordinatorView()
-        case .playlists:
-            return Playlists.ViewFactory.makePlaylistsCoordinatorView()
-        case .song(let song):
-            return Music.ViewFactory.makeSongView(song: song)
-        case .artist(let artist):
-            return Music.ViewFactory.makeArtistView(artist: artist)
-        default:
-            return AnyView(EmptyView()) // SharedDestinations that only need routing, and no view building
-        }
-    }
-    
-    // MARK: - Deeplink Handling
-    
-    // TODO: Move behind protocol and probably into its own struct
+}
+
+// MARK: - DeeplinkHandling
+
+// TODO: This should probably live in a seperate class that depends on AppCoordinating
+extension AppCoordinator: DeeplinkHandling {
     func handle(deeplink: Deeplink) {
         print("Handle Deeplink: \(deeplink)")
         switch deeplink {
