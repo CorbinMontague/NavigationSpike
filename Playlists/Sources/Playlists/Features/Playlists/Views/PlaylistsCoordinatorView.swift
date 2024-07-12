@@ -38,7 +38,7 @@ struct PlaylistsCoordinatorView: View {
             makePlaylistsView()
         case .empty:
             makeEmptyStateView()
-        default:
+        case .loading:
             makeLoadingStateView()
         }
     }

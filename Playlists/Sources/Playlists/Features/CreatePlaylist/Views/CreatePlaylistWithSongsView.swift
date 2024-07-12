@@ -17,7 +17,7 @@ struct CreatePlaylistWithSongsView: View {
     var body: some View {
         Form {
             Section(header: Text("Songs")) {
-                ForEach(viewModel.songsToInclude, id: \.name) { song in
+                ForEach(viewModel.songsToInclude, id: \.id) { song in
                     Text("\(song.name)")
                 }
             }

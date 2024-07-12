@@ -8,22 +8,24 @@
 import Foundation
 
 public struct Playlist: Codable, Hashable {
+    public var id: String
     public var name: String
     public var songs: [Song]
     
-    public init(name: String,
+    public init(id: String = UUID().uuidString,
+                name: String,
                 songs: [Song] = []) {
+        self.id = id
         self.name = name
         self.songs = songs
     }
     
     public static func == (lhs: Playlist, rhs: Playlist) -> Bool {
-        return lhs.name == rhs.name && lhs.songs.count == rhs.songs.count
+        return lhs.id == rhs.id
     }
     
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-        hasher.combine(songs)
+        hasher.combine(id)
     }
 }

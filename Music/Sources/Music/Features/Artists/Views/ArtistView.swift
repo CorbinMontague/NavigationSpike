@@ -23,7 +23,7 @@ struct ArtistView: View {
             }
             
             Section(header: Text("Songs")) {
-                ForEach(viewModel.artist.songs, id: \.name) { song in
+                ForEach(viewModel.artist.songs, id: \.id) { song in
                     Text("\(song.name)")
                         .foregroundStyle(.blue)
                         .frame(maxWidth: .infinity, alignment: .leading)

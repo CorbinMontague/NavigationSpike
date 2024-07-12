@@ -15,7 +15,7 @@ struct ExploreView: View {
     
     var body: some View {
         List {
-            ForEach(viewModel.songs, id: \.name) { song in
+            ForEach(viewModel.songs, id: \.id) { song in
                 // if we want to handle navigation within the shared view
                 SongCell(song: song)
                 

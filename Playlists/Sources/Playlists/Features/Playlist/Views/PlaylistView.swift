@@ -23,7 +23,7 @@ struct PlaylistView: View {
                     }
                     
                     Section(header: Text("Songs")) {
-                        ForEach(playlist.songs, id: \.name) { song in
+                        ForEach(playlist.songs, id: \.id) { song in
                             // if we want to handle navigation within the shared view
                             SongCell(song: song)
                             
@@ -42,18 +42,20 @@ struct PlaylistView: View {
                 Text("Playlist Unavailable")
             }
         }
+        .onAppear {
+            viewModel.navigator = navigator
+        }
         .navigationTitle("Playlist Details")
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                BackButton { navigator.goBack() }
+                BackButton { navigator.pop() }
             }
             
             if let playlist = viewModel.playlist {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        navigator.dismiss()
-                        viewModel.onDeletePlaylist(playlist)
+                        viewModel.foo(playlist)
                     } label: {
                         Text("Delete")
                             .foregroundStyle(.red)

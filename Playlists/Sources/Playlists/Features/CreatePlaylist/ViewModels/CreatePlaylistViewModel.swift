@@ -25,7 +25,8 @@ class CreatePlaylistViewModel: ObservableObject {
     
     func onCreatePlaylistTapped() {
         // let PlaylistsView know we created this playlist
-        let newPlaylist = Playlist(name: playlistName, songs: songsToInclude)
+        let newPlaylist = Playlist(name: playlistName,
+                                   songs: songsToInclude)
         onCreatePlaylist(newPlaylist)
         
         // now dismiss back to PlaylistsView

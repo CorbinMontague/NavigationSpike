@@ -7,6 +7,7 @@
 
 import Core
 import Foundation
+import FlowStacks
 import SwiftUI
 
 public struct PlaylistStore {
@@ -42,6 +43,7 @@ class PlaylistViewModel: ObservableObject {
     }
     var onDeletePlaylist: ((Playlist) -> Void)
     var onRemoveSongFromPlaylist: ((Song, Playlist) -> Void)
+    var navigator: FlowPathNavigator? = nil
     
     init(store: PlaylistStore) {
         if let playlist = store.playlist {
@@ -61,6 +63,12 @@ class PlaylistViewModel: ObservableObject {
         }
         self.onDeletePlaylist = store.onDeletePlaylist
         self.onRemoveSongFromPlaylist = store.onRemoveSongFromPlaylist
+    }
+    
+    @MainActor
+    func foo(_ playlist: Playlist) {
+        navigator?.dismiss()
+        onDeletePlaylist(playlist)
     }
     
     func onSwipeToDeleteSong(at offsets: IndexSet) {

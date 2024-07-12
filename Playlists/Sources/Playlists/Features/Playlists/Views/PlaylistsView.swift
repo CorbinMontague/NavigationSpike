@@ -15,7 +15,7 @@ struct PlaylistsView: View {
     
     var body: some View {
         List {
-            ForEach(viewModel.playlists, id: \.name) { playlist in
+            ForEach(viewModel.playlists, id: \.id) { playlist in
                 PlaylistCell(playlist: playlist) {
                     viewModel.onPlaylistCellTapped(playlist: playlist)
                 }

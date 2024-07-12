@@ -13,16 +13,18 @@ import SwiftUI
 class PlaylistsViewModel: ObservableObject {
     
     enum State {
-        case none
         case loading
         case playlistsLoaded
         case empty
     }
-    @Published var state: State = .none
+    @Published var state: State = .loading {
+        didSet {
+            print("PlaylistsViewModel.state: \(state)")
+        }
+    }
     
     @Published var playlists: [Playlist] {
         didSet {
-            print("Playlists: \(playlists)")
             state = playlists.isEmpty ? .empty : .playlistsLoaded
             savePlaylistsToDisk()
         }
@@ -46,11 +48,16 @@ class PlaylistsViewModel: ObservableObject {
                 // Delay the task by 1 second to simulate waiting on a network request
                 try await Task.sleep(nanoseconds: 1_000_000_000)
                 
+                var loadedSavedPlaylists = false
                 if let data = UserDefaults.standard.object(forKey: UserDefaultsKeys.playlists.rawValue) as? Data {
                     if let playlistsDecoded = try? JSONDecoder().decode(Array.self, from: data) as [Playlist] {
-                        print("Successfully loaded saved playlists!")
                         self.playlists = playlistsDecoded
+                        loadedSavedPlaylists = true
                     }
+                }
+                
+                if !loadedSavedPlaylists {
+                    self.playlists = []
                 }
                 continuation.resume()
             }

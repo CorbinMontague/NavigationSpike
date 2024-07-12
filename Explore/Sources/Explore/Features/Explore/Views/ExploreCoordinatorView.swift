@@ -36,7 +36,7 @@ struct ExploreCoordinatorView: View {
             ExploreView(viewModel: viewModel)
         case .empty:
             Text("No Songs")
-        default:
+        case .loading:
             ProgressView()
                 .task {
                     await viewModel.fetchSongs()
