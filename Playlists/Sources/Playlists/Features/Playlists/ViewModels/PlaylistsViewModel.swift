@@ -46,11 +46,9 @@ class PlaylistsViewModel: ObservableObject {
                 // Delay the task by 1 second to simulate waiting on a network request
                 try await Task.sleep(nanoseconds: 1_000_000_000)
                 
-                print("Attempting to load saved playlists")
                 if let data = UserDefaults.standard.object(forKey: UserDefaultsKeys.playlists.rawValue) as? Data {
-                    print("Found saved playlists data!")
                     if let playlistsDecoded = try? JSONDecoder().decode(Array.self, from: data) as [Playlist] {
-                        print("Successfully decoded saved playlists data!")
+                        print("Successfully loaded saved playlists!")
                         self.playlists = playlistsDecoded
                     }
                 }

@@ -47,11 +47,10 @@ class PlaylistViewModel: ObservableObject {
         if let playlist = store.playlist {
             self.playlist = playlist
         } else {
-            print("Attempting to load saved playlists to find playlist: \(store.playlistName)")
+            // We only have the playlist name to go off of, so see if we can find the playlist in our saved playlists data.
+            // This is similar to if we pushed a view with only an id and then had to load the entire DTO by calling some BE API.
             if let data = UserDefaults.standard.object(forKey: UserDefaultsKeys.playlists.rawValue) as? Data {
-                print("Found saved playlists data!")
                 if let playlistsDecoded = try? JSONDecoder().decode(Array.self, from: data) as [Playlist] {
-                    print("Successfully decoded saved playlists data!")
                     for playlist in playlistsDecoded {
                         if playlist.name == store.playlistName {
                             self.playlist = playlist
