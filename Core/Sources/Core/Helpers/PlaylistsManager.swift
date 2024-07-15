@@ -8,6 +8,10 @@
 import Combine
 import Foundation
 
+/// Source of truth for playlists.
+///
+/// This allows the process of fetching, creating, deleting, or modifying playlists to be available
+/// across all experience modules.
 final public class PlaylistsManager: PlaylistsManaging, ObservableObject {
     public static let shared = PlaylistsManager()
     

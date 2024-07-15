@@ -48,6 +48,7 @@ class PlaylistsViewModel: ObservableObject {
     private var playlistsCancellable: AnyCancellable?
     
     func setupObservers() {
+        // PlaylistsManager is the source of truth for playlists, so keep our local state in-sync with it
         playlistsCancellable = playlistsManager.playlistsPublisher
             .receive(on: DispatchQueue.main)
             .dropFirst()
