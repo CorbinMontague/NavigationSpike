@@ -54,7 +54,15 @@ struct PlaylistsCoordinatorView: View {
     }
     
     @ViewBuilder private func makeEmptyStateView() -> some View {
-        Text("No Playlists")
+        VStack(spacing: 24) {
+            Text("No Playlists")
+            
+            Text("Discover Songs")
+                .foregroundStyle(.blue)
+                .onTapGesture {
+                    coordinator.navigate(to: .explore)
+                }
+        }
     }
     
     @ViewBuilder private func makeLoadingStateView() -> some View {
