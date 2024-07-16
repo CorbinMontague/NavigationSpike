@@ -18,6 +18,7 @@ struct PlaylistsCoordinatorView: View {
         FlowStack($coordinator.path, withNavigation: true) {
             makeRootView()
                 .task {
+                    print("PlaylistsCoordinatorView.task")
                     if viewModel.state == .none {
                         viewModel.setupObservers()
                         await viewModel.fetchPlaylists()

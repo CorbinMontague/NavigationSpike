@@ -48,6 +48,7 @@ struct PlaylistView: View {
             // we can give view models a reference to their View's FlowPathNavigator or NavigationCoordinator
             // using this approach if we don't want to pass it in through its constructor
             viewModel.navigator = navigator
+            print("PlaylistView.onAppear")
         }
         .navigationTitle("Playlist Details")
         .navigationBarBackButtonHidden(true)

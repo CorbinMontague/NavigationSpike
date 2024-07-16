@@ -9,15 +9,20 @@ import Core
 import FlowStacks
 import SwiftUI
 
-public class PlaylistsCoordinator: NavigationCoordinator {
+public final class PlaylistsCoordinator: NavigationCoordinator {
     
-    @Published public var path: FlowPath
+    @Published public var path: FlowPath {
+        didSet {
+            print("PlaylistsCoordinator.path: \(path)")
+        }
+    }
     public weak var appCoordinator: AppCoordinating?
     
     public init(path: FlowPath = FlowPath(),
                 appCoordinator: AppCoordinating? = nil) {
         self.path = path
         self.appCoordinator = appCoordinator
+        print("PlaylistsCoordinator.init")
     }
     
     public func navigate(to deeplink: Deeplink) {
