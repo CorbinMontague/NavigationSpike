@@ -11,7 +11,11 @@ import SwiftUI
 
 public class ExploreCoordinator: NavigationCoordinator {
     
-    @Published public var path: FlowPath
+    @Published public var path: FlowPath {
+        didSet {
+            print("ExploreCoordinator.path: \(path)")
+        }
+    }
     public weak var appCoordinator: AppCoordinating?
     
     public init(path: FlowPath = FlowPath(),

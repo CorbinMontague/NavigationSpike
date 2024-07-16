@@ -11,6 +11,8 @@ import SwiftUI
 
 struct PlaylistsCoordinatorView: View {
     
+    // Tip
+    // even though the vm already has a reference to this, we need this reference here to tell SwiftUI that PlaylistsCoordinatorView owns the strong reference to PlaylistsCoordinator
     @StateObject var coordinator: PlaylistsCoordinator = Globals.coordinator
     @StateObject var viewModel: PlaylistsViewModel
     
@@ -18,7 +20,6 @@ struct PlaylistsCoordinatorView: View {
         FlowStack($coordinator.path, withNavigation: true) {
             makeRootView()
                 .task {
-                    print("PlaylistsCoordinatorView.task")
                     if viewModel.state == .none {
                         viewModel.setupObservers()
                         await viewModel.fetchPlaylists()

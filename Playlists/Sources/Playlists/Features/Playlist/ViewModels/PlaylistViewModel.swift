@@ -49,7 +49,6 @@ class PlaylistViewModel: ObservableObject {
             }
         }
         self.playlistsManager = playlistsManager
-        print("PlaylistViewModel.init")
     }
     
     @MainActor

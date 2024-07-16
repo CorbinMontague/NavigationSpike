@@ -22,7 +22,6 @@ public final class PlaylistsCoordinator: NavigationCoordinator {
                 appCoordinator: AppCoordinating? = nil) {
         self.path = path
         self.appCoordinator = appCoordinator
-        print("PlaylistsCoordinator.init")
     }
     
     public func navigate(to deeplink: Deeplink) {
