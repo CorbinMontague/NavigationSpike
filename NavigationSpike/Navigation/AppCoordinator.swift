@@ -59,4 +59,9 @@ class AppCoordinator: AppCoordinating, ObservableObject {
             playlistsCoordinator.navigate(to: deeplink)
         }
     }
+    
+    func dismissAll() {
+        exploreCoordinator.path.dismissAll()
+        playlistsCoordinator.path.dismissAll()
+    }
 }

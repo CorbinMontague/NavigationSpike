@@ -8,7 +8,7 @@
 import Core
 import Foundation
 
-public indirect enum Screen {
+public enum Screen {
     
     case playlists
     case createPlaylist(_ onCreatePlaylist: ((Playlist) -> Void))

@@ -9,7 +9,7 @@ import Foundation
 
 /// Screens shared across modules.
 /// This low-level enum helps us avoid code duplication across experience modules that want to reference cross-module screens.
-public indirect enum SharedScreen {
+public enum SharedScreen {
     
     // root tab views
     case explore

@@ -19,4 +19,5 @@ public protocol AppCoordinating: AnyObject {
     
     @discardableResult func handle(url: URL) -> Bool
     func navigate(to deeplink: Deeplink)
+    func dismissAll()
 }

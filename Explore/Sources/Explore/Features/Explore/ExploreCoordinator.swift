@@ -41,7 +41,7 @@ extension ExploreCoordinator {
         appCoordinator?.selectedTab = .explore
         
         // dismiss all sheets/fullscreencovers
-        path.dismissAll()
+        appCoordinator?.dismissAll()
         
         // go back to root view
         path.goBackToRoot()

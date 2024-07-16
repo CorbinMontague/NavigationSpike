@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// Supported deeplink routes.
+/// These can be navigated to from an external source (e.g. push notifications or Deeplink URLs within an email/sms) or internally when we just need to move the user to a different part of the app.
 public enum Deeplink {
     
     case explore
