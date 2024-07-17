@@ -9,14 +9,16 @@ import Core
 import Foundation
 import SwiftUI
 
-public class ScreenViewBuilder {
-    private var externalViewBuilder: SharedViewBuilding
+public class ScreenViewBuilder: ModuleScreenViewBuilding {
+    public typealias ScreenCase = Screen
     
-    public init(externalViewBuilder: SharedViewBuilding) {
+    private var externalViewBuilder: SharedScreenViewBuilding
+    
+    public init(externalViewBuilder: SharedScreenViewBuilding) {
         self.externalViewBuilder = externalViewBuilder
     }
     
-    @ViewBuilder func view(for screen: Screen) -> some View {
+    @ViewBuilder public func view(for screen: Screen) -> some View {
         switch screen {
         case .song(let song):
             ViewFactory.makeSongView(song: song)

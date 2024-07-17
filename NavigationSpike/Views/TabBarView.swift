@@ -12,7 +12,7 @@ import SwiftUI
 struct TabBarView: View {
     
     @ObservedObject var coordinator: AppCoordinator
-    let viewBuilder: SharedViewBuilding
+    let viewBuilder: SharedScreenViewBuilding
     
     var body: some View {
         TabView(selection: $coordinator.selectedTab) {

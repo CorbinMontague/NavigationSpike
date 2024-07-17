@@ -9,9 +9,19 @@ import Foundation
 import SwiftUI
 
 public struct ViewFactory {
-    public static func makeExploreCoordinatorView() -> AnyView {
+    
+    // MARK: - Internal Views
+    
+    static func makeExploreCoordinatorView() -> ExploreCoordinatorView {
         let coordinator = Globals.coordinator
         let viewModel = ExploreViewModel(coordinator: coordinator)
-        return AnyView(ExploreCoordinatorView(coordinator: coordinator, viewModel: viewModel))
+        return ExploreCoordinatorView(coordinator: coordinator, viewModel: viewModel)
+    }
+    
+    // MARK: - Cross-Module Views
+    
+    public static func makeExploreCoordinatorAnyView() -> AnyView {
+        let view = makeExploreCoordinatorView()
+        return AnyView(view)
     }
 }

@@ -10,23 +10,43 @@ import Foundation
 import SwiftUI
 
 public struct ViewFactory {
-    public static func makePlaylistsCoordinatorView() -> AnyView {
+    
+    // MARK: - Internal Views
+    
+    static func makePlaylistsCoordinatorView() -> PlaylistsCoordinatorView {
         let coordinator = Globals.coordinator
         let viewModel = PlaylistsViewModel(coordinator: coordinator)
-        return AnyView(PlaylistsCoordinatorView(coordinator: coordinator,
-                                                viewModel: viewModel))
+        return PlaylistsCoordinatorView(coordinator: coordinator,
+                                        viewModel: viewModel)
     }
     
-    public static func makeCreatePlaylistCoordinatorView(onCreatePlaylist: @escaping ((Playlist) -> Void)) -> AnyView {
+    static func makeCreatePlaylistCoordinatorView(onCreatePlaylist: @escaping ((Playlist) -> Void)) -> CreatePlaylistCoordinatorView {
         let coordinator = CreatePlaylistCoordinator()
         let viewModel = CreatePlaylistViewModel(coordinator: coordinator,
                                                 onCreatePlaylist: onCreatePlaylist)
-        return AnyView(CreatePlaylistCoordinatorView(coordinator: coordinator,
-                                                     viewModel: viewModel))
+        return CreatePlaylistCoordinatorView(coordinator: coordinator,
+                                             viewModel: viewModel)
     }
     
-    public static func makePlaylistView(store: PlaylistStore) -> AnyView {
+    static func makePlaylistView(store: PlaylistStore) -> PlaylistView {
         let viewModel = PlaylistViewModel(store: store)
-        return AnyView(PlaylistView(viewModel: viewModel))
+        return PlaylistView(viewModel: viewModel)
+    }
+    
+    // MARK: - Cross-Module Views
+    
+    public static func makePlaylistsCoordinatorAnyView() -> AnyView {
+        let view = makePlaylistsCoordinatorView()
+        return AnyView(view)
+    }
+    
+    public static func makeCreatePlaylistCoordinatorAnyView(onCreatePlaylist: @escaping ((Playlist) -> Void)) -> AnyView {
+        let view = makeCreatePlaylistCoordinatorView(onCreatePlaylist: onCreatePlaylist)
+        return AnyView(view)
+    }
+    
+    public static func makePlaylistAnyView(store: PlaylistStore) -> AnyView {
+        let view = makePlaylistView(store: store)
+        return AnyView(view)
     }
 }

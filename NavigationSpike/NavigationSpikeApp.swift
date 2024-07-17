@@ -15,7 +15,7 @@ import SwiftUI
 struct NavigationSpikeApp: App {
     
     @StateObject var coordinator = AppCoordinator.shared
-    let viewBuilder = AppViewBuilder.shared
+    let viewBuilder = AppScreenViewBuilder.shared
     
     // prefer to use a DI library like:
     // - https://github.com/hmlongco/Resolver

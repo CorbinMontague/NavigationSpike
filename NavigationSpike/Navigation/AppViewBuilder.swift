@@ -12,20 +12,20 @@ import Music
 import Playlists
 import SwiftUI
 
-/// Builds Views that are referenced across modules or in the app layer.
-class AppViewBuilder: SharedViewBuilding {
-    static let shared = AppViewBuilder()
+/// Builds cross-module Views.
+class AppScreenViewBuilder: SharedScreenViewBuilding {
+    static let shared = AppScreenViewBuilder()
     
     func view(for screen: SharedScreen) -> AnyView {
         switch screen {
         case .explore:
-            return Explore.ViewFactory.makeExploreCoordinatorView()
+            return Explore.ViewFactory.makeExploreCoordinatorAnyView()
         case .playlists:
-            return Playlists.ViewFactory.makePlaylistsCoordinatorView()
+            return Playlists.ViewFactory.makePlaylistsCoordinatorAnyView()
         case .song(let song):
-            return Music.ViewFactory.makeSongView(song: song)
+            return Music.ViewFactory.makeSongAnyView(song: song)
         case .artist(let artist):
-            return Music.ViewFactory.makeArtistView(artist: artist)
+            return Music.ViewFactory.makeArtistAnyView(artist: artist)
         }
     }
 }

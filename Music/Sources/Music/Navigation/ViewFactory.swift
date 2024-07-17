@@ -10,13 +10,28 @@ import Foundation
 import SwiftUI
 
 public struct ViewFactory {
-    public static func makeSongView(song: Song) -> AnyView {
+    
+    // MARK: - Internal Views
+    
+    static func makeSongView(song: Song) -> SongView {
         let viewModel = SongViewModel(song: song)
-        return AnyView(SongView(viewModel: viewModel))
+        return SongView(viewModel: viewModel)
     }
     
-    public static func makeArtistView(artist: Artist) -> AnyView {
+    static func makeArtistView(artist: Artist) -> ArtistView {
         let viewModel = ArtistViewModel(artist: artist)
-        return AnyView(ArtistView(viewModel: viewModel))
+        return ArtistView(viewModel: viewModel)
+    }
+    
+    // MARK: - Cross-Module Views
+    
+    public static func makeSongAnyView(song: Song) -> AnyView {
+        let view = makeSongView(song: song)
+        return AnyView(view)
+    }
+    
+    public static func makeArtistAnyView(artist: Artist) -> AnyView {
+        let view = makeArtistView(artist: artist)
+        return AnyView(view)
     }
 }
