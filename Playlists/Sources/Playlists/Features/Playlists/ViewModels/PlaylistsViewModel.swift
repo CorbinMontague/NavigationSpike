@@ -99,4 +99,8 @@ class PlaylistsViewModel: ObservableObject {
             }
         }
     }
+    
+    func onDiscoverSongsTapped() {
+        coordinator.navigate(to: .explore)
+    }
 }

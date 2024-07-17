@@ -1,5 +1,5 @@
 //
-//  AppViewBuilder.swift
+//  AppScreenViewBuilder.swift
 //  NavigationSpike
 //
 //  Created by Corbin Montague on 7/12/24.

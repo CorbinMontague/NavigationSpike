@@ -72,7 +72,7 @@ struct PlaylistsCoordinatorView: View {
             Text("Discover Songs")
                 .foregroundStyle(.blue)
                 .onTapGesture {
-                    coordinator.navigate(to: .explore)
+                    viewModel.onDiscoverSongsTapped()
                 }
         }
     }
