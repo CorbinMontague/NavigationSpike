@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+/// Supported tabs in the app.
 public enum Tab: Hashable {
     case explore
     case playlists
@@ -15,9 +16,19 @@ public enum Tab: Hashable {
 
 /// Stores app-level navigation state (like selected tab) and supports cross-module navigation.
 public protocol AppCoordinating: AnyObject {
+    
+    /// The currently selected tab
     var selectedTab: Tab { get set }
     
+    /// Parses the provided URL and navigates to the `Deeplink` associated with it if possible.
+    /// - Parameter url: The URL we want to parse.
+    /// - Returns: `True` if a `Deeplink` was associated with the provided URL that we can navigate to. Otherwise, `False`.
     @discardableResult func handle(url: URL) -> Bool
+    
+    /// Navigates the user to a specific view in the app depending on the provided `Deeplink`.
+    /// - Parameter deeplink: The `Deeplink` we want to navigate to.
     func navigate(to deeplink: Deeplink)
+    
+    /// Dismiss all modals (covers and sheets)
     func dismissAll()
 }

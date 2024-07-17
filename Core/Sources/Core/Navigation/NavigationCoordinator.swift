@@ -8,7 +8,7 @@
 import FlowStacks
 import SwiftUI
 
-/// Stores a FlowStack's navigation state and supports cross-module navigation.
+/// Stores a `FlowStack`'s navigation state and supports cross-module navigation.
 ///
 /// This protocol allows us to mock coordinators in unit tests.
 public protocol NavigationCoordinator: ObservableObject {
@@ -18,7 +18,7 @@ public protocol NavigationCoordinator: ObservableObject {
     func navigate(to deeplink: Deeplink)
 }
 
-// Gives each NavigationCoordinator a default navigate(to:) implementation in-case it doesn't need to define it's own.
+// Give each NavigationCoordinator a default navigate(to:) implementation in-case it doesn't need to define it's own.
 // This is because outside of NavigationCoordinators associated with root tab views, most other NavigationCoordinators won't
 // need to define/support their own deeplink navigation logic.
 extension NavigationCoordinator {

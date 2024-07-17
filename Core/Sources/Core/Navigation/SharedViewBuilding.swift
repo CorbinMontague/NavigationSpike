@@ -8,7 +8,11 @@
 import Foundation
 import SwiftUI
 
-/// Builds cross-module `Views` for the provided `SharedScreen`.
+/// Builds Views for SharedScreens
 public protocol SharedViewBuilding {
+    
+    /// Returns the `View` associated with the provided `SharedScreen`.
+    /// - Parameter screen: The `SharedScreen` whose `View` we want.
+    /// - Returns: The `View` associated with the `SharedScreen`.
     func view(for screen: SharedScreen) -> AnyView
 }
