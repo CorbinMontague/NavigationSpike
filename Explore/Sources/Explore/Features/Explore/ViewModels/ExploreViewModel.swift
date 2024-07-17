@@ -22,14 +22,14 @@ class ExploreViewModel: ObservableObject {
         }
     }
     
-    @Published var coordinator: ExploreCoordinator
+    @Published var coordinator: NavigationCoordinator
     @Published var songs: [Song] {
         didSet {
             state = songs.isEmpty ? .empty : .songsLoaded
         }
     }
     
-    init(coordinator: ExploreCoordinator,
+    init(coordinator: NavigationCoordinator,
          songs: [Song] = []) {
         self.coordinator = coordinator
         self.songs = songs

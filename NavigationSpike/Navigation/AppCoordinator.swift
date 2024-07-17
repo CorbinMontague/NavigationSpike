@@ -13,7 +13,7 @@ import Playlists
 import SwiftUI
 
 /// Handles navigation at the app-level.
-class AppCoordinator: AppCoordinating, ObservableObject {
+final class AppCoordinator: AppCoordinating, ObservableObject {
     static let shared = AppCoordinator()
     
     // MARK: - Dependencies

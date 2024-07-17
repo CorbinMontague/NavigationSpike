@@ -30,13 +30,13 @@ class PlaylistsViewModel: ObservableObject {
             state = playlists.isEmpty ? .empty : .playlistsLoaded
         }
     }
-    @Published var coordinator: PlaylistsCoordinator
+    @Published var coordinator: NavigationCoordinator
     var playlistsManager: PlaylistsManaging
     
     // MARK: - Init
     
     init(playlists: [Playlist] = [],
-         coordinator: PlaylistsCoordinator = Globals.coordinator,
+         coordinator: NavigationCoordinator = Globals.coordinator,
          playlistsManager: PlaylistsManaging = PlaylistsManager.shared) {
         self.playlists = playlists
         self.coordinator = coordinator

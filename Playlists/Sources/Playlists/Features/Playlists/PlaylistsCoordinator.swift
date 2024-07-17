@@ -9,7 +9,7 @@ import Core
 import FlowStacks
 import SwiftUI
 
-public final class PlaylistsCoordinator: NavigationCoordinator {
+final public class PlaylistsCoordinator: NavigationCoordinator, ObservableObject {
     
     @Published public var path: FlowPath {
         didSet {

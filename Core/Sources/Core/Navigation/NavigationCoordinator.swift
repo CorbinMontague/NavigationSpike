@@ -11,10 +11,15 @@ import SwiftUI
 /// Stores a `FlowStack`'s navigation state and supports cross-module navigation.
 ///
 /// This protocol allows us to mock coordinators in unit tests.
-public protocol NavigationCoordinator: ObservableObject {
-    var appCoordinator: AppCoordinating? { get }
-    var path: FlowPath { get }
+public protocol NavigationCoordinator {
     
+    /// The app coordinator
+    var appCoordinator: AppCoordinating? { get }
+    /// Represents this NavigationCoordinator's NavigationStack state.
+    var path: FlowPath { get set }
+    
+    /// Navigates the user to a specific view in the app depending on the provided `Deeplink`.
+    /// - Parameter deeplink: The `Deeplink` we want to navigate to.
     func navigate(to deeplink: Deeplink)
 }
 

@@ -1,6 +1,6 @@
 //
 //  PlaylistsManager.swift
-//  Playlists
+//  Core
 //
 //  Created by Corbin Montague on 7/12/24.
 //
