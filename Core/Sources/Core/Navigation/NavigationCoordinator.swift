@@ -18,6 +18,8 @@ public protocol NavigationCoordinator: AnyObject {
     /// Represents this NavigationCoordinator's NavigationStack state.
     var path: FlowPath { get set }
     
+    // TODO: - It might be better to move the routing APIs to a different protocol and implementation layer
+    
     /// Navigates the user to a specific view in the app depending on the provided `Deeplink`.
     /// - Parameter deeplink: The `Deeplink` we want to navigate to.
     func navigate(to deeplink: Deeplink)
