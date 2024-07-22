@@ -5,6 +5,7 @@
 //  Created by Corbin Montague on 7/5/24.
 //
 
+import Combine
 import Foundation
 import SwiftUI
 
@@ -19,6 +20,9 @@ public protocol AppCoordinating: AnyObject {
     
     /// The currently selected tab
     var selectedTab: Tab { get set }
+    
+    /// Publisher for listening to `selectedTab` changes.
+    var selectedTabPublisher: AnyPublisher<Tab, Never> { get }
     
     // TODO: - What about presenting modals at the app-level?
     

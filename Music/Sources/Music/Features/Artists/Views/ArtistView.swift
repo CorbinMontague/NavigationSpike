@@ -40,6 +40,9 @@ struct ArtistView: View {
         .navigationTitle("Artist Details")
         .navigationBarBackButtonHidden(true)
         .toolbar {
+            // Tip
+            // We could pass in an `isModal` Bool instead of using the route style and index if we want
+            
             // render a back button if this view was pushed
             if let routeStyle = routeStyle, routeStyle.isPush {
                 ToolbarItem(placement: .topBarLeading) {

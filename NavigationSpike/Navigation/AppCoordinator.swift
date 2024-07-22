@@ -6,6 +6,7 @@
 //
 
 import Core
+import Combine
 import Explore
 import Foundation
 import Music
@@ -39,6 +40,7 @@ final class AppCoordinator: AppCoordinating, ObservableObject {
             print("selectedTab: \(selectedTab)")
         }
     }
+    var selectedTabPublisher: AnyPublisher<Tab, Never> { $selectedTab.eraseToAnyPublisher() }
     
     @discardableResult func handle(url: URL) -> Bool {
         guard let deeplink = Deeplink(url: url) else {
