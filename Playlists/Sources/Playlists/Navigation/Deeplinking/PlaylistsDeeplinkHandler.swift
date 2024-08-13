@@ -27,13 +27,11 @@ public final class PlaylistsDeeplinkHandler: DeeplinkHandling {
             return true
         }
         
-        print("URL is not a supported PlaylistsDeeplink")
         return false
     }
     
     @discardableResult public func handle(url: URL, source: DeeplinkSource) -> Bool {
         guard let deeplink = PlaylistsDeeplink(url: url) else {
-            print("URL is not a supported PlaylistsDeeplink")
             return false
         }
         

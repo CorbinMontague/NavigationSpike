@@ -27,13 +27,11 @@ public final class MusicDeeplinkHandler: DeeplinkHandling {
             return true
         }
         
-        print("URL is not a supported MusicDeeplink")
         return false
     }
     
     @discardableResult public func handle(url: URL, source: DeeplinkSource) -> Bool {
         guard let deeplink = MusicDeeplink(url: url) else {
-            print("URL is not a supported MusicDeeplink")
             return false
         }
         

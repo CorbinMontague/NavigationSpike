@@ -11,18 +11,47 @@ import Explore
 import Music
 import Playlists
 
-class DeeplinkHandler: DeeplinkHandling, CompositeDeeplinkHandling {
+class DeeplinkHandler: CompositeDeeplinkHandling {
     
+    private class NavigationSpikeDeeplinkHandler: DeeplinkHandling {
+        
+        private let router: DeeplinkRouting
+        
+        init(router: DeeplinkRouting) {
+            self.router = router
+        }
+        
+        // MARK: - DeeplinkHandling
+        
+        func canHandle(url: URL) -> Bool {
+            if let _ = Deeplink(url: url) {
+                return true
+            }
+            
+            return false
+        }
+        
+        @discardableResult func handle(url: URL, source: DeeplinkSource) -> Bool {
+            if let deeplink = Deeplink(url: url) {
+                router.route(to: deeplink, from: source)
+                return true
+            }
+            
+            return false
+        }
+    }
+
     // MARK: - Dependencies
     
     private let router: DeeplinkRouting
     
+    private let appDeeplinkHandler: DeeplinkHandling
     private let exploreDeeplinkHandler: DeeplinkHandling
     private let playlistsDeeplinkHandler: DeeplinkHandling
     private let musicDeeplinkHandler: DeeplinkHandling
     
     private lazy var deeplinkHandlers: [any DeeplinkHandling] = [
-        self,
+        appDeeplinkHandler,
         exploreDeeplinkHandler,
         playlistsDeeplinkHandler,
         musicDeeplinkHandler
@@ -35,35 +64,15 @@ class DeeplinkHandler: DeeplinkHandling, CompositeDeeplinkHandling {
          playlistsDeeplinkHandler: DeeplinkHandling = Playlists.Globals.deeplinkHandler!,
          musicDeeplinkHandler: DeeplinkHandling = Music.Globals.deeplinkHandler!) {
         self.router = router
+        self.appDeeplinkHandler = NavigationSpikeDeeplinkHandler(router: router)
         self.exploreDeeplinkHandler = exploreDeeplinkHandler
         self.playlistsDeeplinkHandler = playlistsDeeplinkHandler
         self.musicDeeplinkHandler = musicDeeplinkHandler
     }
     
-    // MARK: - DeeplinkHandling
-    
-    func canHandle(url: URL) -> Bool {
-        if let _ = Deeplink(url: url) {
-            return true
-        }
-        
-        print("URL is not a supported Deeplink")
-        return false
-    }
-    
-    @discardableResult func handle(url: URL, source: DeeplinkSource) -> Bool {
-        if let deeplink = Deeplink(url: url) {
-            router.route(to: deeplink, from: source)
-            return true
-        }
-        
-        print("URL is not a supported Deeplink")
-        return false
-    }
-    
     // MARK: - CompositeDeeplinkHandling
     
-    func canHandleFoo(url: URL) -> Bool {
+    func canHandle(url: URL) -> Bool {
         for deeplinkHandler in deeplinkHandlers {
             if deeplinkHandler.canHandle(url: url) {
                 return true
@@ -73,14 +82,13 @@ class DeeplinkHandler: DeeplinkHandling, CompositeDeeplinkHandling {
         return false
     }
     
-    @discardableResult func handleFoo(url: URL, source: DeeplinkSource) -> Bool {
+    @discardableResult func handle(url: URL, source: DeeplinkSource) -> Bool {
         for deeplinkHandler in deeplinkHandlers {
             if deeplinkHandler.handle(url: url, source: source) {
                 return true
             }
         }
         
-        print("URL is not a supported Deeplink")
         return false
     }
 }

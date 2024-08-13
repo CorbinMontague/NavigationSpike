@@ -27,7 +27,7 @@ struct NavigationSpikeApp: App {
             }
             .onOpenURL { url in
                 let deeplinkHandler = DeeplinkHandler(router: router)
-                deeplinkHandler.handleFoo(url: url, source: .deeplink)
+                deeplinkHandler.handle(url: url, source: .deeplink)
             }
         }
     }

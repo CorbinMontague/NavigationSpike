@@ -27,13 +27,11 @@ public final class ExploreDeeplinkHandler: DeeplinkHandling {
             return true
         }
         
-        print("URL is not a supported ExploreDeeplink")
         return false
     }
     
     @discardableResult public func handle(url: URL, source: DeeplinkSource) -> Bool {
         guard let deeplink = ExploreDeeplink(url: url) else {
-            print("URL is not a supported ExploreDeeplink")
             return false
         }
         
