@@ -14,22 +14,21 @@ public struct ViewFactory {
     // MARK: - Internal Views
     
     static func makePlaylistsCoordinatorView() -> PlaylistsCoordinatorView {
-        let coordinator = Globals.coordinator
-        let viewModel = PlaylistsViewModel(coordinator: coordinator)
-        return PlaylistsCoordinatorView(coordinator: coordinator,
+        let viewModel = ViewModelFactory.makePlaylistsViewModel()
+        return PlaylistsCoordinatorView(coordinator: Globals.coordinator,
                                         viewModel: viewModel)
     }
     
     static func makeCreatePlaylistCoordinatorView(onCreatePlaylist: @escaping ((Playlist) -> Void)) -> CreatePlaylistCoordinatorView {
         let coordinator = CreatePlaylistCoordinator()
-        let viewModel = CreatePlaylistViewModel(coordinator: coordinator,
-                                                onCreatePlaylist: onCreatePlaylist)
+        let viewModel = ViewModelFactory.makeCreatePlaylistViewModel(coordinator: coordinator,
+                                                                     onCreatePlaylist: onCreatePlaylist)
         return CreatePlaylistCoordinatorView(coordinator: coordinator,
                                              viewModel: viewModel)
     }
     
     static func makePlaylistView(store: PlaylistStore) -> PlaylistView {
-        let viewModel = PlaylistViewModel(store: store)
+        let viewModel = ViewModelFactory.makePlaylistViewModel(store: store)
         return PlaylistView(viewModel: viewModel)
     }
     

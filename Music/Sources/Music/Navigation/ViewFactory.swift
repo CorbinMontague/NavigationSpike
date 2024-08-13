@@ -14,12 +14,12 @@ public struct ViewFactory {
     // MARK: - Internal Views
     
     static func makeSongView(song: Song) -> SongView {
-        let viewModel = SongViewModel(song: song)
+        let viewModel = ViewModelFactory.makeSongViewModel(song: song)
         return SongView(viewModel: viewModel)
     }
     
     static func makeArtistView(artist: Artist) -> ArtistView {
-        let viewModel = ArtistViewModel(artist: artist)
+        let viewModel = ViewModelFactory.makeArtistViewModel(artist: artist)
         return ArtistView(viewModel: viewModel)
     }
     

@@ -13,9 +13,8 @@ public struct ViewFactory {
     // MARK: - Internal Views
     
     static func makeExploreCoordinatorView() -> ExploreCoordinatorView {
-        let coordinator = Globals.coordinator
-        let viewModel = ExploreViewModel(coordinator: coordinator)
-        return ExploreCoordinatorView(coordinator: coordinator, viewModel: viewModel)
+        let viewModel = ViewModelFactory.makeExploreViewModel()
+        return ExploreCoordinatorView(coordinator: Globals.coordinator, viewModel: viewModel)
     }
     
     // MARK: - Cross-Module Views
