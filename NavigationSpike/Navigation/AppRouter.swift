@@ -61,10 +61,6 @@ extension AppRouter: SharedDeeplinkRouting {
         switch deeplink {
         case .explore:
             exploreRouter?.route(to: .explore, from: source)
-        case .playlists:
-            playlistsRouter?.route(to: .playlists, from: source)
-        case .playlist(let playlistId):
-            playlistsRouter?.route(to: .playlist(playlistId), from: source)
         }
     }
 }

@@ -12,8 +12,6 @@ import Foundation
 public enum SharedDeeplink {
     
     case explore
-    case playlists
-    case playlist(_ playlistId: String)
     
     // For Example:
     // navigationspike://explore
@@ -23,14 +21,6 @@ public enum SharedDeeplink {
         switch url.host {
         case "explore":
             self = .explore
-        case "playlists":
-            self = .playlists
-        case "playlist":
-            if let playlistId = url.pathComponents.dropFirst().first {
-                self = .playlist(playlistId)
-            } else {
-                self = .playlists
-            }
             
         default:
             return nil
