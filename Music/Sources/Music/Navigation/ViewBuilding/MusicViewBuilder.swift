@@ -1,6 +1,6 @@
 //
-//  ExploreViewBuilder.swift
-//  Explore
+//  MusicViewBuilder.swift
+//  Music
 //
 //  Created by Corbin Montague on 6/30/22.
 //
@@ -9,8 +9,7 @@ import Core
 import Foundation
 import SwiftUI
 
-public class ExploreViewBuilder: ModuleScreenViewBuilding {
-    public typealias ScreenCase = Screen
+public class MusicViewBuilder {
     
     private var externalViewBuilder: SharedScreenViewBuilding
     
@@ -20,8 +19,10 @@ public class ExploreViewBuilder: ModuleScreenViewBuilding {
     
     @ViewBuilder public func view(for screen: Screen) -> some View {
         switch screen {
-        case .explore:
-            ViewFactory.makeExploreCoordinatorView()
+        case .song(let song):
+            ViewFactory.makeSongView(song: song)
+        case .artist(let artist):
+            ViewFactory.makeArtistView(artist: artist)
             
         case .external(let sharedScreen):
             externalViewBuilder.view(for: sharedScreen)

@@ -16,11 +16,13 @@ import SwiftUI
 class AppViewBuilder: SharedScreenViewBuilding {
     static let shared = AppViewBuilder()
     
+    // MARK: - SharedScreenViewBuilding
+    
     func view(for screen: SharedScreen) -> AnyView {
         switch screen {
             // Internal
         case .devTools:
-            return AnyView(ViewFactory.makeDevToolsView())
+            return view(for: .devTools)
             
             // External
         case .explore:
@@ -31,6 +33,15 @@ class AppViewBuilder: SharedScreenViewBuilding {
             return Music.ViewFactory.makeSongAnyView(song: song)
         case .artist(let artist):
             return Music.ViewFactory.makeArtistAnyView(artist: artist)
+        }
+    }
+    
+    // MARK: - ScreenViewBuilding
+    
+    @ViewBuilder func view(for screen: Screen) -> some View {
+        switch screen {
+        case .devTools:
+            ViewFactory.makeDevToolsView()
         }
     }
 }

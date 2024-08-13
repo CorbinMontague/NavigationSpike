@@ -26,6 +26,8 @@
 		297C61B92C33066A003116D8 /* Music in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B82C33066A003116D8 /* Music */; };
 		297C61BD2C33066A003116D8 /* Playlists in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61BC2C33066A003116D8 /* Playlists */; };
 		2999CF792C4177F8004C82B8 /* AppViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2999CF782C4177F8004C82B8 /* AppViewBuilder.swift */; };
+		29A162E82C6BE78F000660FC /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A162E72C6BE78F000660FC /* Screen.swift */; };
+		29B1D9102C6BF5C500E5B3EF /* CompositeDeeplinkHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B1D90F2C6BF5C500E5B3EF /* CompositeDeeplinkHandling.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		297C61B32C3305AA003116D8 /* Music */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Music; sourceTree = "<group>"; };
 		2995A9002C386DA700D6C593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2999CF782C4177F8004C82B8 /* AppViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewBuilder.swift; sourceTree = "<group>"; };
+		29A162E72C6BE78F000660FC /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		29B1D90F2C6BF5C500E5B3EF /* CompositeDeeplinkHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeDeeplinkHandling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,15 +143,6 @@
 			path = NavigationSpikeTests;
 			sourceTree = "<group>";
 		};
-		2944D4032C6B9EB300F368B5 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				2944D4042C6B9EC600F368B5 /* DeeplinkRouting.swift */,
-				2944D4062C6B9F6E00F368B5 /* Deeplink.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		295F1DC62C3324C1003FA6E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,13 +155,9 @@
 		295F1DC72C3324C9003FA6E3 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				2944D4032C6B9EB300F368B5 /* Protocols */,
-				295F1DC82C3324D7003FA6E3 /* AppCoordinator.swift */,
-				2944D4102C6BA71D00F368B5 /* DeeplinkHandler.swift */,
-				2944D40A2C6BA0A400F368B5 /* ViewFactory.swift */,
-				2944D40C2C6BA0AB00F368B5 /* ViewModelFactory.swift */,
-				2944D4012C6B9E6000F368B5 /* AppRouter.swift */,
-				2999CF782C4177F8004C82B8 /* AppViewBuilder.swift */,
+				29B1D90E2C6BF5B400E5B3EF /* Coordinators */,
+				29B1D90B2C6BF59200E5B3EF /* ViewBuilding */,
+				29B1D90A2C6BF58E00E5B3EF /* Deeplinking */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -176,6 +167,53 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		29B1D90A2C6BF58E00E5B3EF /* Deeplinking */ = {
+			isa = PBXGroup;
+			children = (
+				2944D4012C6B9E6000F368B5 /* AppRouter.swift */,
+				2944D4102C6BA71D00F368B5 /* DeeplinkHandler.swift */,
+				29B1D90D2C6BF59C00E5B3EF /* Protocols */,
+			);
+			path = Deeplinking;
+			sourceTree = "<group>";
+		};
+		29B1D90B2C6BF59200E5B3EF /* ViewBuilding */ = {
+			isa = PBXGroup;
+			children = (
+				2944D40A2C6BA0A400F368B5 /* ViewFactory.swift */,
+				2944D40C2C6BA0AB00F368B5 /* ViewModelFactory.swift */,
+				2999CF782C4177F8004C82B8 /* AppViewBuilder.swift */,
+				29B1D90C2C6BF59800E5B3EF /* Protocols */,
+			);
+			path = ViewBuilding;
+			sourceTree = "<group>";
+		};
+		29B1D90C2C6BF59800E5B3EF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				29A162E72C6BE78F000660FC /* Screen.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		29B1D90D2C6BF59C00E5B3EF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				2944D4042C6B9EC600F368B5 /* DeeplinkRouting.swift */,
+				29B1D90F2C6BF5C500E5B3EF /* CompositeDeeplinkHandling.swift */,
+				2944D4062C6B9F6E00F368B5 /* Deeplink.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		29B1D90E2C6BF5B400E5B3EF /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				295F1DC82C3324D7003FA6E3 /* AppCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29B1D9102C6BF5C500E5B3EF /* CompositeDeeplinkHandling.swift in Sources */,
 				295F1DC92C3324D7003FA6E3 /* AppCoordinator.swift in Sources */,
 				2926BA162C32FFF3000E2549 /* TabBarView.swift in Sources */,
 				2944D4112C6BA71D00F368B5 /* DeeplinkHandler.swift in Sources */,
@@ -299,6 +338,7 @@
 				2999CF792C4177F8004C82B8 /* AppViewBuilder.swift in Sources */,
 				2944D4022C6B9E6000F368B5 /* AppRouter.swift in Sources */,
 				2926BA142C32FFF3000E2549 /* NavigationSpikeApp.swift in Sources */,
+				29A162E82C6BE78F000660FC /* Screen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

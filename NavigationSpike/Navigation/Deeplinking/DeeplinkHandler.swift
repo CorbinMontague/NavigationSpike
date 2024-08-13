@@ -11,7 +11,7 @@ import Explore
 import Music
 import Playlists
 
-class DeeplinkHandler: DeeplinkHandling {
+class DeeplinkHandler: DeeplinkHandling, CompositeDeeplinkHandling {
     
     // MARK: - Dependencies
     
@@ -47,19 +47,40 @@ class DeeplinkHandler: DeeplinkHandling {
             return true
         }
         
-        print("Warning: URL is not a supported Deeplink")
+        print("URL is not a supported Deeplink")
         return false
     }
     
     @discardableResult func handle(url: URL, source: DeeplinkSource) -> Bool {
+        if let deeplink = Deeplink(url: url) {
+            router.route(to: deeplink, from: source)
+            return true
+        }
+        
+        print("URL is not a supported Deeplink")
+        return false
+    }
+    
+    // MARK: - CompositeDeeplinkHandling
+    
+    func canHandleFoo(url: URL) -> Bool {
         for deeplinkHandler in deeplinkHandlers {
             if deeplinkHandler.canHandle(url: url) {
-                deeplinkHandler.handle(url: url, source: source)
                 return true
             }
         }
         
-        print("Warning: URL is not a supported Deeplink")
+        return false
+    }
+    
+    @discardableResult func handleFoo(url: URL, source: DeeplinkSource) -> Bool {
+        for deeplinkHandler in deeplinkHandlers {
+            if deeplinkHandler.handle(url: url, source: source) {
+                return true
+            }
+        }
+        
+        print("URL is not a supported Deeplink")
         return false
     }
 }

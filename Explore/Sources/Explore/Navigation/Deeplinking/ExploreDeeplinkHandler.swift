@@ -1,5 +1,5 @@
 //
-//  MusicDeeplinkHandler.swift
+//  ExploreDeeplinkHandler.swift
 //
 //
 //  Created by Corbin Montague on 8/13/24.
@@ -8,32 +8,32 @@
 import Core
 import Foundation
 
-public final class MusicDeeplinkHandler: DeeplinkHandling {
+public final class ExploreDeeplinkHandler: DeeplinkHandling {
     
     // MARK: - Dependencies
     
-    private let router: MusicRouting
+    private let router: ExploreRouting
     
     // MARK: - Init
     
-    public init(router: MusicRouting) {
+    public init(router: ExploreRouting) {
         self.router = router
     }
     
     // MARK: - DeeplinkHandling
     
     public func canHandle(url: URL) -> Bool {
-        if let _ = MusicDeeplink(url: url) {
+        if let _ = ExploreDeeplink(url: url) {
             return true
         }
         
-        print("Warning: URL is not a supported MusicDeeplink")
+        print("URL is not a supported ExploreDeeplink")
         return false
     }
     
     @discardableResult public func handle(url: URL, source: DeeplinkSource) -> Bool {
-        guard let deeplink = MusicDeeplink(url: url) else {
-            print("Warning: URL is not a supported MusicDeeplink")
+        guard let deeplink = ExploreDeeplink(url: url) else {
+            print("URL is not a supported ExploreDeeplink")
             return false
         }
         

@@ -1,6 +1,6 @@
 //
-//  PlaylistsViewBuilder.swift
-//  Playlists
+//  ExploreViewBuilder.swift
+//  Explore
 //
 //  Created by Corbin Montague on 6/30/22.
 //
@@ -9,8 +9,7 @@ import Core
 import Foundation
 import SwiftUI
 
-public class PlaylistsViewBuilder: ModuleScreenViewBuilding {
-    public typealias ScreenCase = Screen
+public class ExploreViewBuilder {
     
     private var externalViewBuilder: SharedScreenViewBuilding
     
@@ -20,12 +19,8 @@ public class PlaylistsViewBuilder: ModuleScreenViewBuilding {
     
     @ViewBuilder public func view(for screen: Screen) -> some View {
         switch screen {
-        case .playlists:
-            ViewFactory.makePlaylistsCoordinatorView()
-        case .createPlaylist(let onCreatePlaylist):
-            ViewFactory.makeCreatePlaylistCoordinatorView(onCreatePlaylist: onCreatePlaylist)
-        case .playlist(let store):
-            ViewFactory.makePlaylistView(store: store)
+        case .explore:
+            ViewFactory.makeExploreCoordinatorView()
             
         case .external(let sharedScreen):
             externalViewBuilder.view(for: sharedScreen)
