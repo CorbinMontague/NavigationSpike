@@ -19,7 +19,6 @@ final class AppCoordinator: AppCoordinating, ObservableObject {
     
     // MARK: - Dependencies
     
-    // AppCoordinator needs a reference to each tab's NavigationCoordinator so it can delegate navigation logic to the correct module
     var exploreCoordinator: ExploreCoordinator
     var playlistsCoordinator: PlaylistsCoordinator
     
@@ -42,27 +41,11 @@ final class AppCoordinator: AppCoordinating, ObservableObject {
     }
     var selectedTabPublisher: AnyPublisher<Tab, Never> { $selectedTab.eraseToAnyPublisher() }
     
-    @discardableResult func handle(url: URL) -> Bool {
-        guard let deeplink = Deeplink(url: url) else {
-            print("Warning: URL is not a supported Deeplink")
-            return false
-        }
-        
-        navigate(to: deeplink)
-        return true
-    }
-    
-    func navigate(to deeplink: Deeplink) {
-        print("Navigating to: \(deeplink)")
-        switch deeplink {
-        case .explore:
-            exploreCoordinator.navigate(to: deeplink)
-        case .playlists, .playlist:
-            playlistsCoordinator.navigate(to: deeplink)
-        }
-    }
-    
     func dismissAll() {
+        // If there's an app-level modal presenter, tell it to dismiss all modals
+//        modalPresenter.dismissAll()
+        
+        // Tell each root view to dismiss any modals they may be currently presenting
         exploreCoordinator.path.dismissAll()
         playlistsCoordinator.path.dismissAll()
     }

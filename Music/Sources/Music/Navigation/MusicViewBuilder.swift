@@ -1,5 +1,5 @@
 //
-//  ScreenViewBuilder.swift
+//  MusicViewBuilder.swift
 //  Music
 //
 //  Created by Corbin Montague on 6/30/22.
@@ -9,7 +9,7 @@ import Core
 import Foundation
 import SwiftUI
 
-public class ScreenViewBuilder: ModuleScreenViewBuilding {
+public class MusicViewBuilder: ModuleScreenViewBuilding {
     public typealias ScreenCase = Screen
     
     private var externalViewBuilder: SharedScreenViewBuilding

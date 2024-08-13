@@ -18,6 +18,7 @@ public enum SharedScreen {
     // other views shared across modules
     case song(_ song: Song)
     case artist(_ artist: Artist)
+    case devTools
 }
 
 extension SharedScreen: Identifiable, Hashable {

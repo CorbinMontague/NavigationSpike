@@ -15,7 +15,7 @@ public enum Tab: Hashable {
     case playlists
 }
 
-/// Stores app-level navigation state (like selected tab) and supports cross-module navigation.
+/// Stores app-level navigation state.
 public protocol AppCoordinating: AnyObject {
     
     /// The currently selected tab
@@ -24,19 +24,6 @@ public protocol AppCoordinating: AnyObject {
     /// Publisher for listening to `selectedTab` changes.
     var selectedTabPublisher: AnyPublisher<Tab, Never> { get }
     
-    // TODO: - What about presenting modals at the app-level?
-    
     /// Dismiss all modals (covers and sheets)
     func dismissAll()
-    
-    // TODO: - It might be better to move the routing APIs to a different protocol and implementation layer
-    
-    /// Parses the provided URL and navigates to the `Deeplink` associated with it if possible.
-    /// - Parameter url: The URL we want to parse.
-    /// - Returns: `True` if a `Deeplink` was associated with the provided URL that we can navigate to. Otherwise, `False`.
-    @discardableResult func handle(url: URL) -> Bool
-    
-    /// Navigates the user to a specific view in the app depending on the provided `Deeplink`.
-    /// - Parameter deeplink: The `Deeplink` we want to navigate to.
-    func navigate(to deeplink: Deeplink)
 }

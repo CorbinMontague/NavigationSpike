@@ -8,5 +8,11 @@
 import Foundation
 
 public struct Globals {
-    public static var viewBuilder: ScreenViewBuilder?
+    
+    // MARK: - Deeplink Router
+//    public static var router: MusicRouting?
+    
+    // MARK: - View Builder
+    
+    public static var viewBuilder: MusicViewBuilder?
 }

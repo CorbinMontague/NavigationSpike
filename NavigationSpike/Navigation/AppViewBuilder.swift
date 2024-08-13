@@ -1,5 +1,5 @@
 //
-//  AppScreenViewBuilder.swift
+//  AppViewBuilder.swift
 //  NavigationSpike
 //
 //  Created by Corbin Montague on 7/12/24.
@@ -13,11 +13,16 @@ import Playlists
 import SwiftUI
 
 /// Builds cross-module Views.
-class AppScreenViewBuilder: SharedScreenViewBuilding {
-    static let shared = AppScreenViewBuilder()
+class AppViewBuilder: SharedScreenViewBuilding {
+    static let shared = AppViewBuilder()
     
     func view(for screen: SharedScreen) -> AnyView {
         switch screen {
+            // Internal
+        case .devTools:
+            return AnyView(ViewFactory.makeDevToolsView())
+            
+            // External
         case .explore:
             return Explore.ViewFactory.makeExploreCoordinatorAnyView()
         case .playlists:

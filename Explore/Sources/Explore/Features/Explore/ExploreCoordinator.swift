@@ -16,34 +16,8 @@ final public class ExploreCoordinator: NavigationCoordinator, ObservableObject {
             print("ExploreCoordinator.path: \(path)")
         }
     }
-    public weak var appCoordinator: AppCoordinating?
     
-    public init(path: FlowPath = FlowPath(),
-                appCoordinator: AppCoordinating? = nil) {
+    public init(path: FlowPath = FlowPath()) {
         self.path = path
-        self.appCoordinator = appCoordinator
-    }
-    
-    public func navigate(to deeplink: Deeplink) {
-        switch deeplink {
-        case .explore:
-            navigateToExplore()
-        default:
-            appCoordinator?.navigate(to: deeplink)
-        }
-    }
-}
-
-extension ExploreCoordinator {
-    
-    private func navigateToExplore() {
-        // select explore tab
-        appCoordinator?.selectedTab = .explore
-        
-        // dismiss all sheets/fullscreencovers
-        appCoordinator?.dismissAll()
-        
-        // go back to root view
-        path.goBackToRoot()
     }
 }

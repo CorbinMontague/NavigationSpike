@@ -8,6 +8,15 @@
 import Foundation
 
 public struct Globals {
+    
+    // MARK: - Deeplink Router
+//    public static var router: PlaylistsRouting?
+    
+    // MARK: - View Builder
+    
+    public static var viewBuilder: PlaylistsViewBuilder?
+    
+    // MARK: - Coordinators
+    
     public static var coordinator = PlaylistsCoordinator()
-    public static var viewBuilder: ScreenViewBuilder?
 }

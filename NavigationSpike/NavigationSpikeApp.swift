@@ -15,19 +15,17 @@ import SwiftUI
 struct NavigationSpikeApp: App {
     
     @StateObject var coordinator = AppCoordinator.shared
-    let viewBuilder = AppScreenViewBuilder.shared
+    let viewBuilder = AppViewBuilder.shared
     
     // prefer to use a DI library like:
     // - https://github.com/hmlongco/Resolver
     // - https://github.com/hmlongco/Factory
     private func initAppDependencies() {
-        Explore.Globals.coordinator.appCoordinator = coordinator
-        Explore.Globals.viewBuilder = Explore.ScreenViewBuilder(externalViewBuilder: viewBuilder)
+        Explore.Globals.viewBuilder = ExploreViewBuilder(externalViewBuilder: viewBuilder)
         
-        Playlists.Globals.coordinator.appCoordinator = coordinator
-        Playlists.Globals.viewBuilder = Playlists.ScreenViewBuilder(externalViewBuilder: viewBuilder)
+        Playlists.Globals.viewBuilder = PlaylistsViewBuilder(externalViewBuilder: viewBuilder)
         
-        Music.Globals.viewBuilder = Music.ScreenViewBuilder(externalViewBuilder: viewBuilder)
+        Music.Globals.viewBuilder = MusicViewBuilder(externalViewBuilder: viewBuilder)
         
         self.coordinator.exploreCoordinator = Explore.Globals.coordinator
         self.coordinator.playlistsCoordinator = Playlists.Globals.coordinator
@@ -41,7 +39,7 @@ struct NavigationSpikeApp: App {
                 initAppDependencies()
             }
             .onOpenURL { url in
-                coordinator.handle(url: url)
+                // TODO: Tell DeeplinkHandler to handle this
             }
         }
     }

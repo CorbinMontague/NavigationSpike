@@ -1,13 +1,13 @@
 //
 //  Deeplink.swift
-//  Core
+//  NavigationSpike
 //
-//  Created by Corbin Montague on 7/5/24.
+//  Created by Corbin Montague on 8/13/24.
 //
 
 import Foundation
 
-/// Supported deeplink routes.
+/// All deeplink routes supported in the app.
 /// These can be navigated to from an external source (e.g. push notifications or Deeplink URLs within an email/sms) or internally when we just want to navigate the user to a specific view in the app.
 public enum Deeplink {
     
@@ -15,6 +15,9 @@ public enum Deeplink {
     case playlists
     case playlist(_ playlistId: String)
     
+    // For Example:
+    // navigationspike://explore
+    // navigationspike://playlist/12345
     public init?(url: URL) {
         guard url.scheme == "navigationspike" else { return nil }
         switch url.host {

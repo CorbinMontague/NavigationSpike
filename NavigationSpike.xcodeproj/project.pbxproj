@@ -14,11 +14,18 @@
 		2926BA262C32FFF4000E2549 /* NavigationSpikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926BA252C32FFF4000E2549 /* NavigationSpikeTests.swift */; };
 		293527222C3438E000FE0EC5 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 293527212C3438E000FE0EC5 /* FlowStacks */; };
 		293D340E2C3495E300BB7D07 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 293D340D2C3495E300BB7D07 /* Core */; };
+		2944D4022C6B9E6000F368B5 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944D4012C6B9E6000F368B5 /* AppRouter.swift */; };
+		2944D4052C6B9EC600F368B5 /* DeeplinkRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944D4042C6B9EC600F368B5 /* DeeplinkRouting.swift */; };
+		2944D4072C6B9F6E00F368B5 /* Deeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944D4062C6B9F6E00F368B5 /* Deeplink.swift */; };
+		2944D40B2C6BA0A400F368B5 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944D40A2C6BA0A400F368B5 /* ViewFactory.swift */; };
+		2944D40D2C6BA0AB00F368B5 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944D40C2C6BA0AB00F368B5 /* ViewModelFactory.swift */; };
+		2944D40F2C6BA18800F368B5 /* DevToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944D40E2C6BA18800F368B5 /* DevToolsView.swift */; };
+		2944D4112C6BA71D00F368B5 /* DeeplinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944D4102C6BA71D00F368B5 /* DeeplinkHandler.swift */; };
 		295F1DC92C3324D7003FA6E3 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295F1DC82C3324D7003FA6E3 /* AppCoordinator.swift */; };
 		297C61B72C33066A003116D8 /* Explore in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B62C33066A003116D8 /* Explore */; };
 		297C61B92C33066A003116D8 /* Music in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61B82C33066A003116D8 /* Music */; };
 		297C61BD2C33066A003116D8 /* Playlists in Frameworks */ = {isa = PBXBuildFile; productRef = 297C61BC2C33066A003116D8 /* Playlists */; };
-		2999CF792C4177F8004C82B8 /* AppScreenViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2999CF782C4177F8004C82B8 /* AppScreenViewBuilder.swift */; };
+		2999CF792C4177F8004C82B8 /* AppViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2999CF782C4177F8004C82B8 /* AppViewBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,13 +47,20 @@
 		2926BA1B2C32FFF4000E2549 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2926BA212C32FFF4000E2549 /* NavigationSpikeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationSpikeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2926BA252C32FFF4000E2549 /* NavigationSpikeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSpikeTests.swift; sourceTree = "<group>"; };
+		2944D4012C6B9E6000F368B5 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		2944D4042C6B9EC600F368B5 /* DeeplinkRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkRouting.swift; sourceTree = "<group>"; };
+		2944D4062C6B9F6E00F368B5 /* Deeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplink.swift; sourceTree = "<group>"; };
+		2944D40A2C6BA0A400F368B5 /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
+		2944D40C2C6BA0AB00F368B5 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
+		2944D40E2C6BA18800F368B5 /* DevToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevToolsView.swift; sourceTree = "<group>"; };
+		2944D4102C6BA71D00F368B5 /* DeeplinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkHandler.swift; sourceTree = "<group>"; };
 		294801352C333B93007AA54E /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
 		295F1DC82C3324D7003FA6E3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		297C61B12C330574003116D8 /* Explore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Explore; sourceTree = "<group>"; };
 		297C61B22C330588003116D8 /* Playlists */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Playlists; sourceTree = "<group>"; };
 		297C61B32C3305AA003116D8 /* Music */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Music; sourceTree = "<group>"; };
 		2995A9002C386DA700D6C593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		2999CF782C4177F8004C82B8 /* AppScreenViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScreenViewBuilder.swift; sourceTree = "<group>"; };
+		2999CF782C4177F8004C82B8 /* AppViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,10 +139,20 @@
 			path = NavigationSpikeTests;
 			sourceTree = "<group>";
 		};
+		2944D4032C6B9EB300F368B5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				2944D4042C6B9EC600F368B5 /* DeeplinkRouting.swift */,
+				2944D4062C6B9F6E00F368B5 /* Deeplink.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		295F1DC62C3324C1003FA6E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				2926BA152C32FFF3000E2549 /* TabBarView.swift */,
+				2944D40E2C6BA18800F368B5 /* DevToolsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -136,8 +160,13 @@
 		295F1DC72C3324C9003FA6E3 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				2944D4032C6B9EB300F368B5 /* Protocols */,
 				295F1DC82C3324D7003FA6E3 /* AppCoordinator.swift */,
-				2999CF782C4177F8004C82B8 /* AppScreenViewBuilder.swift */,
+				2944D4102C6BA71D00F368B5 /* DeeplinkHandler.swift */,
+				2944D40A2C6BA0A400F368B5 /* ViewFactory.swift */,
+				2944D40C2C6BA0AB00F368B5 /* ViewModelFactory.swift */,
+				2944D4012C6B9E6000F368B5 /* AppRouter.swift */,
+				2999CF782C4177F8004C82B8 /* AppViewBuilder.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -261,7 +290,14 @@
 			files = (
 				295F1DC92C3324D7003FA6E3 /* AppCoordinator.swift in Sources */,
 				2926BA162C32FFF3000E2549 /* TabBarView.swift in Sources */,
-				2999CF792C4177F8004C82B8 /* AppScreenViewBuilder.swift in Sources */,
+				2944D4112C6BA71D00F368B5 /* DeeplinkHandler.swift in Sources */,
+				2944D40D2C6BA0AB00F368B5 /* ViewModelFactory.swift in Sources */,
+				2944D4072C6B9F6E00F368B5 /* Deeplink.swift in Sources */,
+				2944D40F2C6BA18800F368B5 /* DevToolsView.swift in Sources */,
+				2944D40B2C6BA0A400F368B5 /* ViewFactory.swift in Sources */,
+				2944D4052C6B9EC600F368B5 /* DeeplinkRouting.swift in Sources */,
+				2999CF792C4177F8004C82B8 /* AppViewBuilder.swift in Sources */,
+				2944D4022C6B9E6000F368B5 /* AppRouter.swift in Sources */,
 				2926BA142C32FFF3000E2549 /* NavigationSpikeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

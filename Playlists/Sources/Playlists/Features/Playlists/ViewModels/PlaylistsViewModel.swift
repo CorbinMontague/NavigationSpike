@@ -101,6 +101,6 @@ class PlaylistsViewModel: ObservableObject {
     }
     
     func onDiscoverSongsTapped() {
-        coordinator.navigate(to: .explore)
+//        coordinator.navigate(to: .explore)
     }
 }
