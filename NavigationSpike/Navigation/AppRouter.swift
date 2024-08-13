@@ -37,6 +37,7 @@ final class AppRouter: DeeplinkRouting {
     // MARK: - DeeplinkRouting
     
     func route(to deeplink: Deeplink, from source: DeeplinkSource) {
+        print("Routing to: \(deeplink)")
         switch deeplink {
         case .explore:
             exploreRouter?.route(to: .explore, from: source)
@@ -44,10 +45,6 @@ final class AppRouter: DeeplinkRouting {
             playlistsRouter?.route(to: .playlists, from: source)
         case .playlist(let playlistId):
             playlistsRouter?.route(to: .playlist(playlistId), from: source)
-            
-        default:
-            // some Deeplink cases are only supported from DeeplinkHandling (i.e. from a URL or Push Notification)
-            break
         }
     }
 }

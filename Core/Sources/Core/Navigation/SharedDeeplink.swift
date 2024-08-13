@@ -12,20 +12,6 @@ import Foundation
 public enum SharedDeeplink {
     
     case explore
-    
-    // For Example:
-    // navigationspike://explore
-    // navigationspike://playlist/12345
-    public init?(url: URL) {
-        guard url.scheme == "navigationspike" else { return nil }
-        switch url.host {
-        case "explore":
-            self = .explore
-            
-        default:
-            return nil
-        }
-    }
 }
 
 extension SharedDeeplink: Identifiable, Hashable {

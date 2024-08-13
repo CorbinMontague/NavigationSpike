@@ -19,22 +19,9 @@ public enum Deeplink {
     // navigationspike://explore
     // navigationspike://playlist/12345
     public init?(url: URL) {
-        guard url.scheme == "navigationspike" else { return nil }
-        switch url.host {
-        case "explore":
-            self = .explore
-        case "playlists":
-            self = .playlists
-        case "playlist":
-            if let playlistId = url.pathComponents.dropFirst().first {
-                self = .playlist(playlistId)
-            } else {
-                self = .playlists
-            }
-            
-        default:
-            return nil
-        }
+        // there aren't any deeplinks in this project isolated to the `NavigationSpike` module, but if
+        // there were, we would handle them here
+        return nil
     }
 }
 

@@ -10,7 +10,12 @@ import Foundation
 
 public struct Globals {
     
+    // MARK: - Deeplink Handler
+    
+    public static var deeplinkHandler: DeeplinkHandling?
+    
     // MARK: - Deeplink Router
+    
     public static var router: PlaylistsRouting?
     
     // MARK: - View Builder

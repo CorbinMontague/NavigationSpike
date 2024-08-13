@@ -46,20 +46,26 @@ struct NavigationSpikeApp: App {
     }
     
     private func initExplore() {
-        Explore.Globals.router = ExploreRouter(appCoordinator: coordinator,
-                                               externalRouter: router)
+        let router = ExploreRouter(appCoordinator: coordinator,
+                                   externalRouter: router)
+        Explore.Globals.router = router
+        Explore.Globals.deeplinkHandler = ExploreDeeplinkHandler(router: router)
         Explore.Globals.viewBuilder = ExploreViewBuilder(externalViewBuilder: viewBuilder)
     }
     
     private func initPlaylists() {
-        Playlists.Globals.router = PlaylistsRouter(appCoordinator: coordinator,
-                                                   externalRouter: router)
+        let router = PlaylistsRouter(appCoordinator: coordinator,
+                                     externalRouter: router)
+        Playlists.Globals.router = router
+        Playlists.Globals.deeplinkHandler = PlaylistsDeeplinkHandler(router: router)
         Playlists.Globals.viewBuilder = PlaylistsViewBuilder(externalViewBuilder: viewBuilder)
     }
     
     private func initMusic() {
-        Music.Globals.router = MusicRouter(appCoordinator: coordinator,
-                                           externalRouter: router)
+        let router = MusicRouter(appCoordinator: coordinator,
+                                 externalRouter: router)
+        Music.Globals.router = router
+        Music.Globals.deeplinkHandler = MusicDeeplinkHandler(router: router)
         Music.Globals.viewBuilder = MusicViewBuilder(externalViewBuilder: viewBuilder)
     }
     
