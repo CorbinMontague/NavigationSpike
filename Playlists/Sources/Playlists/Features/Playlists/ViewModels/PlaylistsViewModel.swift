@@ -30,13 +30,13 @@ class PlaylistsViewModel: ObservableObject {
             state = playlists.isEmpty ? .empty : .playlistsLoaded
         }
     }
-    @Published var coordinator: NavigationCoordinator
+    @Published var coordinator: PlaylistsCoordinator
     var playlistsManager: PlaylistsManaging
     
     // MARK: - Init
     
     init(playlists: [Playlist] = [],
-         coordinator: NavigationCoordinator = Globals.coordinator,
+         coordinator: PlaylistsCoordinator = Globals.coordinator,
          playlistsManager: PlaylistsManaging = PlaylistsManager.shared) {
         self.playlists = playlists
         self.coordinator = coordinator
@@ -101,6 +101,6 @@ class PlaylistsViewModel: ObservableObject {
     }
     
     func onDiscoverSongsTapped() {
-//        coordinator.navigate(to: .explore)
+        Globals.router?.route(to: .external(deeplink: .explore), from: .playlists)
     }
 }

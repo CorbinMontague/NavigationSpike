@@ -9,7 +9,7 @@ import Core
 import FlowStacks
 import SwiftUI
 
-final public class ExploreCoordinator: NavigationCoordinator, ObservableObject {
+final public class ExploreCoordinator: NavigationCoordinating {
     
     @Published public var path: FlowPath {
         didSet {

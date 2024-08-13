@@ -16,20 +16,7 @@ struct NavigationSpikeApp: App {
     
     @StateObject var coordinator = AppCoordinator.shared
     let viewBuilder = AppViewBuilder.shared
-    
-    // prefer to use a DI library like:
-    // - https://github.com/hmlongco/Resolver
-    // - https://github.com/hmlongco/Factory
-    private func initAppDependencies() {
-        Explore.Globals.viewBuilder = ExploreViewBuilder(externalViewBuilder: viewBuilder)
-        
-        Playlists.Globals.viewBuilder = PlaylistsViewBuilder(externalViewBuilder: viewBuilder)
-        
-        Music.Globals.viewBuilder = MusicViewBuilder(externalViewBuilder: viewBuilder)
-        
-        self.coordinator.exploreCoordinator = Explore.Globals.coordinator
-        self.coordinator.playlistsCoordinator = Playlists.Globals.coordinator
-    }
+    let router = AppRouter()
     
     var body: some Scene {
         WindowGroup {
@@ -39,8 +26,46 @@ struct NavigationSpikeApp: App {
                 initAppDependencies()
             }
             .onOpenURL { url in
-                // TODO: Tell DeeplinkHandler to handle this
+                let deeplinkHandler = DeeplinkHandler(router: router)
+                deeplinkHandler.handle(url: url, source: .deeplink)
             }
         }
+    }
+    
+    // MARK: - App Initialization
+    
+    // prefer to use a DI library like:
+    // - https://github.com/hmlongco/Resolver
+    // - https://github.com/hmlongco/Factory
+    private func initAppDependencies() {
+        initExplore()
+        initPlaylists()
+        initMusic()
+        
+        initApp()
+    }
+    
+    private func initExplore() {
+        Explore.Globals.router = ExploreRouter(appCoordinator: coordinator,
+                                               externalRouter: router)
+        Explore.Globals.viewBuilder = ExploreViewBuilder(externalViewBuilder: viewBuilder)
+    }
+    
+    private func initPlaylists() {
+        Playlists.Globals.router = PlaylistsRouter(appCoordinator: coordinator,
+                                                   externalRouter: router)
+        Playlists.Globals.viewBuilder = PlaylistsViewBuilder(externalViewBuilder: viewBuilder)
+    }
+    
+    private func initMusic() {
+        Music.Globals.router = MusicRouter(appCoordinator: coordinator,
+                                           externalRouter: router)
+        Music.Globals.viewBuilder = MusicViewBuilder(externalViewBuilder: viewBuilder)
+    }
+    
+    private func initApp() {
+        router.exploreRouter = Explore.Globals.router
+        router.playlistsRouter = Playlists.Globals.router
+        router.musicRouter = Music.Globals.router
     }
 }

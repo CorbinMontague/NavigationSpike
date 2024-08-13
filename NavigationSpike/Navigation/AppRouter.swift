@@ -18,30 +18,37 @@ final class AppRouter: DeeplinkRouting {
     
     private var coordinator: AppCoordinating
     
-//    private var exploreRouter: Explore.ExploreRouting
-//    private var playlistsRouter: Playlists.PlaylistsRouting
-//    private var musicRouter: Music.MusicRouting
+    var exploreRouter: Explore.ExploreRouting?
+    var playlistsRouter: Playlists.PlaylistsRouting?
+    var musicRouter: Music.MusicRouting?
     
     // MARK: - Init
     
-    init(coordinator: AppCoordinating) {
+    init(coordinator: AppCoordinating = AppCoordinator.shared,
+         exploreRouter: Explore.ExploreRouting? = Explore.Globals.router,
+         playlistsRouter: Playlists.PlaylistsRouting? = Playlists.Globals.router,
+         musicRouter: Music.MusicRouting? = Music.Globals.router) {
         self.coordinator = coordinator
+        self.exploreRouter = exploreRouter
+        self.playlistsRouter = playlistsRouter
+        self.musicRouter = musicRouter
     }
-    
-//    init(coordinator: AppCoordinating,
-//         exploreRouter: Explore.ExploreRouting,
-//         playlistsRouter: Playlists.PlaylistsRouting,
-//         musicRouter: Music.MusicRouting) {
-//        self.coordinator = coordinator
-//        self.exploreRouter = exploreRouter
-//        self.playlistsRouter = playlistsRouter
-//        self.musicRouter = musicRouter
-//    }
     
     // MARK: - DeeplinkRouting
     
     func route(to deeplink: Deeplink, from source: DeeplinkSource) {
-        
+        switch deeplink {
+        case .explore:
+            exploreRouter?.route(to: .explore, from: source)
+        case .playlists:
+            playlistsRouter?.route(to: .playlists, from: source)
+        case .playlist(let playlistId):
+            playlistsRouter?.route(to: .playlist(playlistId), from: source)
+            
+        default:
+            // some Deeplink cases are only supported from DeeplinkHandling (i.e. from a URL or Push Notification)
+            break
+        }
     }
 }
 
@@ -51,9 +58,13 @@ extension AppRouter: SharedDeeplinkRouting {
     
     func route(to deeplink: SharedDeeplink, from source: DeeplinkSource) {
         print("Routing to: \(deeplink)")
-//        switch deeplink {
-//        case .explore:
-//            exploreRouter.route(to: .explore, from: source)
-//        }
+        switch deeplink {
+        case .explore:
+            exploreRouter?.route(to: .explore, from: source)
+        case .playlists:
+            playlistsRouter?.route(to: .playlists, from: source)
+        case .playlist(let playlistId):
+            playlistsRouter?.route(to: .playlist(playlistId), from: source)
+        }
     }
 }

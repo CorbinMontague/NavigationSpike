@@ -9,7 +9,7 @@ import Core
 import Foundation
 
 /// Concrete `ExploreRouting` that implements routing the user to specific views within `Explore`.
-final class ExploreRouter: ExploreRouting {
+public final class ExploreRouter: ExploreRouting {
     
     // MARK: - Dependencies
     
@@ -19,9 +19,9 @@ final class ExploreRouter: ExploreRouting {
     
     // MARK: - Init
     
-    init(appCoordinator: AppCoordinating,
-         exploreCoordinator: ExploreCoordinator,
-         externalRouter: SharedDeeplinkRouting? = nil) {
+    public init(appCoordinator: AppCoordinating,
+                exploreCoordinator: ExploreCoordinator = Globals.coordinator,
+                externalRouter: SharedDeeplinkRouting? = nil) {
         self.appCoordinator = appCoordinator
         self.exploreCoordinator = exploreCoordinator
         self.externalRouter = externalRouter
@@ -29,7 +29,7 @@ final class ExploreRouter: ExploreRouting {
     
     // MARK: - ExploreRouting
     
-    func route(to deeplink: ExploreDeeplink, from source: DeeplinkSource) {
+    public func route(to deeplink: ExploreDeeplink, from source: DeeplinkSource) {
         switch deeplink {
         case .explore:
             routeToExplore()

@@ -14,10 +14,10 @@ class CreatePlaylistViewModel: ObservableObject {
     @Published var songsToInclude: [Song] = []
     @Published var songsToAdd: [Song] = Song.makeAllSongs()
     
-    @Published var coordinator: NavigationCoordinator
+    @Published var coordinator: CreatePlaylistCoordinator
     var onCreatePlaylist: ((Playlist) -> Void)
     
-    init(coordinator: NavigationCoordinator,
+    init(coordinator: CreatePlaylistCoordinator,
          onCreatePlaylist: @escaping ((Playlist) -> Void)) {
         self.coordinator = coordinator
         self.onCreatePlaylist = onCreatePlaylist

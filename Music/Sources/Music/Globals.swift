@@ -10,7 +10,7 @@ import Foundation
 public struct Globals {
     
     // MARK: - Deeplink Router
-//    public static var router: MusicRouting?
+    public static var router: MusicRouting?
     
     // MARK: - View Builder
     

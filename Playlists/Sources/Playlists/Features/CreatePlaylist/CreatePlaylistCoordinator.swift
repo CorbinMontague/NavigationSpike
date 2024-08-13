@@ -9,8 +9,7 @@ import Core
 import FlowStacks
 import SwiftUI
 
-final public class CreatePlaylistCoordinator: NavigationCoordinator, ObservableObject {
+final public class CreatePlaylistCoordinator: NavigationCoordinating {
     
     @Published public var path = FlowPath()
-    public weak var appCoordinator: AppCoordinating?
 }

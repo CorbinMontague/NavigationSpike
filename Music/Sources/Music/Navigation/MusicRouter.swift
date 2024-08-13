@@ -9,7 +9,7 @@ import Core
 import Foundation
 
 /// Concrete `MusicRouting` that implements routing the user to specific views within `Music`.
-final class MusicRouter: MusicRouting {
+public final class MusicRouter: MusicRouting {
     
     // MARK: - Dependencies
     
@@ -18,15 +18,15 @@ final class MusicRouter: MusicRouting {
     
     // MARK: - Init
     
-    init(appCoordinator: AppCoordinating,
-         externalRouter: SharedDeeplinkRouting? = nil) {
+    public init(appCoordinator: AppCoordinating,
+                externalRouter: SharedDeeplinkRouting? = nil) {
         self.appCoordinator = appCoordinator
         self.externalRouter = externalRouter
     }
     
     // MARK: - MusicRouting
     
-    func route(to deeplink: MusicDeeplink, from source: DeeplinkSource) {
+    public func route(to deeplink: MusicDeeplink, from source: DeeplinkSource) {
         switch deeplink {
         case .external(let sharedDeeplink):
             externalRouter?.route(to: sharedDeeplink, from: source)

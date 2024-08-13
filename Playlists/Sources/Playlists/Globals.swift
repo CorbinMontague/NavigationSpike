@@ -5,12 +5,13 @@
 //  Created by Corbin Montague on 7/2/24.
 //
 
+import Core
 import Foundation
 
 public struct Globals {
     
     // MARK: - Deeplink Router
-//    public static var router: PlaylistsRouting?
+    public static var router: PlaylistsRouting?
     
     // MARK: - View Builder
     

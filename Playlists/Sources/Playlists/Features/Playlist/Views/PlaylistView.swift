@@ -45,7 +45,7 @@ struct PlaylistView: View {
         }
         .onAppear {
             // Tip
-            // we can give view models a reference to their View's FlowPathNavigator or NavigationCoordinator
+            // we can give view models a reference to their View's FlowPathNavigator or NavigationCoordinating
             // using this approach if we don't want to pass it in through its constructor
             viewModel.navigator = navigator
         }

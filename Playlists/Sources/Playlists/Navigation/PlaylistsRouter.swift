@@ -1,6 +1,6 @@
 //
 //  PlaylistsRouter.swift
-//  
+//
 //
 //  Created by Corbin Montague on 8/13/24.
 //
@@ -9,7 +9,7 @@ import Core
 import Foundation
 
 /// Concrete `PlaylistsRouting` that implements routing the user to specific views within `Playlists`.
-final class PlaylistsRouter: PlaylistsRouting {
+public final class PlaylistsRouter: PlaylistsRouting {
     
     // MARK: - Dependencies
     
@@ -19,9 +19,9 @@ final class PlaylistsRouter: PlaylistsRouting {
     
     // MARK: - Init
     
-    init(appCoordinator: AppCoordinating,
-         playlistsCoordinator: PlaylistsCoordinator,
-         externalRouter: SharedDeeplinkRouting? = nil) {
+    public init(appCoordinator: AppCoordinating,
+                playlistsCoordinator: PlaylistsCoordinator = Globals.coordinator,
+                externalRouter: SharedDeeplinkRouting? = nil) {
         self.appCoordinator = appCoordinator
         self.playlistsCoordinator = playlistsCoordinator
         self.externalRouter = externalRouter
@@ -29,7 +29,7 @@ final class PlaylistsRouter: PlaylistsRouting {
     
     // MARK: - PlaylistsRouting
     
-    func route(to deeplink: PlaylistsDeeplink, from source: DeeplinkSource) {
+    public func route(to deeplink: PlaylistsDeeplink, from source: DeeplinkSource) {
         switch deeplink {
         case .playlists:
             routeToPlaylists()
