@@ -635,7 +635,7 @@
 			repositoryURL = "https://github.com/johnpatrickmorgan/FlowStacks";
 			requirement = {
 				kind = exactVersion;
-				version = 0.6.3;
+				version = 0.7.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

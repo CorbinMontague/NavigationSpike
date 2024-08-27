@@ -1,13 +1,13 @@
 {
-  "originHash" : "65308b789e0459f1bf8399b0252c9fb568b82b1d7dd9d3a9d4d731a958588c1b",
+  "originHash" : "6d8f3fc256f446f0e799931a9fe5675df64212c34c64e34c7ba45c16dd724348",
   "pins" : [
     {
       "identity" : "flowstacks",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/johnpatrickmorgan/FlowStacks",
       "state" : {
-        "revision" : "edd21b5d2c2a581cb99a3589a7ed808ce2f72d24",
-        "version" : "0.6.3"
+        "revision" : "208bb6b1579c5ce53cf2df659ccb040ab1a0844a",
+        "version" : "0.7.1"
       }
     }
   ],
